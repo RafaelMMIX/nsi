@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Paramètres | NSI Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <header class="page-header">
+
+        <div>
+            <h1>⚙️ Paramètres</h1>
+            <p>Personnalise ton expérience NSI Hub.</p>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+            Accueil
+        </a>
+
+    </header>
+
+
+    <main class="settings-page">
+
+        <!-- PROFIL -->
+
+        <section class="settings-section">
+
+            <div class="settings-section-header">
+
+                <div class="settings-section-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div>
+                    <h2>Profil</h2>
+                    <p>Les informations utilisées pour personnaliser NSI Hub.</p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+                        <h3>Niveau scolaire</h3>
+                        <p id="current-level">
+                            Chargement...
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="change-level"
+                    class="setting-button"
+                >
+                    Modifier
+                </button>
+
+            </div>
+
+            <div class="settings-card">
+
+    <div class="setting-info">
+
+        <div class="setting-icon">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div>
+            <h3>Prénom</h3>
+            <p>Utilisé pour personnaliser ton accueil.</p>
+        </div>
+
+    </div>
+
+    <div class="name-setting">
+
+        <input
+            type="text"
+            id="first-name"
+            class="setting-input"
+            placeholder="Ton prénom"
+            maxlength="30"
+            autocomplete="given-name"
+        >
+
+        <button
+            id="save-name"
+            class="setting-button"
+        >
+            Enregistrer
+        </button>
+
+    </div>
+
+</div>
+
+        </section>
+
+
+        <!-- APPARENCE -->
+
+        <section class="settings-section">
+
+            <div class="settings-section-header">
+
+                <div class="settings-section-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+
+                <div>
+                    <h2>Apparence</h2>
+                    <p>Personnalise l'apparence de NSI Hub.</p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+
+                    <div>
+                        <h3>Thème</h3>
+                        <p>Sombre</p>
+                    </div>
+
+                </div>
+
+                <span class="setting-badge">
+                    Actuel
+                </span>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+
+                    <div>
+                        <h3>Animations</h3>
+                        <p>Animations de l'interface</p>
+                    </div>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="animations-toggle"
+                        checked
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- DONNÉES -->
+
+        <section class="settings-section">
+
+            <div class="settings-section-header">
+
+                <div class="settings-section-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+
+                <div>
+                    <h2>Données</h2>
+                    <p>Gère les données enregistrées sur cet appareil.</p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-card danger-card">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon danger-icon">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+
+                    <div>
+                        <h3>Effacer les données locales</h3>
+                        <p>
+                            Supprime les favoris, notebooks,
+                            préférences et autres données locales.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="clear-data"
+                    class="danger-button"
+                >
+                    Effacer
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="parametres.js"></script>
+
+</body>
+
+</html>

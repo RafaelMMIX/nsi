@@ -18,11 +18,24 @@
 
 <script>
     const nsiLevel = localStorage.getItem("nsiLevel");
-    
+
     if (!nsiLevel) {
         window.location.replace("selection.html");
     }
 </script>
+
+<div id="welcome-message" class="welcome-message">
+
+    <div class="welcome-icon">
+        <i class="fa-solid fa-hand-sparkles"></i>
+    </div>
+
+    <div>
+        <span>Bienvenue</span>
+        <strong id="welcome-name"></strong>
+    </div>
+
+</div>
 
     <!-- Background -->
     <div class="background"></div>
@@ -61,6 +74,11 @@
     <a href="notebooks.html" class="nav-link">
         <i class="fa-solid fa-book-open"></i>
         Notebook
+    </a>
+
+    <a href="parametres.html" class="nav-link">
+        <i class="fa-solid fa-gear"></i>
+        Paramètres
     </a>
 </nav>
 
@@ -625,7 +643,7 @@
 
     </main>
 
-
+    <script src="welcome.js"></script>
     <script src="script.js"></script>
 
 </body>

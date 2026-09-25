@@ -2119,3 +2119,511 @@ header p {
     }
 
 }
+
+/* ==============================
+   PARAMÈTRES
+   ============================== */
+
+.settings-page {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.settings-section {
+    margin-bottom: 40px;
+}
+
+
+.settings-section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 15px;
+}
+
+
+.settings-section-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background:
+        rgba(99, 102, 241, 0.12);
+
+    color: var(--primary);
+}
+
+
+.settings-section-header h2 {
+    margin: 0 0 3px;
+
+    font-size: 18px;
+}
+
+
+.settings-section-header p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+/* CARTE */
+
+.settings-card {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 17px;
+
+    margin-bottom: 10px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+}
+
+
+/* INFORMATIONS */
+
+.setting-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+
+.setting-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color: var(--text-secondary);
+}
+
+
+.setting-info h3 {
+    margin: 0 0 3px;
+
+    font-size: 15px;
+}
+
+
+.setting-info p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* BOUTON */
+
+.setting-button {
+    border: 1px solid var(--border);
+
+    background: var(--surface-light);
+
+    color: var(--text);
+
+    padding: 8px 13px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.setting-button:hover {
+    border-color: var(--primary);
+
+    color: var(--primary);
+}
+
+
+/* BADGE */
+
+.setting-badge {
+    padding: 5px 9px;
+
+    border-radius: 7px;
+
+    background:
+        rgba(99, 102, 241, 0.12);
+
+    color: var(--primary);
+
+    font-size: 12px;
+}
+
+
+/* SWITCH */
+
+.switch {
+    position: relative;
+
+    width: 44px;
+    height: 24px;
+
+    flex-shrink: 0;
+}
+
+
+.switch input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+}
+
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    cursor: pointer;
+
+    border-radius: 999px;
+
+    background: #334155;
+
+    transition: 0.2s ease;
+}
+
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    left: 3px;
+    top: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    transition: 0.2s ease;
+}
+
+
+.switch input:checked + .slider {
+    background: var(--primary);
+}
+
+
+.switch input:checked + .slider::before {
+    transform: translateX(20px);
+}
+
+
+/* DANGER */
+
+.danger-card {
+    border-color:
+        rgba(248, 113, 113, 0.15);
+}
+
+
+.danger-icon {
+    color: #f87171;
+
+    background:
+        rgba(248, 113, 113, 0.1);
+}
+
+
+.danger-button {
+    border: 1px solid
+        rgba(248, 113, 113, 0.25);
+
+    background:
+        rgba(248, 113, 113, 0.08);
+
+    color: #f87171;
+
+    padding: 8px 13px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.danger-button:hover {
+    background:
+        rgba(248, 113, 113, 0.15);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .settings-page {
+        padding: 15px;
+    }
+
+
+    .settings-card {
+        align-items: flex-start;
+    }
+
+
+    .setting-info {
+        align-items: flex-start;
+    }
+
+}
+
+/* ==============================
+   PRÉNOM
+   ============================== */
+
+.name-setting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.setting-input {
+    width: 150px;
+
+    padding: 8px 11px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--surface-light);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition: 0.2s ease;
+}
+
+
+.setting-input:focus {
+    border-color: var(--primary);
+}
+
+
+.setting-input::placeholder {
+    color: var(--text-secondary);
+}
+
+
+@media (max-width: 600px) {
+
+    .name-setting {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .setting-input {
+        width: auto;
+    }
+
+}
+
+/* ==============================
+   BIENVENUE CENTRALE
+   ============================== */
+
+.welcome-message {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation: welcome-show 3s ease forwards;
+}
+
+
+/* LUMIÈRE DERRIÈRE */
+
+.welcome-message::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.28) 0%,
+            rgba(99, 102, 241, 0.14) 25%,
+            rgba(99, 102, 241, 0.05) 50%,
+            transparent 72%
+        );
+
+    filter: blur(15px);
+
+    transform: scale(0.7);
+
+    animation: welcome-glow 3s ease forwards;
+}
+
+
+/* TEXTE */
+
+.welcome-message > div:last-child {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.welcome-message span {
+    display: none;
+}
+
+
+.welcome-message strong {
+    position: relative;
+
+    color: var(--text);
+
+    font-size: clamp(32px, 5vw, 56px);
+
+    font-weight: 800;
+
+    letter-spacing: -1.5px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 25px rgba(99, 102, 241, 0.25);
+}
+
+
+/* PETITE ICÔNE */
+
+.welcome-icon {
+    display: none;
+}
+
+
+/* APPARITION */
+
+@keyframes welcome-show {
+
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* LUMIÈRE */
+
+@keyframes welcome-glow {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.65);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .welcome-message strong {
+        font-size: 34px;
+        padding: 20px;
+    }
+
+    .welcome-message::before {
+        width: 300px;
+        height: 300px;
+    }
+
+}
