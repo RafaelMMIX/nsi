@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Outils NSI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header>
+
+    <a href="index.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        Retour à l'accueil
+    </a>
+
+    <h1>🧰 Outils NSI</h1>
+    <p>Quelques outils utiles pour la NSI</p>
+
+</header>
+
+
+        <!-- =========================
+             CONVERTISSEUR
+        ========================== -->
+
+        <section class="tool">
+
+            <div class="tool-header">
+                <span class="tool-icon">🔢</span>
+
+                <div>
+                    <h2>Convertisseur</h2>
+                    <p>Décimal, binaire et hexadécimal</p>
+                </div>
+            </div>
+
+
+            <div class="inputs">
+
+                <div class="input-group">
+
+                    <label for="decimal">
+                        Décimal
+                    </label>
+
+                    <input
+                        type="text"
+                        id="decimal"
+                        placeholder="Ex : 42"
+                        inputmode="numeric"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="binary">
+                        Binaire
+                    </label>
+
+                    <input
+                        type="text"
+                        id="binary"
+                        placeholder="Ex : 101010"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="hexadecimal">
+                        Hexadécimal
+                    </label>
+
+                    <input
+                        type="text"
+                        id="hexadecimal"
+                        placeholder="Ex : 2A"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ASCII
+        ========================== -->
+
+        <section class="tool">
+
+            <div class="tool-header">
+                <span class="tool-icon">🔤</span>
+
+                <div>
+                    <h2>ASCII</h2>
+                    <p>Convertir un caractère et son code ASCII</p>
+                </div>
+            </div>
+
+
+            <div class="inputs">
+
+                <div class="input-group">
+
+                    <label for="asciiChar">
+                        Caractère
+                    </label>
+
+                    <input
+                        type="text"
+                        id="asciiChar"
+                        placeholder="Ex : A"
+                        maxlength="1"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="asciiDecimal">
+                        Décimal
+                    </label>
+
+                    <input
+                        type="text"
+                        id="asciiDecimal"
+                        placeholder="Ex : 65"
+                        inputmode="numeric"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="asciiBinary">
+                        Binaire
+                    </label>
+
+                    <input
+                        type="text"
+                        id="asciiBinary"
+                        placeholder="Ex : 01000001"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="asciiHex">
+                        Hexadécimal
+                    </label>
+
+                    <input
+                        type="text"
+                        id="asciiHex"
+                        placeholder="Ex : 41"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =================================
+           CONVERTISSEUR
+        ================================= */
+
+        const decimal = document.getElementById("decimal");
+        const binary = document.getElementById("binary");
+        const hexadecimal = document.getElementById("hexadecimal");
+
+
+        decimal.addEventListener("input", () => {
+
+            const value = decimal.value.trim();
+
+            if (value === "") {
+                binary.value = "";
+                hexadecimal.value = "";
+                return;
+            }
+
+            const number = Number(value);
+
+            if (!Number.isInteger(number) || number < 0) {
+                return;
+            }
+
+            binary.value = number.toString(2);
+
+            hexadecimal.value = number.toString(16).toUpperCase();
+
+        });
+
+
+        binary.addEventListener("input", () => {
+
+            const value = binary.value.trim();
+
+            if (value === "") {
+                decimal.value = "";
+                hexadecimal.value = "";
+                return;
+            }
+
+            if (!/^[01]+$/.test(value)) {
+                return;
+            }
+
+            const number = parseInt(value, 2);
+
+            decimal.value = number;
+
+            hexadecimal.value =
+                number.toString(16).toUpperCase();
+
+        });
+
+
+        hexadecimal.addEventListener("input", () => {
+
+            const value = hexadecimal.value.trim();
+
+            if (value === "") {
+                decimal.value = "";
+                binary.value = "";
+                return;
+            }
+
+            if (!/^[0-9a-fA-F]+$/.test(value)) {
+                return;
+            }
+
+            const number = parseInt(value, 16);
+
+            decimal.value = number;
+
+            binary.value = number.toString(2);
+
+        });
+
+
+
+        /* =================================
+           ASCII
+        ================================= */
+
+        const asciiChar =
+            document.getElementById("asciiChar");
+
+        const asciiDecimal =
+            document.getElementById("asciiDecimal");
+
+        const asciiBinary =
+            document.getElementById("asciiBinary");
+
+        const asciiHex =
+            document.getElementById("asciiHex");
+
+
+        asciiChar.addEventListener("input", () => {
+
+            const char = asciiChar.value;
+
+            if (char === "") {
+                asciiDecimal.value = "";
+                asciiBinary.value = "";
+                asciiHex.value = "";
+                return;
+            }
+
+            const code = char.charCodeAt(0);
+
+            if (code > 127) {
+                return;
+            }
+
+            asciiDecimal.value = code;
+
+            asciiBinary.value =
+                code.toString(2).padStart(8, "0");
+
+            asciiHex.value =
+                code.toString(16).toUpperCase().padStart(2, "0");
+
+        });
+
+
+        asciiDecimal.addEventListener("input", () => {
+
+            const value = asciiDecimal.value.trim();
+
+            if (value === "") {
+                asciiChar.value = "";
+                asciiBinary.value = "";
+                asciiHex.value = "";
+                return;
+            }
+
+            const number = Number(value);
+
+            if (
+                !Number.isInteger(number) ||
+                number < 0 ||
+                number > 127
+            ) {
+                return;
+            }
+
+            asciiChar.value =
+                String.fromCharCode(number);
+
+            asciiBinary.value =
+                number.toString(2).padStart(8, "0");
+
+            asciiHex.value =
+                number.toString(16).toUpperCase().padStart(2, "0");
+
+        });
+
+
+        asciiBinary.addEventListener("input", () => {
+
+            const value = asciiBinary.value.trim();
+
+            if (value === "") {
+                asciiChar.value = "";
+                asciiDecimal.value = "";
+                asciiHex.value = "";
+                return;
+            }
+
+            if (!/^[01]+$/.test(value)) {
+                return;
+            }
+
+            const number = parseInt(value, 2);
+
+            if (number > 127) {
+                return;
+            }
+
+            asciiChar.value =
+                String.fromCharCode(number);
+
+            asciiDecimal.value = number;
+
+            asciiHex.value =
+                number.toString(16).toUpperCase().padStart(2, "0");
+
+        });
+
+
+        asciiHex.addEventListener("input", () => {
+
+            const value = asciiHex.value.trim();
+
+            if (value === "") {
+                asciiChar.value = "";
+                asciiDecimal.value = "";
+                asciiBinary.value = "";
+                return;
+            }
+
+            if (!/^[0-9a-fA-F]+$/.test(value)) {
+                return;
+            }
+
+            const number = parseInt(value, 16);
+
+            if (number > 127) {
+                return;
+            }
+
+            asciiChar.value =
+                String.fromCharCode(number);
+
+            asciiDecimal.value = number;
+
+            asciiBinary.value =
+                number.toString(2).padStart(8, "0");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

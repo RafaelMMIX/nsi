@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NSI Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+
+    <main class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+
+                <div>
+                    <h1>NSI Hub</h1>
+                    <p>Tout ce qu'il te faut pour la NSI.</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <span id="clock">00:00</span>
+            </div>
+
+            <nav class="main-nav">
+    <a href="index.html" class="nav-link active">
+        <i class="fa-solid fa-house"></i>
+        Accueil
+    </a>
+
+    <a href="outils.html" class="nav-link">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        Outils
+    </a>
+
+    <a href="notebook.html" class="nav-link">
+        <i class="fa-solid fa-book-open"></i>
+        Notebook
+    </a>
+</nav>
+
+        </header>
+
+
+        <!-- SEARCH -->
+        <section class="search-container">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Rechercher un outil..."
+                autocomplete="off"
+            >
+
+            <kbd>CTRL K</kbd>
+
+        </section>
+
+        <section id="favorites-section" class="favorites-section" style="display: none;">
+            <div class="section-header">
+                <h2>Mes favoris</h2>
+            </div>
+        
+            <div class="card-grid" id="favorites-container"></div>
+        </section>
+
+
+        <!-- COURS & LYCÉE -->
+        <section class="category">
+
+            <div class="category-title">
+                <div class="category-icon blue">
+                    <i class="fa-solid fa-school"></i>
+                </div>
+
+                <div>
+                    <h2>Cours & Lycée</h2>
+                    <p>Les outils du lycée</p>
+                </div>
+            </div>
+
+
+            <div class="cards">
+
+                <!-- ENT -->
+                <a
+                    class="card"
+                    href="https://lycees.netocentre.fr"
+                    target="_blank"
+                    data-name="ENT lycée netocentre"
+                >
+                    <div class="card-icon blue">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>ENT</h3>
+                        <p>Environnement numérique de travail</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="ent"
+                        aria-label="Ajouter ENT aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+
+                <!-- Écran partagé -->
+                <a
+                    class="card"
+                    href="https://cvl-41.elea.apps.education.fr/mod/bigbluebuttonbn/view.php?id=96362"
+                    target="_blank"
+                    data-name="écran partagé elea bigbluebutton cours direct"
+                >
+                    <div class="card-icon purple">
+                        <i class="fa-solid fa-display"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>Écran partagé</h3>
+                        <p>Cours en direct avec le professeur</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="ecran_partage"
+                        aria-label="Ajouter Écran partagé aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+                <!-- Cours complet Éléa -->
+                <a
+                    class="card"
+                    href="https://cvl-41.elea.apps.education.fr/course/view.php?id=127"
+                    target="_blank"
+                    data-name="cours complet elea cours nsi"
+                >
+                    <div class="card-icon purple">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                
+                    <div class="card-content">
+                        <h3>Cours complet Éléa</h3>
+                        <p>Accéder au cours complet de NSI</p>
+                    </div>
+                
+                    <button
+                        class="favorite-button"
+                        data-id="cours_complet_elea"
+                        aria-label="Ajouter Cours complet Éléa aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- APPRENDRE -->
+        <section class="category">
+
+            <div class="category-title">
+                <div class="category-icon green">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+                    <h2>Apprendre</h2>
+                    <p>Cours, exercices et ressources</p>
+                </div>
+            </div>
+
+
+            <div class="cards">
+
+                <!-- Pixees -->
+                <a
+                    class="card"
+                    href="https://pixees.fr/informatiquelycee/outils_nsi/"
+                    target="_blank"
+                    data-name="pixees nsi cours ressources"
+                >
+                    <div class="card-icon green">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>Pixees</h3>
+                        <p>Ressources et outils pour la NSI</p>
+                    </div>
+
+                    <button
+                    class="favorite-button"
+                    data-id="pixees"
+                        aria-label="Ajouter Pixees aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+
+                <!-- France IOI -->
+                <a
+                    class="card"
+                    href="https://www.france-ioi.org/"
+                    target="_blank"
+                    data-name="france ioi algorithmique programmation exercices"
+                >
+                    <div class="card-icon orange">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>France-IOI</h3>
+                        <p>Algorithmique et programmation</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="france_ioi"
+                        aria-label="Ajouter France-IOI aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+
+                <!-- Python Tutor -->
+                <a
+                    class="card"
+                    href="https://pythontutor.com/"
+                    target="_blank"
+                    data-name="python tutor python visualisation code"
+                >
+                    <div class="card-icon yellow">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>Python Tutor</h3>
+                        <p>Visualiser l'exécution du code Python</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="python_tutor"
+                        aria-label="Ajouter Python Tutor aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+
+                <!-- W3Schools -->
+                <a
+                    class="card"
+                    href="https://www.w3schools.com/"
+                    target="_blank"
+                    data-name="w3schools html css javascript python cours"
+                >
+                    <div class="card-icon cyan">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>W3Schools</h3>
+                        <p>HTML, CSS, JavaScript, Python...</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="w3schools"
+                        aria-label="Ajouter W3Schools aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- IA -->
+<section class="category">
+
+    <div class="category-title">
+        <div class="category-icon purple">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+
+        <div>
+            <h2>Intelligence artificielle</h2>
+            <p>Mes assistants IA</p>
+        </div>
+    </div>
+
+
+    <div class="cards">
+
+        <!-- ChatGPT -->
+        <a
+            class="card"
+            href="https://chatgpt.com/"
+            target="_blank"
+            data-name="chatgpt openai intelligence artificielle ia"
+        >
+            <div class="card-icon green">
+                <i class="fa-solid fa-comment"></i>
+            </div>
+
+            <div class="card-content">
+                <h3>ChatGPT</h3>
+                <p>L'assistant IA d'OpenAI</p>
+            </div>
+
+            <button
+                class="favorite-button"
+                data-id="chatgpt"
+                aria-label="Ajouter ChatGPT aux favoris"
+            >
+                <i class="fa-regular fa-star"></i>
+            </button>
+
+            <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+        </a>
+
+
+        <!-- Claude -->
+        <a
+            class="card"
+            href="https://claude.ai/"
+            target="_blank"
+            data-name="claude anthropic intelligence artificielle ia"
+        >
+            <div class="card-icon orange">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div class="card-content">
+                <h3>Claude</h3>
+                <p>L'assistant IA d'Anthropic</p>
+            </div>
+
+            <button
+                class="favorite-button"
+                data-id="claude"
+                aria-label="Ajouter Claude aux favoris"
+            >
+                <i class="fa-regular fa-star"></i>
+            </button>
+
+            <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+        </a>
+
+
+        <!-- Mistral -->
+        <a
+            class="card"
+            href="https://chat.mistral.ai/"
+            target="_blank"
+            data-name="mistral le chat france français intelligence artificielle ia"
+        >
+            <div class="card-icon blue">
+                <span class="flag">🇫🇷</span>
+            </div>
+
+            <div class="card-content">
+                <h3>Mistral</h3>
+                <p>Le Chat · IA française</p>
+            </div>
+
+            <button
+                class="favorite-button"
+                data-id="mistral"
+                aria-label="Ajouter Mistral aux favoris"
+            >
+                <i class="fa-regular fa-star"></i>
+            </button>
+
+            <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+        </a>
+
+        <a href="prompt.html" class="ai-prompts-button">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+    <div>
+        <strong>Prompts utiles</strong>
+        <span>Des prompts prêts à copier pour la NSI</span>
+    </div>
+
+    <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+    </div>
+
+</section>
+
+
+        <!-- DÉVELOPPEMENT -->
+        <section class="category">
+
+            <div class="category-title">
+
+                <div class="category-icon pink">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+
+                <div>
+                    <h2>Développement</h2>
+                    <p>Mes outils de programmation</p>
+                </div>
+
+            </div>
+
+
+            <div class="cards">
+
+                <!-- GitHub -->
+                <a
+                    class="card"
+                    href="https://github.com/"
+                    target="_blank"
+                    data-name="github git code programmation dépôt"
+                >
+                    <div class="card-icon github">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>GitHub</h3>
+                        <p>Mes projets et dépôts Git</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="github"
+                        aria-label="Ajouter GitHub aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+
+                <!-- NSI Première -->
+                <a
+                    class="card"
+                    href="https://pixees.fr/informatiquelycee/prem/index.html"
+                    target="_blank"
+                    data-name="nsi première cours première"
+                >
+                    <div class="card-icon red">
+                        <i class="fa-solid fa-1"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>NSI Première</h3>
+                        <p>Cours et ressources de Première</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="pixees"
+                        aria-label="Ajouter Pixees aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+
+                <!-- NSI Terminale -->
+                <a
+                    class="card"
+                    href="https://pixees.fr/informatiquelycee/term/index.html"
+                    target="_blank"
+                    data-name="nsi terminale cours terminale"
+                >
+                    <div class="card-icon purple">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div class="card-content">
+                        <h3>NSI Terminale</h3>
+                        <p>Cours et ressources de Terminale</p>
+                    </div>
+
+                    <button
+                        class="favorite-button"
+                        data-id="nsi_terminale"
+                        aria-label="Ajouter NSI Terminale aux favoris"
+                    >
+                        <i class="fa-regular fa-star"></i>
+                    </button>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- MÉMO -->
+
+<section class="memo-section">
+
+    <div class="category-title">
+
+        <div class="category-icon yellow">
+            <i class="fa-solid fa-note-sticky"></i>
+        </div>
+
+        <div>
+            <h2>Mon mémo</h2>
+            <p>Mes notes importantes pour la NSI</p>
+        </div>
+
+    </div>
+
+
+    <textarea
+        id="memo"
+        placeholder="Écris ici ce que tu veux retenir..."
+    ></textarea>
+
+
+    <div class="memo-footer">
+
+        <span id="memo-status">
+            <i class="fa-solid fa-cloud"></i>
+            Enregistré automatiquement
+        </span>
+
+        <button id="clear-memo">
+            <i class="fa-solid fa-trash"></i>
+            Effacer
+        </button>
+
+    </div>
+
+</section>
+
+
+        <!-- EMPTY SEARCH -->
+        <div id="no-results" class="no-results">
+
+            <i class="fa-solid fa-ghost"></i>
+
+            <h3>Aucun résultat</h3>
+
+            <p>
+                Même l'ordinateur ne sait pas ce que tu cherches.
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                NSI Hub · Fait pour la NSI
+            </p>
+
+            <p>
+                <i class="fa-solid fa-code"></i>
+                HTML · CSS · JS · JSON · PY · Laujiton
+            </p>
+
+            <a href="changelog.html" class="version">
+            v1.0.0
+            </a>
+
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

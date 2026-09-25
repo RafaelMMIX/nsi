@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notebook | NSI Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icônes -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.28.2/full/pyodide.js"></script>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div>
+            <h1>📓 NSI Notebook</h1>
+            <p>Écris, exécute et organise ton code directement dans ton navigateur.</p>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+            Accueil
+        </a>
+    </header>
+
+
+    <main class="notebook">
+
+        <div class="notebook-toolbar">
+            <button id="add-python" class="notebook-button">
+                <i class="fa-brands fa-python"></i>
+                Python
+            </button>
+
+            <button id="add-markdown" class="notebook-button">
+                <i class="fa-solid fa-heading"></i>
+                Markdown
+            </button>
+
+            <button id="run-all" class="notebook-button primary">
+                <i class="fa-solid fa-play"></i>
+                Tout exécuter
+            </button>
+
+            <span id="save-status" class="save-status">
+                <i class="fa-solid fa-cloud"></i>
+                Sauvegardé
+            </span>
+        </div>
+
+
+        <div id="cells"></div>
+
+
+        <button id="add-cell" class="add-cell-button">
+            <i class="fa-solid fa-plus"></i>
+            Ajouter une cellule
+        </button>
+
+    </main>
+
+
+    <script src="notebook.js"></script>
+
+</body>
+</html>

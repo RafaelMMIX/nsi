@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mes notebooks | NSI Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <header class="page-header">
+
+        <div>
+            <h1>📓 Mes notebooks</h1>
+            <p>Retrouve tous tes travaux NSI.</p>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+            Accueil
+        </a>
+
+    </header>
+
+
+    <main class="notebooks-page">
+
+        <div class="notebooks-toolbar">
+
+            <button id="new-notebook" class="notebook-button primary">
+                <i class="fa-solid fa-plus"></i>
+                Nouveau notebook
+            </button>
+
+        </div>
+
+
+        <div id="notebooks-list" class="notebooks-list"></div>
+
+    </main>
+
+
+    <script src="notebooks.js"></script>
+
+</body>
+
+</html>
