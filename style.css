@@ -1931,3 +1931,191 @@ header p {
 
     margin-bottom: 8px;
 }
+
+/* ==============================
+   SÉLECTION DU NIVEAU
+   ============================== */
+
+.level-selection {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+.selection-content {
+    width: 100%;
+    max-width: 650px;
+
+    text-align: center;
+}
+
+
+.selection-logo {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        rgba(99, 102, 241, 0.15);
+
+    color: var(--primary);
+
+    font-size: 26px;
+
+    box-shadow:
+        0 0 40px
+        rgba(99, 102, 241, 0.12);
+}
+
+
+.selection-content h1 {
+    margin: 0 0 10px;
+
+    font-size: 34px;
+}
+
+
+.selection-content > p {
+    margin: 0 0 35px;
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+}
+
+
+.level-cards {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.level-card {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        auto 1fr auto;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 20px;
+
+    text-align: left;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.level-card:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(99, 102, 241, 0.5);
+
+    background:
+        var(--surface-light);
+}
+
+
+.level-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(99, 102, 241, 0.12);
+
+    color: var(--primary);
+
+    font-size: 18px;
+}
+
+
+.level-card h2 {
+    margin: 0 0 5px;
+
+    font-size: 18px;
+}
+
+
+.level-card p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.level-card > i {
+    color: var(--text-secondary);
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.level-card:hover > i {
+    color: var(--primary);
+
+    transform: translateX(4px);
+}
+
+
+@media (max-width: 600px) {
+
+    .level-selection {
+        padding: 20px;
+    }
+
+    .selection-content h1 {
+        font-size: 28px;
+    }
+
+    .level-card {
+        grid-template-columns:
+            auto 1fr auto;
+
+        padding: 16px;
+    }
+
+}

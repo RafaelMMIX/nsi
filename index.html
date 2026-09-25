@@ -16,6 +16,14 @@
 
 <body>
 
+<script>
+    const nsiLevel = localStorage.getItem("nsiLevel");
+    
+    if (!nsiLevel) {
+        window.location.replace("selection.html");
+    }
+</script>
+
     <!-- Background -->
     <div class="background"></div>
 
@@ -425,7 +433,7 @@
 
     <div>
         <strong>Prompts utiles</strong>
-        <span>Des prompts prêts à copier pour la NSI</span>
+        <span>Des prompts prêts à copier pour un chatbot</span>
     </div>
 
     <i class="fa-solid fa-arrow-right"></i>
