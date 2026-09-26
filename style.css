@@ -1238,120 +1238,187 @@ header p {
     background: rgba(99, 102, 241, 0.08);
 }
 
-/* ==============================
+/* ========================================
    CHANGELOG
-============================== */
+======================================== */
 
 .changelog {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
 }
 
+/* Version */
 
 .version-block {
-    padding: 24px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    background: var(--surface);
+    margin-bottom: 42px;
 }
-
 
 .version-header {
     display: flex;
+    align-items: center;
+    gap: 12px;
 
-    align-items: flex-start;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    padding-bottom: 20px;
-
-    margin-bottom: 20px;
-
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
 }
-
 
 .version-number {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
 
-    margin-bottom: 8px;
+    padding: 6px 10px;
 
-    padding: 5px 9px;
-
-    border-radius: 6px;
+    border-radius: 7px;
 
     background: rgba(99, 102, 241, 0.12);
+    color: var(--primary);
 
-    color: #818cf8;
-
-    font-family: monospace;
-
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 700;
 }
-
-
-.version-header h2 {
-    font-size: 18px;
-}
-
 
 .version-date {
     color: var(--text-secondary);
-
     font-size: 12px;
-
-    white-space: nowrap;
 }
 
+
+/* Liste des changements */
+
+.change-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Changement */
 
 .change-group {
-    margin-top: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    padding: 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--surface);
+
+    transition: 0.2s ease;
+}
+
+.change-group:hover {
+    border-color: rgba(99, 102, 241, 0.25);
+    transform: translateY(-1px);
 }
 
 
-.change-group h3 {
-    margin-bottom: 10px;
+/* Icône */
+
+.change-icon {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+}
+
+
+/* Couleurs selon le type */
+
+.change-group.new .change-icon {
+    background: rgba(34, 197, 94, 0.12);
+    color: #22c55e;
+}
+
+.change-group.improved .change-icon {
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary);
+}
+
+.change-group.fixed .change-icon {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+}
+
+.change-group.removed .change-icon {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}
+
+
+/* Contenu */
+
+.change-content {
+    min-width: 0;
+}
+
+.change-type {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.change-content h3 {
+    margin: 0 0 5px;
+
+    color: var(--text);
 
     font-size: 14px;
+    font-weight: 600;
 }
 
+.change-content p {
+    margin: 0;
 
-.change-group ul {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-    padding-left: 20px;
-}
-
-
-.change-group li {
     color: var(--text-secondary);
 
     font-size: 13px;
-
     line-height: 1.5;
 }
 
 
+/* Mobile */
+
 @media (max-width: 600px) {
 
-    .version-header {
-        flex-direction: column;
+    .changelog {
+        padding: 25px 15px 60px;
     }
 
-    .version-date {
-        white-space: normal;
+    .version-header {
+        gap: 9px;
+    }
+
+    .version-number {
+        font-size: 12px;
+    }
+
+    .change-group {
+        padding: 14px;
+        gap: 11px;
+    }
+
+    .change-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
     }
 
 }
@@ -3019,4 +3086,276 @@ header p {
 
 .info-ticker a:hover {
     color: var(--primary);
+}
+
+/* ========================================
+   CONTRIBUTION
+======================================== */
+
+.contribution-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.contribution-modal.active {
+    display: flex;
+}
+
+.contribution-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.contribution-box {
+    position: relative;
+    z-index: 1;
+
+    width: min(520px, 100%);
+
+    padding: 24px;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    background: var(--surface);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4);
+
+    animation: contribution-open 0.2s ease;
+}
+
+@keyframes contribution-open {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.contribution-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.contribution-close:hover {
+    background: var(--surface-light);
+    color: var(--text);
+}
+
+.contribution-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    margin-bottom: 22px;
+}
+
+.contribution-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary);
+}
+
+.contribution-header h2 {
+    margin: 0;
+
+    color: var(--text);
+    font-size: 18px;
+}
+
+.contribution-header p {
+    margin: 4px 0 0;
+
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+#contribution-form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#contribution-message {
+    width: 100%;
+    min-height: 150px;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    resize: vertical;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    outline: none;
+
+    background: var(--surface-light);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+
+    transition: 0.2s ease;
+}
+
+#contribution-message:focus {
+    border-color: var(--primary);
+}
+
+#contribution-message::placeholder {
+    color: var(--text-secondary);
+}
+
+.contribution-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 12px;
+}
+
+.character-count {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.contribute-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--primary);
+    color: white;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.contribute-submit:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+
+    .contribution-box {
+        padding: 20px;
+    }
+
+    .contribution-footer {
+        align-items: flex-end;
+    }
+
+}
+
+.change-group.accepted .change-icon {
+    background: rgba(168, 85, 247, 0.12);
+    color: #a855f7;
+}
+
+.about-changelog-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 15px;
+    padding: 9px 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--surface-light);
+    color: var(--text);
+
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+.about-changelog-button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+/* Liens du footer */
+footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--text);
+    text-decoration: none;
+}
+
+footer a,
+footer a:visited,
+footer a:hover,
+footer a:active {
+    text-decoration: none;
 }

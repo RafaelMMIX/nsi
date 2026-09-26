@@ -28,15 +28,23 @@
     <div class="info-ticker-track">
 
         <span>
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Découvrez les
+            <a href="changelog.html">dernières nouveautés</a>
+            de NSI Hub
+        </span>
+
+        <span>
             <i class="fa-solid fa-code"></i>
-            NSI Hub est créé et développé par <strong>Rafael Hernandez</strong>
+            NSI Hub est créé et développé par <strong>la NSIT</strong>
         </span>
 
         <span class="ticker-separator">•</span>
 
         <span>
             <i class="fa-solid fa-lightbulb"></i>
-            Une idée pour améliorer le site ? <strong>Propose-la !</strong>
+            Une idée pour améliorer le site ?
+            <a href="about.html">Propose-la !</a>
         </span>
 
         <span class="ticker-separator">•</span>
@@ -57,20 +65,41 @@
 
         <span>
             <i class="fa-solid fa-heart"></i>
-            Une erreur ou un lien cassé ? <strong>Signale-le</strong>
+            Une erreur ou un lien cassé ?
+            <a href="about.html">Signale-le</a>
         </span>
+
+        
+        <span class="ticker-separator">•</span>
+
+        <span>
+            <i class="fa-solid fa-circle-info"></i>
+            Envie d'en savoir plus ?
+            <a href="about.html">À propos de NSI Hub</a>
+        </span>
+
+        <span class="ticker-separator">•</span>
 
         <!-- Copie pour assurer une boucle fluide -->
+
+        <span>
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Découvrez les
+            <a href="changelog.html">dernières nouveautés</a>
+            de NSI Hub
+        </span>
+
         <span>
             <i class="fa-solid fa-code"></i>
-            NSI Hub est créé et développé par <strong>Rafael et la NSI-T</strong>
+            NSI Hub est créé et développé par <strong>la NSIT</strong>
         </span>
 
         <span class="ticker-separator">•</span>
 
         <span>
             <i class="fa-solid fa-lightbulb"></i>
-            Une idée pour améliorer le site ? <strong>Propose-la !</strong>
+            Une idée pour améliorer le site ?
+            <a href="about.html">Propose-la !</a>
         </span>
 
         <span class="ticker-separator">•</span>
@@ -91,7 +120,8 @@
 
         <span>
             <i class="fa-solid fa-heart"></i>
-            Une erreur ou un lien cassé ? <strong>Signale-le</strong>
+            Une erreur ou un lien cassé ?
+            <a href="about.html">Signale-le</a>
         </span>
 
         <span class="ticker-separator">•</span>
@@ -99,7 +129,7 @@
         <span>
             <i class="fa-solid fa-circle-info"></i>
             Envie d'en savoir plus ?
-            <a href="a-propos.html">À propos de NSI Hub</a>
+            <a href="about.html">À propos de NSI Hub</a>
         </span>
 
         <span class="ticker-separator">•</span>
@@ -153,10 +183,10 @@
         Outils
     </a>
 
-    <a href="notebooks.html" class="nav-link">
+    <!-- <a href="notebooks.html" class="nav-link">
         <i class="fa-solid fa-book-open"></i>
         Notebook
-    </a>
+    </a> -->
 
     <a href="parametres.html" class="nav-link">
         <i class="fa-solid fa-gear"></i>
@@ -717,14 +747,27 @@
                 HTML · CSS · JS · JSON · PY · Laujiton
             </p>
 
-            <a href="changelog.html" class="version">
-            v1.0.0
+            <a href="changelog.html" class="changelog-link">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Nouveautés
+            </a>
+
+            <span class="footer-separator">·</span>
+
+            <a href="changelog.html" class="changelog-link">
+                <i class="fa-solid fa-code-branch"></i>
+                v<span id="site-version">...</span>
             </a>
 
         </footer>
 
     </main>
 
+    <script src="version.js"></script>
+    <script>
+        document.getElementById("site-version").textContent =
+            `v${NSI_HUB_VERSION}`;
+    </script>
     <script src="welcome.js"></script>
     <script src="script.js"></script>
 

@@ -2,162 +2,40 @@
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Changelog · NSI Hub</title>
+    <title>Changelog - NSI Hub</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 </head>
-
 
 <body>
 
-    <main class="container">
+    <header class="page-header">
 
-        <header>
+        <a href="index.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+            Retour
+        </a>
 
-            <a href="index.html" class="back-button">
-                <i class="fa-solid fa-arrow-left"></i>
-                Retour à l'accueil
-            </a>
+        <div>
+            <h1>Changelog</h1>
+            <p>Les évolutions de NSI Hub.</p>
+        </div>
 
-            <h1>📋 Changelog</h1>
-
-            <p>
-                Les dernières nouveautés et modifications du NSI Hub.
-            </p>
-
-        </header>
+    </header>
 
 
-        <section class="changelog">
-
-            <!-- VERSION ACTUELLE -->
-
-            <article class="version-block">
-
-                <div class="version-header">
-
-                    <div>
-
-                        <span class="version-number">
-                            v1.0.0
-                        </span>
-
-                        <h2>Première version</h2>
-
-                    </div>
-
-                    <span class="version-date">
-                        25 septembre 2026
-                    </span>
-
-                </div>
+    <main class="changelog" id="changelog"></main>
 
 
-                <div class="change-group">
-
-                    <h3>🆕 Nouveautés</h3>
-
-                    <ul>
-
-                        <li>
-                            Création du NSI Hub
-                        </li>
-
-                        <li>
-                            Ajout de la section Cours
-                        </li>
-
-                        <li>
-                            Ajout de la section IA
-                        </li>
-
-                        <li>
-                            Ajout de ChatGPT, Claude et Mistral
-                        </li>
-
-                        <li>
-                            Ajout de la page Outils
-                        </li>
-
-                        <li>
-                            Ajout du convertisseur
-                            décimal / binaire / hexadécimal
-                        </li>
-
-                        <li>
-                            Ajout de l'outil ASCII
-                        </li>
-
-                        <li>
-                            Ajout du mémo sauvegardé automatiquement
-                        </li>
-
-                        <li>
-                            Ajout des prompts NSI
-                        </li>
-
-                    </ul>
-
-                </div>
-
-            </article>
-
-
-            <!-- FUTURE VERSION -->
-
-            <article class="version-block">
-
-                <div class="version-header">
-
-                    <div>
-
-                        <span class="version-number">
-                            v0.1.0
-                        </span>
-
-                        <h2>Prototype</h2>
-
-                    </div>
-
-                    <span class="version-date">
-                        Septembre 2026
-                    </span>
-
-                </div>
-
-
-                <div class="change-group">
-
-                    <h3>🆕 Nouveautés</h3>
-
-                    <ul>
-
-                        <li>
-                            Première création du site
-                        </li>
-
-                        <li>
-                            Ajout des premiers liens NSI
-                        </li>
-
-                    </ul>
-
-                </div>
-
-            </article>
-
-        </section>
-
-    </main>
+    <script src="changelog.js"></script>
 
 </body>
 

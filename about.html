@@ -63,7 +63,7 @@
                 </div>
 
                 <div>
-                    <h2>Créateur</h2>
+                    <h2>Créateurs</h2>
                     <p>À l'origine du projet</p>
                 </div>
 
@@ -71,7 +71,7 @@
 
             <div class="about-card">
 
-                <h3>Rafael & la terminale NSI</h3>
+                <h3>La terminale NSI</h3>
 
                 <p>
                     NSI Hub est un projet personnel développé pour
@@ -149,7 +149,7 @@
 
                 <div class="about-info-card">
                     <span>Version</span>
-                    <strong>1.0.0</strong>
+                    <strong id="site-version">...</strong>
                 </div>
 
                 <div class="about-info-card">
@@ -168,6 +168,11 @@
                 </div>
 
             </div>
+
+            <a href="changelog.html" class="about-changelog-button">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Voir les nouveautés
+            </a>
 
         </section>
 
@@ -196,25 +201,98 @@
                     pour améliorer le site ?
                 </p>
 
-                <div class="contribute-buttons">
+                    <div class="contribute-buttons">
 
-                    <button class="contribute-button">
-                        <i class="fa-solid fa-lightbulb"></i>
-                        Proposer une idée
-                    </button>
-
-                    <button class="contribute-button">
-                        <i class="fa-solid fa-bug"></i>
-                        Signaler une erreur
-                    </button>
-
-                </div>
+                        <button class="contribute-button" id="idea-button">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            Proposer une idée
+                        </button>
+                    
+                        <button class="contribute-button" id="bug-button">
+                            <i class="fa-solid fa-bug"></i>
+                            Signaler une erreur
+                        </button>
+                    
+                    </div>
 
             </div>
 
         </section>
 
     </main>
+
+    <!-- Fenêtre de contribution -->
+
+<div class="contribution-modal" id="contribution-modal">
+
+    <div class="contribution-overlay" id="contribution-overlay"></div>
+
+    <div class="contribution-box">
+
+        <button class="contribution-close" id="contribution-close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="contribution-header">
+
+            <div class="contribution-icon" id="contribution-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+            <div>
+                <h2 id="contribution-title">
+                    Proposer une idée
+                </h2>
+
+                <p id="contribution-description">
+                    Une idée pour améliorer NSI Hub ?
+                </p>
+            </div>
+
+        </div>
+
+        <form id="contribution-form">
+
+            <label for="contribution-message">
+                <span id="contribution-label">
+                    Ton idée
+                </span>
+            </label>
+
+            <textarea
+                id="contribution-message"
+                placeholder="Écris ta suggestion ici..."
+                required
+                maxlength="2000"
+            ></textarea>
+
+            <div class="contribution-footer">
+
+                <span class="character-count">
+                    <span id="character-count">0</span>/2000
+                </span>
+
+                <button
+                    type="submit"
+                    class="contribute-submit"
+                >
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Envoyer
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="version.js"></script>
+    <script>
+        document.getElementById("site-version").textContent =
+            `v${NSI_HUB_VERSION}`;
+    </script>
+    <script src="about.js"></script>
+</div>
 
 </body>
 
