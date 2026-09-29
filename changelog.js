@@ -17,6 +17,7 @@ const changelog = [
                 type: "new",
                 title: "Qwant",
                 description: "Ajout d'une section pour les moteurs de recherche, où il n'y a que Qwant, arrêtez d'utiliser google il nous faut notre souveraineté numérique"
+            }
         ]
     },
     {
