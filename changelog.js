@@ -1,5 +1,21 @@
 const changelog = [
     {
+        version: "1.2.1",
+        date: "29 septembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Favicon temporaire",
+                description: "Ajout d'un favicon non personnalisé (un simple émojis) en attendant un vrai favicon, qui sera dans la semaine a suivre."
+            },
+            {
+                type: "removed",
+                title: "Easter Egg retiré",
+                description: "Un Easter Egg (oeuf de pâques) à été retiré."
+            }
+        ]
+    },
+    {
         version: "1.2.0",
         date: "26 septembre 2026",
         changes: [
