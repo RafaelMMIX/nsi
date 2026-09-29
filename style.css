@@ -3359,3 +3359,69 @@ footer a:hover,
 footer a:active {
     text-decoration: none;
 }
+
+/* ================================
+   RECHERCHE
+================================ */
+
+.search-section {
+    margin-bottom: 42px;
+}
+
+.search-section .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.search-section .section-header h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* Petite ligne à droite du titre */
+.search-section .section-header::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(99, 102, 241, 0.25),
+        transparent
+    );
+}
+
+/* Carte Qwant */
+.search-section .card {
+    position: relative;
+}
+
+.search-section .card:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+}
+
+/* Icône recherche */
+.search-section .card-icon.blue {
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary);
+}
+
+/* Description */
+.search-section .card-content p {
+    margin-top: 4px;
+    color: var(--text-secondary);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .search-section {
+        margin-bottom: 32px;
+    }
+
+    .search-section .section-header h2 {
+        font-size: 20px;
+    }
+}
