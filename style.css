@@ -3425,3 +3425,266 @@ footer a:active {
         font-size: 20px;
     }
 }
+
+/* =================================
+   INFORMATION IMPORTANTE
+================================= */
+
+.important-announcement {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.important-announcement.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Fond sombre derrière la popup */
+
+.announcement-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* Popup */
+
+.announcement-box {
+    position: relative;
+    z-index: 1;
+
+    width: min(650px, calc(100% - 40px));
+    padding: 38px;
+
+    background: #1a0b0b;
+
+    border: 2px solid #ef4444;
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 0 1px rgba(239, 68, 68, 0.15),
+        0 0 60px rgba(239, 68, 68, 0.2),
+        0 25px 80px rgba(0, 0, 0, 0.5);
+
+    animation: announcement-open 0.35s ease;
+}
+
+/* Bouton fermer */
+
+.announcement-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.06);
+    color: #94a3b8;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.announcement-close:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+/* Icône */
+
+.announcement-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 14px;
+
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+
+    font-size: 23px;
+}
+
+/* Label */
+
+.announcement-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #ef4444;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+/* Titre */
+
+.announcement-box h2 {
+    margin: 0 0 12px;
+
+    color: #f8fafc;
+
+    font-size: 30px;
+    font-weight: 800;
+}
+
+/* Texte */
+
+.announcement-box p {
+    margin: 0 0 25px;
+
+    color: #cbd5e1;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Bouton */
+
+.announcement-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 11px 16px;
+
+    border-radius: 9px;
+
+    background: #ef4444;
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.announcement-button:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+/* =================================
+   ONGLET CACHÉ SUR LE CÔTÉ
+================================= */
+
+.announcement-tab {
+    position: fixed;
+
+    top: 50%;
+    right: 0;
+
+    z-index: 9999;
+
+    transform: translateY(-50%) translateX(calc(100% - 42px));
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 15px;
+
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    border-right: none;
+
+    border-radius: 10px 0 0 10px;
+
+    background: #7f1d1d;
+    color: white;
+
+    cursor: pointer;
+
+    transition: transform 0.25s ease;
+}
+
+.announcement-tab:hover {
+    transform: translateY(-50%) translateX(0);
+}
+
+.announcement-tab i {
+    color: #fca5a5;
+}
+
+.announcement-tab span {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Caché tant que la popup est ouverte */
+
+.announcement-tab.hidden {
+    display: none;
+}
+
+/* Animation */
+
+@keyframes announcement-open {
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .announcement-box {
+        width: calc(100% - 30px);
+        padding: 28px 22px;
+    }
+
+    .announcement-box h2 {
+        font-size: 24px;
+    }
+
+    .announcement-box p {
+        font-size: 14px;
+    }
+
+    .announcement-tab {
+        transform: translateY(-50%) translateX(calc(100% - 38px));
+    }
+}
