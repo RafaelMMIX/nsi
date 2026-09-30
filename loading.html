@@ -9,20 +9,51 @@
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
 </head>
 
 <body class="loading-page">
 
     <main class="loading-screen">
 
-        <div class="loading-logo">
-            <span>NSI</span>
-            <strong>Hub</strong>
+        <div class="loading-background">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-        <div class="loading-spinner"></div>
+        <div class="loading-content">
 
-        <p id="loading-text">Préparation de ton espace...</p>
+            <div class="loading-logo">
+                <span>NSI</span>
+                <strong>Hub</strong>
+            </div>
+
+            <div class="loading-spinner"></div>
+
+            <p id="loading-status">
+                Préparation de ton espace...
+            </p>
+
+            <div class="loading-progress">
+                <div id="loading-progress-bar"></div>
+            </div>
+
+            <div class="loading-tip">
+                <div class="loading-tip-icon">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+
+                <div>
+                    <span>LE SAVIEZ-VOUS ?</span>
+                    <p id="loading-tip"></p>
+                </div>
+            </div>
+
+        </div>
 
     </main>
 
