@@ -330,3 +330,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+const currentAnnouncement = announcements[announcements.length - 1];
+
+document.getElementById("announcement-title").textContent =
+    currentAnnouncement.title;
+
+document.getElementById("announcement-message").textContent =
+    currentAnnouncement.message;
+
+document.getElementById("announcement-button-text").textContent =
+    currentAnnouncement.buttonText;
+
+document.getElementById("announcement-button").href =
+    currentAnnouncement.buttonUrl;
