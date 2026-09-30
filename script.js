@@ -297,3 +297,25 @@ function updateFavoritesSection() {
 
 updateFavorites();
 updateFavoritesSection();
+
+const announcement = document.getElementById("important-announcement");
+const announcementClose = document.getElementById("announcement-close");
+const announcementTab = document.getElementById("announcement-tab");
+const nsiLevel = localStorage.getItem("nsiLevel");
+
+announcementClose.addEventListener("click", () => {
+    announcement.classList.add("hidden");
+    announcementTab.classList.remove("hidden");
+});
+
+announcementTab.addEventListener("click", () => {
+    announcement.classList.remove("hidden");
+    announcementTab.classList.add("hidden");
+});
+
+if (nsiLevel !== "professeur") {
+    announcement.classList.remove("hidden");
+} else {
+    announcement.classList.add("hidden");
+    announcementTab.classList.add("hidden");
+}
