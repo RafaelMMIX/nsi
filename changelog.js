@@ -22,6 +22,12 @@ const changelog = [
                 type: "accepted",
                 title: "Vraie selection de profil",
                 description: "Pour le moment, la selection de profil ne change rien, faut changer ça."
+            },
+            {
+                type: "new",
+                title: "Ajout d'un chargement",
+                description: "Ajout d'un écran de chargement a la selection du profil."
+            }
         ]
     },
     {
