@@ -19,7 +19,7 @@ levelCards.forEach(card => {
 
         // Direction vers l'accueil
         window.location.href =
-            "index.html";
+            "loading.html";
 
     });
 
