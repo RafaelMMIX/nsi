@@ -3790,3 +3790,316 @@ footer a:active {
         opacity: 1;
     }
 }
+
+/* =================================
+   ÉCRAN DE CHARGEMENT
+================================= */
+
+.loading-page {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--background);
+}
+
+.loading-screen {
+    position: relative;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.loading-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(500px, calc(100% - 40px));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* ================================
+   FOND ANIMÉ
+================================ */
+
+.loading-background {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.loading-background span {
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background: rgba(99, 102, 241, 0.08);
+
+    filter: blur(50px);
+
+    animation: loading-orb 7s ease-in-out infinite alternate;
+}
+
+.loading-background span:nth-child(1) {
+    top: -100px;
+    left: -80px;
+}
+
+.loading-background span:nth-child(2) {
+    right: -100px;
+    bottom: -100px;
+
+    animation-delay: -2s;
+}
+
+.loading-background span:nth-child(3) {
+    top: 40%;
+    left: 45%;
+
+    width: 150px;
+    height: 150px;
+
+    animation-delay: -4s;
+}
+
+@keyframes loading-orb {
+    from {
+        transform: translate(0, 0) scale(0.8);
+    }
+
+    to {
+        transform: translate(80px, -50px) scale(1.2);
+    }
+}
+
+/* ================================
+   LOGO
+================================ */
+
+.loading-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+
+    margin-bottom: 28px;
+
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2.5px;
+
+    animation: loading-logo 0.8s ease;
+}
+
+.loading-logo span {
+    color: var(--text);
+}
+
+.loading-logo strong {
+    color: var(--primary);
+}
+
+/* ================================
+   SPINNER
+================================ */
+
+.loading-spinner {
+    width: 28px;
+    height: 28px;
+
+    margin-bottom: 20px;
+
+    border: 3px solid var(--surface-light);
+    border-top-color: var(--primary);
+
+    border-radius: 50%;
+
+    animation: loading-spin 0.8s linear infinite;
+}
+
+@keyframes loading-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ================================
+   TEXTE
+================================ */
+
+#loading-status {
+    margin: 0 0 16px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    min-height: 20px;
+
+    animation: loading-text 0.4s ease;
+}
+
+/* ================================
+   PROGRESSION
+================================ */
+
+.loading-progress {
+    width: 100%;
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 99px;
+
+    background: var(--surface-light);
+}
+
+#loading-progress-bar {
+    width: 0;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: var(--primary);
+
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+
+    transition: width 0.15s ease;
+}
+
+/* ================================
+   TIP
+================================ */
+
+.loading-tip {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-top: 28px;
+    padding: 15px;
+
+    text-align: left;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: rgba(17, 24, 39, 0.65);
+
+    animation: loading-tip 0.8s ease;
+}
+
+.loading-tip-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(99, 102, 241, 0.12);
+
+    color: var(--primary);
+
+    font-size: 13px;
+}
+
+.loading-tip span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--primary);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+}
+
+.loading-tip p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+
+@keyframes loading-logo {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes loading-text {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes loading-tip {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .loading-logo {
+        font-size: 40px;
+    }
+
+    .loading-content {
+        width: calc(100% - 30px);
+    }
+
+    .loading-tip {
+        margin-top: 22px;
+    }
+}
