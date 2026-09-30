@@ -1,5 +1,30 @@
 const changelog = [
     {
+        version: "1.2.2",
+        date: "30 septembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Annonces importantes",
+                description: "Ajout d'une pop-up qui s'affiche pour toutes les informations importantes qui peuvent être realative au lycée."
+            },
+            {
+                type: "new",
+                title: "Messagerie de l'ENT",
+                description: "Ajout de la messagerie de l'ENT en tant que bouton dans la catégorie \"Cours & Lycée\"."
+            },
+            {
+                type: "improved",
+                title: "Ajout d'un niveau",
+                description: "Ajout de \"professeur\" dans la selection de profil, ça n'a pour l'instant aucune conéquence sur l'affichage du site."
+            },
+            {
+                type: "accepted",
+                title: "Vraie selection de profil",
+                description: "Pour le moment, la selection de profil ne change rien, faut changer ça."
+        ]
+    },
+    {
         version: "1.2.1",
         date: "29 septembre 2026",
         changes: [
