@@ -6,7 +6,7 @@ const announcements = [
         message: "NSI Hub est maintenant disponible pour centraliser les ressources utiles de NSI.",
         buttonText: "Découvrir NSI Hub",
         buttonUrl: "about.html",
-        date: "2026-09-30"
+        date: "2026-10-02"
     },
 
     {
@@ -20,8 +20,8 @@ const announcements = [
 
     {
         id: "annonce-03",
-        title: "Le Notebook Python est disponible",
-        message: "Vous pouvez maintenant écrire et exécuter du Python directement depuis NSI Hub.",
+        title: "Le Notebook Python est indisponible",
+        message: "Le notebook ne marche pas, aidez moi",
         buttonText: "Ouvrir le Notebook",
         buttonUrl: "notebook.html",
         date: "2026-09-20"
