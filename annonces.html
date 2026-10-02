@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Annonces - NSI Hub</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <a href="index.html" class="logo">
+                <span>NSI</span> Hub
+            </a>
+
+            <nav class="main-nav">
+
+                <a href="index.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>
+                    Accueil
+                </a>
+
+                <a href="outils.html" class="nav-link">
+                    <i class="fa-solid fa-toolbox"></i>
+                    Outils
+                </a>
+
+                <a href="notebook.html" class="nav-link">
+                    <i class="fa-solid fa-code"></i>
+                    Notebook
+                </a>
+
+                <a href="annonces.html" class="nav-link active">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    Annonces
+                </a>
+
+                <a href="parametres.html" class="nav-link">
+                    <i class="fa-solid fa-gear"></i>
+                    Paramètres
+                </a>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="announcements-page">
+
+        <section class="announcements-header">
+
+            <div class="announcements-header-icon">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+
+            <div>
+                <h1>Annonces</h1>
+                <p>
+                    Retrouvez les dernières informations de NSI Hub.
+                </p>
+            </div>
+
+        </section>
+
+
+        <section class="current-announcement-section">
+
+            <div class="announcement-section-title">
+                <span class="announcement-status current">
+                    <i class="fa-solid fa-circle"></i>
+                    Actuelle
+                </span>
+            </div>
+
+            <div id="current-announcement">
+                <!-- Généré par annonces.js -->
+            </div>
+
+        </section>
+
+
+        <section class="old-announcements-section">
+
+            <div class="announcement-section-title">
+                <span>
+                    Anciennes annonces
+                </span>
+            </div>
+
+            <div id="old-announcements">
+                <!-- Généré par annonces.js -->
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            NSI Hub · <a href="changelog.html">v1.3.0</a>
+        </p>
+    </footer>
+
+
+    <script src="announcements.js"></script>
+    <script src="annonces.js"></script>
+
+</body>
+
+</html>
