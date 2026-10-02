@@ -1,0 +1,377 @@
+/* ========================================
+   PAGE ANNONCES
+======================================== */
+
+.announcements-page {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 55px 0 70px;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.announcements-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 45px;
+}
+
+.announcements-header-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--primary);
+
+    font-size: 20px;
+}
+
+.announcements-header h1 {
+    margin: 0 0 5px;
+
+    color: var(--text);
+
+    font-size: 30px;
+    font-weight: 750;
+}
+
+.announcements-header p {
+    margin: 0;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+
+/* ========================================
+   TITRES DE SECTIONS
+======================================== */
+
+.announcement-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 16px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.announcement-section-title::after {
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: var(--border);
+}
+
+.announcement-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.announcement-status.current {
+    color: #ef4444;
+}
+
+.announcement-status.current i {
+    font-size: 7px;
+}
+
+
+/* ========================================
+   ANNONCE ACTUELLE
+======================================== */
+
+.current-announcement-section {
+    margin-bottom: 48px;
+}
+
+.current-announcement {
+    display: flex;
+    gap: 22px;
+
+    padding: 28px;
+
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(239, 68, 68, 0.08),
+            rgba(17, 24, 39, 0.8)
+        );
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+.current-announcement-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+
+    font-size: 17px;
+}
+
+.current-announcement-content {
+    flex: 1;
+}
+
+.announcement-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #ef4444;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.current-announcement h2 {
+    margin: 0 0 10px;
+
+    color: var(--text);
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.current-announcement p {
+    margin: 0 0 16px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.announcement-meta {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 18px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+.announcement-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.announcement-page-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 9px 14px;
+
+    border-radius: 9px;
+
+    background: var(--primary);
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.announcement-page-button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
+
+
+/* ========================================
+   ANCIENNES ANNONCES
+======================================== */
+
+.old-announcements-section {
+    margin-bottom: 30px;
+}
+
+.old-announcement {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+
+    padding: 17px 18px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: rgba(17, 24, 39, 0.45);
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.2s ease,
+        background 0.2s ease;
+}
+
+.old-announcement:hover {
+    opacity: 0.8;
+    background: var(--surface);
+}
+
+.old-announcement-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: var(--surface-light);
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+.old-announcement-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.old-announcement h3 {
+    margin: 0 0 5px;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.old-announcement p {
+    margin: 0 0 8px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.old-announcement-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+}
+
+
+/* ========================================
+   ÉTATS VIDES
+======================================== */
+
+.no-announcements,
+.no-old-announcements {
+    padding: 25px;
+
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+
+    color: var(--text-secondary);
+
+    text-align: center;
+    font-size: 13px;
+}
+
+.no-announcements i {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 20px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .announcements-page {
+        width: calc(100% - 30px);
+        padding-top: 35px;
+    }
+
+    .announcements-header {
+        margin-bottom: 32px;
+    }
+
+    .announcements-header h1 {
+        font-size: 25px;
+    }
+
+    .current-announcement {
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .current-announcement-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .current-announcement h2 {
+        font-size: 19px;
+    }
+
+    .old-announcement {
+        padding: 14px;
+    }
+
+}
