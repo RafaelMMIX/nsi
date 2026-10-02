@@ -6,5 +6,6 @@ const announcements = [
         buttonText: "Ne cliquez pas, ça redirige vers rien",
         buttonUrl: "loading.html",
         date: "2026-10-02"
+        audience: ["premiere", "terminale", "professeur"]
     }
 ];
