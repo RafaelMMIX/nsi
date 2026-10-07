@@ -7,6 +7,21 @@ const changelog = [
                 type: "improved",
                 title: "Connexion ENT",
                 description: "Ajout d'un rappel quotidien pour se connecter à l'ENT avant d'accéder à certaines ressources."
+            },
+            {
+                type: "improved",
+                title: "Écran de chargement",
+                description: "Un nouvel écran de chargement fait désormais son apparition lors de l'accès à NSI Hub."
+            },
+            {
+                type: "new",
+                title: "Le prof de la NSIT a approuvé le site !",
+                description: "Ajout d'une page de célébration spéciale pour annoncer l'approbation de NSI Hub par le professeur, avec confettis et animations."
+            },
+            {
+                type: "new",
+                title: "Célébrations aléatoires",
+                description: "Des confettis peuvent désormais apparaître aléatoirement sur l'accueil pour célébrer l'approbation du site."
             }
         ]
     },
