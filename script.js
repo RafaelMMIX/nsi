@@ -510,3 +510,37 @@ function launchIndexConfetti() {
     animate();
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const devMode =
+        localStorage.getItem("nsiDevMode") === "true";
+
+    /*
+     * 15 % de chance de lancer les confettis.
+     */
+    const shouldCelebrate =
+        devMode ||
+        Math.random() < 0.15;
+
+    if (!shouldCelebrate) {
+        return;
+    }
+
+    /*
+     * Entre 3 et 15 secondes.
+     */
+    const delay =
+        devMode
+            ? 1000
+            : Math.floor(
+                Math.random() * 12000
+            ) + 3000;
+
+    setTimeout(() => {
+
+        launchIndexConfetti();
+
+    }, delay);
+
+});
