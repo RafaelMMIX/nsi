@@ -1,355 +1,230 @@
-/* =========================================================
-   PAGE DE FÉLICITATION
-   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-.celebration-page {
-    min-height: 100vh;
-    margin: 0;
-    overflow: hidden;
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(99, 102, 241, 0.16),
-            transparent 35%
-        ),
-        var(--background);
-}
+    const revealButton = document.getElementById("reveal-button");
+    const result = document.getElementById("celebration-result");
+    const continueButton = document.getElementById("continue-button");
+    const canvas = document.getElementById("confetti-canvas");
 
-#confetti-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 20;
-}
+    const ctx = canvas.getContext("2d");
 
-.celebration-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 10;
-    padding: 30px;
-    box-sizing: border-box;
-}
+    const devMode = localStorage.getItem("nsiDevMode") === "true";
 
-.celebration-content {
-    width: min(700px, 100%);
-    text-align: center;
-}
+    /*
+     * ---------------------------------------------------------
+     * PROTECTION
+     * ---------------------------------------------------------
+     */
 
-/* =========================================================
-   BADGE
-   ========================================================= */
+    const alreadySeen = localStorage.getItem("nsiTeacherApproved");
 
-.celebration-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 8px 14px;
-
-    border: 1px solid rgba(99, 102, 241, 0.25);
-    border-radius: 999px;
-
-    background: rgba(99, 102, 241, 0.08);
-
-    color: #a5b4fc;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-
-    margin-bottom: 30px;
-
-    animation: badgeAppear 0.7s ease forwards;
-}
-
-.celebration-badge i {
-    font-size: 10px;
-}
-
-/* =========================================================
-   QUESTION
-   ========================================================= */
-
-.celebration-question {
-    font-size: clamp(42px, 8vw, 76px);
-    font-weight: 800;
-    letter-spacing: -3px;
-    color: var(--text);
-
-    margin-bottom: 40px;
-
-    animation: questionAppear 0.8s ease forwards;
-}
-
-/* =========================================================
-   BOUTON RÉVÉLATION
-   ========================================================= */
-
-.reveal-button,
-.continue-button {
-    border: none;
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    padding: 15px 22px;
-
-    border-radius: 12px;
-
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-.reveal-button {
-    color: white;
-    background: var(--primary);
-
-    box-shadow:
-        0 8px 30px rgba(99, 102, 241, 0.25);
-}
-
-.reveal-button:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 12px 35px rgba(99, 102, 241, 0.4);
-}
-
-.reveal-button:active {
-    transform: translateY(0);
-}
-
-.reveal-button.hidden {
-    display: none;
-}
-
-/* =========================================================
-   RÉSULTAT
-   ========================================================= */
-
-.celebration-result {
-    display: none;
-    opacity: 0;
-    transform: scale(0.85);
-}
-
-.celebration-result.visible {
-    display: block;
-    animation: resultAppear 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.result-icon {
-    width: 72px;
-    height: 72px;
-
-    margin: 0 auto 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 20px;
-
-    background: rgba(250, 204, 21, 0.1);
-    border: 1px solid rgba(250, 204, 21, 0.2);
-
-    color: #facc15;
-    font-size: 28px;
-
-    box-shadow:
-        0 0 40px rgba(250, 204, 21, 0.12);
-}
-
-.result-label {
-    display: block;
-
-    margin-bottom: 12px;
-
-    color: #facc15;
-
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.celebration-result h1 {
-    margin: 0;
-
-    color: var(--text);
-
-    font-size: clamp(38px, 7vw, 68px);
-    line-height: 0.98;
-    letter-spacing: -3px;
-    font-weight: 900;
-}
-
-.celebration-result h1 span {
-    color: #a5b4fc;
-
-    text-shadow:
-        0 0 25px rgba(99, 102, 241, 0.3);
-}
-
-.celebration-result p {
-    max-width: 500px;
-
-    margin: 24px auto;
-
-    color: var(--text-secondary);
-
-    font-size: 15px;
-    line-height: 1.6;
-}
-
-/* =========================================================
-   ÉTOILES
-   ========================================================= */
-
-.celebration-stars {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-
-    margin: 20px 0 30px;
-}
-
-.celebration-stars span {
-    color: #facc15;
-    font-size: 18px;
-
-    animation: starFloat 1.5s ease-in-out infinite;
-}
-
-.celebration-stars span:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.celebration-stars span:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-.celebration-stars span:nth-child(4) {
-    animation-delay: 0.3s;
-}
-
-.celebration-stars span:nth-child(5) {
-    animation-delay: 0.4s;
-}
-
-/* =========================================================
-   BOUTON FINAL
-   ========================================================= */
-
-.continue-button {
-    color: var(--text);
-    background: var(--surface-light);
-    border: 1px solid var(--border);
-}
-
-.continue-button:hover {
-    transform: translateY(-2px);
-    background: var(--surface);
-    border-color: rgba(99, 102, 241, 0.4);
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.celebration-footer {
-    position: absolute;
-    bottom: 22px;
-
-    color: var(--text-secondary);
-
-    font-size: 11px;
-    opacity: 0.6;
-}
-
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
-
-@keyframes badgeAppear {
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
+    if (alreadySeen === "true" && !devMode) {
+        window.location.replace("index.html");
+        return;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-@keyframes questionAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.96);
-    }
+    /*
+     * ---------------------------------------------------------
+     * CANVAS
+     * ---------------------------------------------------------
+     */
 
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes resultAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.75) translateY(20px);
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
 
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+    resizeCanvas();
+
+    window.addEventListener("resize", resizeCanvas);
+
+
+    /*
+     * ---------------------------------------------------------
+     * CONFETTIS
+     * ---------------------------------------------------------
+     */
+
+    let confettis = [];
+    let animationFrame = null;
+
+    const confettiColors = [
+        "#6366f1",
+        "#8b5cf6",
+        "#22c55e",
+        "#facc15",
+        "#f97316",
+        "#ec4899",
+        "#38bdf8"
+    ];
+
+    function createConfetti(amount = 180) {
+
+        for (let i = 0; i < amount; i++) {
+
+            confettis.push({
+                x: Math.random() * canvas.width,
+                y: -20 - Math.random() * canvas.height,
+
+                width: Math.random() * 7 + 4,
+                height: Math.random() * 12 + 5,
+
+                speedY: Math.random() * 3 + 2,
+                speedX: Math.random() * 2 - 1,
+
+                rotation: Math.random() * Math.PI * 2,
+                rotationSpeed: Math.random() * 0.15 - 0.075,
+
+                gravity: Math.random() * 0.04 + 0.02,
+
+                color:
+                    confettiColors[
+                        Math.floor(Math.random() * confettiColors.length)
+                    ],
+
+                opacity: 1
+            });
+
+        }
     }
-}
 
-@keyframes starFloat {
-    0%,
-    100% {
-        transform: translateY(0);
+
+    function drawConfetti() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        confettis.forEach((confetti) => {
+
+            confetti.speedY += confetti.gravity;
+
+            confetti.y += confetti.speedY;
+            confetti.x += confetti.speedX;
+
+            confetti.rotation += confetti.rotationSpeed;
+
+            if (
+                confetti.y >
+                canvas.height + 30
+            ) {
+                confetti.opacity -= 0.03;
+            }
+
+            ctx.save();
+
+            ctx.translate(
+                confetti.x,
+                confetti.y
+            );
+
+            ctx.rotate(
+                confetti.rotation
+            );
+
+            ctx.globalAlpha =
+                Math.max(0, confetti.opacity);
+
+            ctx.fillStyle =
+                confetti.color;
+
+            ctx.fillRect(
+                -confetti.width / 2,
+                -confetti.height / 2,
+                confetti.width,
+                confetti.height
+            );
+
+            ctx.restore();
+
+        });
+
+        confettis =
+            confettis.filter(
+                confetti => confetti.opacity > 0
+            );
+
+        if (confettis.length > 0) {
+            animationFrame =
+                requestAnimationFrame(drawConfetti);
+        } else {
+            cancelAnimationFrame(animationFrame);
+        }
     }
 
-    50% {
-        transform: translateY(-6px);
-    }
-}
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+    function launchConfetti(amount = 180) {
 
-@media (max-width: 600px) {
+        createConfetti(amount);
 
-    .celebration-container {
-        padding: 20px;
+        if (!animationFrame) {
+            animationFrame =
+                requestAnimationFrame(drawConfetti);
+        }
     }
 
-    .celebration-question {
-        letter-spacing: -2px;
+
+    /*
+     * ---------------------------------------------------------
+     * RÉVÉLATION
+     * ---------------------------------------------------------
+     */
+
+    revealButton.addEventListener("click", () => {
+
+        revealButton.classList.add("hidden");
+
+        result.classList.add("visible");
+
+        /*
+         * Petit délai pour que l'animation
+         * de révélation soit plus agréable.
+         */
+
+        setTimeout(() => {
+            launchConfetti(220);
+        }, 250);
+
+    });
+
+
+    /*
+     * ---------------------------------------------------------
+     * CONTINUER
+     * ---------------------------------------------------------
+     */
+
+    continueButton.addEventListener("click", () => {
+
+        localStorage.setItem(
+            "nsiTeacherApproved",
+            "true"
+        );
+
+        window.location.replace("index.html");
+
+    });
+
+
+    /*
+     * ---------------------------------------------------------
+     * MODE DEV
+     * ---------------------------------------------------------
+     *
+     * En mode développeur :
+     * la page est rejouable.
+     */
+
+    if (devMode) {
+
+        console.log(
+            "[NSI Hub] Mode développeur :",
+            "la page de félicitations peut être rejouée."
+        );
+
     }
 
-    .celebration-result h1 {
-        letter-spacing: -2px;
-    }
-
-    .celebration-footer {
-        width: 90%;
-        text-align: center;
-    }
-}
+});
