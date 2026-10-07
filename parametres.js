@@ -99,6 +99,40 @@ animationsToggle.addEventListener(
     }
 );
 
+// ==============================
+// MODE DEV
+// ==============================
+
+const devModeToggle = document.getElementById("dev-mode-toggle");
+const devModeInfo = document.getElementById("dev-mode-info");
+
+if (devModeToggle) {
+
+    const devMode =
+        localStorage.getItem("nsiDevMode") === "true";
+
+    devModeToggle.checked = devMode;
+
+    if (devMode) {
+        devModeInfo.style.display = "flex";
+    }
+
+
+    devModeToggle.addEventListener("change", () => {
+
+        const enabled = devModeToggle.checked;
+
+        localStorage.setItem(
+            "nsiDevMode",
+            enabled
+        );
+
+        devModeInfo.style.display =
+            enabled ? "flex" : "none";
+
+    });
+
+}
 
 // ==============================
 // EFFACER LES DONNÉES
