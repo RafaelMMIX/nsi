@@ -4528,3 +4528,47 @@ footer a:active {
     font-size: 9px;
     font-weight: 700;
 }
+
+/* ========================================
+   MODE DÉVELOPPEUR
+======================================== */
+
+.dev-mode-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-top: 12px;
+    padding: 14px 16px;
+
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 12px;
+
+    background: rgba(245, 158, 11, 0.06);
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+.dev-mode-info > i {
+    margin-top: 2px;
+
+    color: #f59e0b;
+}
+
+.dev-mode-info strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #f59e0b;
+
+    font-size: 12px;
+}
+
+.dev-mode-info p {
+    margin: 0;
+
+    line-height: 1.5;
+}
