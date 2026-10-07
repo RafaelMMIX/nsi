@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const today = new Date().toISOString().split("T")[0];
     const lastPopupDate = localStorage.getItem("nsiEntPopupDate");
+    const devMode = localStorage.getItem("nsiDevMode") === "true";
 
     function closePopup() {
         popup.classList.remove("visible");
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         link.addEventListener("click", (event) => {
 
-            if (lastPopupDate === today) {
+            if (lastPopupDate === today && !devMode) {
                 return;
             }
 
