@@ -941,7 +941,82 @@
     </div>
 
 </div>
-    
+
+    <!-- Popup partage -->
+<div class="share-popup-overlay" id="share-popup">
+
+    <div class="share-popup">
+
+        <button
+            class="share-popup-close"
+            id="share-popup-close"
+            aria-label="Fermer"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="share-popup-icon">
+            <i class="fa-solid fa-share-nodes"></i>
+        </div>
+
+        <span class="share-popup-label">
+            NSI HUB
+        </span>
+
+        <h2>Tu connais quelqu'un qui pourrait en avoir besoin ?</h2>
+
+        <p>
+            Partage NSI Hub avec tes amis ou tes camarades de classe.
+        </p>
+
+        <div class="share-buttons">
+
+            <a
+                href="#"
+                class="share-button discord"
+                data-share="discord"
+            >
+                <i class="fa-brands fa-discord"></i>
+                Discord
+            </a>
+
+            <a
+                href="#"
+                class="share-button whatsapp"
+                data-share="whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+            </a>
+
+            <a
+                href="#"
+                class="share-button x"
+                data-share="x"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="fa-brands fa-x-twitter"></i>
+                X
+            </a>
+
+            <button
+                class="share-button copy"
+                id="share-copy"
+            >
+                <i class="fa-solid fa-link"></i>
+                Copier le lien
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <script src="share-popup.js"></script>
     <script src="ent-popup.js"></script>
     <script src="version.js"></script>
     <script>
