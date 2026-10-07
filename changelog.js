@@ -8,6 +8,7 @@ const changelog = [
                 title: "Connexion ENT",
                 description: "Ajout d'un rappel quotidien pour se connecter à l'ENT avant d'accéder à certaines ressources."
             }
+        ]
     },
     {
         version: "1.2.2",
