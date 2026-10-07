@@ -49,7 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     closeButton.addEventListener("click", () => {
-        closePopup();
+    popup.classList.remove("visible");
+    pendingLink = null;
+
+    localStorage.setItem("nsiEntPopupDate", today);
     });
 
 
