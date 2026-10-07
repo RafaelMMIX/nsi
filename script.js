@@ -344,3 +344,169 @@ document.getElementById("announcement-button-text").textContent =
 
 document.getElementById("announcement-button").href =
     currentAnnouncement.buttonUrl;
+
+/*
+ * =========================================================
+ * CONFETTIS SUR L'ACCUEIL
+ * =========================================================
+ */
+
+function launchIndexConfetti() {
+
+    const canvas = document.createElement("canvas");
+
+    canvas.className = "index-confetti-canvas";
+
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+
+    const colors = [
+        "#6366f1",
+        "#8b5cf6",
+        "#22c55e",
+        "#facc15",
+        "#f97316",
+        "#ec4899",
+        "#38bdf8"
+    ];
+
+    /*
+     * Création des confettis
+     */
+
+    for (let i = 0; i < 100; i++) {
+
+        particles.push({
+
+            x:
+                Math.random() *
+                canvas.width,
+
+            y:
+                -20 -
+                Math.random() *
+                100,
+
+            width:
+                Math.random() * 6 + 3,
+
+            height:
+                Math.random() * 10 + 5,
+
+            speedY:
+                Math.random() * 3 + 2,
+
+            speedX:
+                Math.random() * 2 - 1,
+
+            rotation:
+                Math.random() *
+                Math.PI *
+                2,
+
+            rotationSpeed:
+                Math.random() *
+                0.15 -
+                0.075,
+
+            color:
+                colors[
+                    Math.floor(
+                        Math.random() *
+                        colors.length
+                    )
+                ],
+
+            opacity: 1
+
+        });
+
+    }
+
+
+    function animate() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        particles.forEach((particle) => {
+
+            particle.y +=
+                particle.speedY;
+
+            particle.x +=
+                particle.speedX;
+
+            particle.rotation +=
+                particle.rotationSpeed;
+
+            if (
+                particle.y >
+                canvas.height + 30
+            ) {
+                particle.opacity -= 0.04;
+            }
+
+            ctx.save();
+
+            ctx.translate(
+                particle.x,
+                particle.y
+            );
+
+            ctx.rotate(
+                particle.rotation
+            );
+
+            ctx.globalAlpha =
+                particle.opacity;
+
+            ctx.fillStyle =
+                particle.color;
+
+            ctx.fillRect(
+                -particle.width / 2,
+                -particle.height / 2,
+                particle.width,
+                particle.height
+            );
+
+            ctx.restore();
+
+        });
+
+
+        const remaining =
+            particles.some(
+                particle =>
+                    particle.opacity > 0
+            );
+
+        if (remaining) {
+
+            requestAnimationFrame(
+                animate
+            );
+
+        } else {
+
+            canvas.remove();
+
+        }
+
+    }
+
+
+    animate();
+
+}
