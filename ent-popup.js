@@ -55,6 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("nsiEntPopupDate", today);
     });
 
+    popup.addEventListener("click", (event) => {
+
+    if (event.target === popup) {
+        popup.classList.remove("visible");
+        pendingLink = null;
+
+        localStorage.setItem("nsiEntPopupDate", today);
+    }
+
+    });
+
 
     continueButton.addEventListener("click", () => {
         closePopup();
