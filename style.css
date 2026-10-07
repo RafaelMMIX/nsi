@@ -4514,3 +4514,17 @@ footer a:active {
 
     line-height: 1.5;
 }
+
+#dev-indicator {
+    margin-left: 8px;
+
+    padding: 3px 7px;
+
+    border-radius: 6px;
+
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+
+    font-size: 9px;
+    font-weight: 700;
+}
