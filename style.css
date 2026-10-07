@@ -4572,3 +4572,243 @@ footer a:active {
 
     line-height: 1.5;
 }
+
+/* ========================================
+   MODE DÉVELOPPEUR
+======================================== */
+
+.dev-mode-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 18px;
+
+    border: 1px solid rgba(245, 158, 11, 0.18);
+    border-radius: 14px;
+
+    background: rgba(245, 158, 11, 0.04);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* CONTENU */
+
+.dev-mode-card .settings-card-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    min-width: 0;
+}
+
+.dev-mode-card .settings-card-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+
+    font-size: 15px;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.dev-mode-card h3 {
+    margin: 0 0 4px;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.dev-mode-card p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   CARTE ACTIVE
+======================================== */
+
+.dev-mode-card.active {
+    border-color: rgba(245, 158, 11, 0.45);
+
+    background: rgba(245, 158, 11, 0.08);
+
+    box-shadow:
+        0 0 0 1px rgba(245, 158, 11, 0.04),
+        0 8px 30px rgba(245, 158, 11, 0.06);
+}
+
+.dev-mode-card.active .settings-card-icon {
+    background: rgba(245, 158, 11, 0.16);
+    color: #fbbf24;
+}
+
+
+/* ========================================
+   SWITCH
+======================================== */
+
+.settings-switch {
+    position: relative;
+
+    width: 44px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+.settings-switch input {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    opacity: 0;
+}
+
+.settings-switch-slider {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 999px;
+
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+
+    transition: 0.25s ease;
+}
+
+.settings-switch-slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    top: 2px;
+    left: 2px;
+
+    border-radius: 50%;
+
+    background: var(--text-secondary);
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.25);
+
+    transition: 0.25s ease;
+}
+
+.settings-switch input:checked + .settings-switch-slider {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+.settings-switch input:checked + .settings-switch-slider::before {
+    transform: translateX(20px);
+
+    background: #f59e0b;
+
+    box-shadow:
+        0 0 10px rgba(245, 158, 11, 0.45);
+}
+
+.settings-switch:hover .settings-switch-slider {
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+
+/* ========================================
+   INFO MODE DEV
+======================================== */
+
+.dev-mode-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-top: 10px;
+    padding: 13px 15px;
+
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 11px;
+
+    background: rgba(245, 158, 11, 0.05);
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+.dev-mode-info > i {
+    margin-top: 2px;
+
+    color: #f59e0b;
+}
+
+.dev-mode-info strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #f59e0b;
+
+    font-size: 12px;
+}
+
+.dev-mode-info p {
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .dev-mode-card {
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .dev-mode-card .settings-card-content {
+        gap: 11px;
+    }
+
+    .dev-mode-card .settings-card-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+}
