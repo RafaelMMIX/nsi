@@ -4824,3 +4824,41 @@ footer a:active {
 
     z-index: 9999;
 }
+
+.level-card-disabled {
+    position: relative;
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(0.35);
+}
+
+.level-card-disabled:hover {
+    transform: none;
+    border-color: var(--border);
+    background: var(--surface);
+}
+
+.level-card-disabled .level-icon {
+    background: rgba(148, 163, 184, 0.08);
+    color: #64748b;
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    background: rgba(148, 163, 184, 0.1);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
