@@ -22,19 +22,57 @@
 <script>
     const nsiLevel = localStorage.getItem("nsiLevel");
     const fromLoading = sessionStorage.getItem("nsiFromLoading");
+    const devMode = localStorage.getItem("nsiDevMode") === "true";
     
+    const teacherApproved =
+        localStorage.getItem("nsiTeacherApproved") === "true";
+    
+    
+    /*
+     * Pas encore de profil
+     */
     if (!nsiLevel) {
     
         window.location.replace("selection.html");
     
-    } else if (!fromLoading) {
+    }
     
-        sessionStorage.setItem("nsiFromLoading", "true");
+    
+    /*
+     * Profil existant :
+     * on passe par le loading.
+     */
+    else if (!fromLoading && !devMode) {
+    
+        sessionStorage.setItem(
+            "nsiFromLoading",
+            "true"
+        );
+    
         window.location.replace("loading.html");
     
-    } else {
+    }
     
-        sessionStorage.removeItem("nsiFromLoading");
+    
+    /*
+     * Arrivée depuis loading.html
+     */
+    else {
+    
+        sessionStorage.removeItem(
+            "nsiFromLoading"
+        );
+    
+        /*
+         * Première arrivée après l'approbation
+         */
+        if (!teacherApproved && !devMode) {
+    
+            window.location.replace(
+                "felicitation.html"
+            );
+    
+        }
     
     }
 </script>
