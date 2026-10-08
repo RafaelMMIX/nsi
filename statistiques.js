@@ -115,6 +115,11 @@
         const monthSecs = calendarMonth.reduce((n, key) => n + (current.days[key]?.seconds || 0), 0);
         const todayData = current.days[today] || { seconds: 0, actions: 0, hours: {}, weekdays: {} };
         put("stat-resources", Object.values(current.resources).reduce((n, item) => n + item.count, 0)); put("stat-views", current.views);
+        let gameProgress = {}; try { gameProgress = JSON.parse(localStorage.getItem("nsiGamesProgress")) || {}; } catch (_) {}
+        const gameEntries = Object.values(gameProgress);
+        const gamePercent = gameEntries.length ? Math.round(gameEntries.reduce((sum, item) => sum + (Number(item.percent) || 0), 0) / gameEntries.length) : 0;
+        put("stat-games", gameEntries.length);
+        put("games-progress-summary", gameEntries.length ? `${gameEntries.length} activités terminées · réussite moyenne : ${gamePercent} %. Tes meilleurs scores sont enregistrés sur cet appareil.` : "Tes activités Quiz & Jeux terminées apparaîtront ici.");
         let favorites = []; let notebooks = []; try { favorites = JSON.parse(localStorage.getItem("nsiFavorites")) || []; } catch (_) {} try { notebooks = JSON.parse(localStorage.getItem("nsiNotebooks")) || []; } catch (_) {}
         put("stat-favorites", favorites.length); put("stat-notebooks", notebooks.length); put("stat-notebooks-created", current.notebookCreates); put("notebook-count", notebooks.length); put("stat-searches", current.searches);
         put("stat-tools", Object.values(current.tools).reduce((n, v) => n + v, 0)); put("stat-runs", current.pythonRuns); put("stat-success", current.runSuccess); put("stat-errors", current.runErrors);

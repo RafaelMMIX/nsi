@@ -1,1 +1,1 @@
-const NSI_HUB_VERSION = "1.2.4";
+const NSI_HUB_VERSION = "1.3.0";

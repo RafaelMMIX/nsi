@@ -1,5 +1,16 @@
 const changelog = [
     {
+        version: "1.3.0",
+        date: "08 octobre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Espace Quiz & Jeux",
+                description: "Une nouvelle page propose des quiz, du vrai ou faux, des sorties de code à deviner, des bugs à trouver et des défis d'algorithmique adaptés aux profils SNT, Première, Terminale ou Professeur. Les scores et la progression sont enregistrés localement, et chaque activité dispose d'un identifiant ainsi que d'un lien de signalement."
+            }
+        ]
+    },
+    {
         version: "1.2.4",
         date: "08 octobre 2026",
         changes: [

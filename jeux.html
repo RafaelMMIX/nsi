@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Quiz &amp; Jeux | NSI Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jeux.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="background" aria-hidden="true"></div>
+    <main class="container games-page">
+        <header class="header games-header">
+            <div class="brand"><div class="brand-icon"><i class="fa-solid fa-gamepad"></i></div><div><h1>Quiz &amp; Jeux</h1><p>Révise la NSI en jouant.</p></div></div>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
+                <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
+                <a href="notebooks.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Notebook</a>
+                <a href="jeux.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-gamepad"></i> Quiz &amp; Jeux</a>
+                <a href="dico.html" class="nav-link"><i class="fa-solid fa-book"></i> Dico</a>
+                <a href="statistiques.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Statistiques</a>
+                <a href="parametres.html" class="nav-link"><i class="fa-solid fa-gear"></i> Paramètres</a>
+            </nav>
+        </header>
+        <section class="games-intro"><div><span class="eyebrow"><i class="fa-solid fa-sparkles"></i> Espace d'entraînement</span><h2 id="games-title">À toi de jouer !</h2><p id="games-description">Des activités choisies pour ton niveau.</p></div><a href="parametres.html" class="level-pill" id="level-pill"></a></section>
+        <section class="games-summary" aria-label="Ta progression"><article><i class="fa-solid fa-gamepad"></i><strong id="games-done">0</strong><span>activités terminées</span></article><article><i class="fa-solid fa-star"></i><strong id="games-best">—</strong><span>meilleur score</span></article><article><i class="fa-solid fa-bullseye"></i><strong id="games-rate">0 %</strong><span>réussite moyenne</span></article></section>
+        <section id="teacher-panel" class="teacher-panel" hidden><h2><i class="fa-solid fa-chalkboard-user"></i> Vue professeur</h2><p>Catalogue des activités incluses, filtrable par niveau élève.</p><label for="level-filter">Voir les activités du niveau</label><select id="level-filter"><option value="all">Tous les niveaux</option><option value="snt">SNT</option><option value="premiere">Première</option><option value="terminale">Terminale</option></select></section>
+        <section id="activity-list" class="activity-grid" aria-label="Activités disponibles"></section>
+        <section id="play-panel" class="play-panel" hidden aria-live="polite"></section>
+        <p class="local-note"><i class="fa-solid fa-lock"></i> Ta progression est enregistrée localement sur cet appareil.</p>
+    </main>
+    <script src="jeux.js"></script>
+</body>
+</html>
