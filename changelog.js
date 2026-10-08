@@ -1,5 +1,26 @@
 const changelog = [
     {
+        version: "1.2.4",
+        date: "08 octobre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Dictionnaire NSI",
+                description: "Création d'un dictionnaire informatique avec plus de 370 mots et définitions autour de la NSI, de la programmation, des réseaux et du web."
+            },
+            {
+                type: "improved",
+                title: "Recherche et filtres du dictionnaire",
+                description: "La recherche porte sur les termes et leurs définitions. Des filtres permettent d'afficher les notions JavaScript, HTML, CSS, Python, algorithmes, réseaux ou bases de données."
+            },
+            {
+                type: "new",
+                title: "Ressources pour approfondir les définitions",
+                description: "Chaque entrée du dictionnaire propose un lien pour en savoir plus : MDN pour les technologies web, la documentation Python ou Wikipédia pour les autres notions."
+            }
+        ]
+    },
+    {
         version: "1.2.3",
         date: "07 octobre 2026",
         changes: [

@@ -1,0 +1,323 @@
+.dico-page {
+    width: min(1000px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 50px 0 70px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dico-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.dico-icon {
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: rgba(99, 102, 241, 0.12);
+    color: #818cf8;
+
+    font-size: 22px;
+}
+
+.dico-header h1 {
+    margin: 0 0 5px;
+
+    color: var(--text);
+
+    font-size: 28px;
+}
+
+.dico-header p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RECHERCHE
+   ========================================================= */
+
+.dico-search {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 16px;
+
+    height: 54px;
+
+    border-radius: 14px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    margin-bottom: 30px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dico-search:focus-within {
+    border-color: rgba(99, 102, 241, 0.5);
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+.dico-search > i {
+    color: var(--text-secondary);
+}
+
+.dico-search input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.dico-search input::placeholder {
+    color: #64748b;
+}
+
+#dico-count {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.dico-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: -12px 0 24px;
+}
+
+.dico-filter {
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.dico-filter:hover {
+    color: var(--text);
+    border-color: rgba(99, 102, 241, 0.45);
+}
+
+.dico-filter.is-active {
+    color: #fff;
+    background: #6366f1;
+    border-color: #6366f1;
+}
+
+.dico-filter:focus-visible {
+    outline: 3px solid rgba(99, 102, 241, 0.35);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   LETTRES
+   ========================================================= */
+
+.dico-letter {
+    margin: 28px 0 10px;
+
+    color: #818cf8;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ENTRÉES
+   ========================================================= */
+
+.dico-entry {
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: var(--surface);
+
+    overflow: hidden;
+
+    margin-bottom: 7px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.dico-entry:hover {
+    border-color: rgba(99, 102, 241, 0.25);
+
+    background:
+        rgba(99, 102, 241, 0.03);
+}
+
+.dico-term {
+    display: flex;
+    align-items: center;
+
+    padding: 15px 18px;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    border-right: 1px solid var(--border);
+}
+
+.dico-definition {
+    padding: 15px 18px;
+    padding-bottom: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.dico-entry-content {
+    padding-bottom: 13px;
+}
+
+.dico-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 18px;
+    color: #818cf8;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.dico-more-link::after {
+    content: "↗";
+    font-size: 14px;
+}
+
+.dico-more-link:hover {
+    color: #a5b4fc;
+    text-decoration: underline;
+}
+
+.dico-more-link:focus-visible {
+    outline: 2px solid #818cf8;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+
+/* =========================================================
+   AUCUN RÉSULTAT
+   ========================================================= */
+
+.dico-empty {
+    min-height: 220px;
+
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: var(--text-secondary);
+}
+
+.dico-empty > i {
+    margin-bottom: 15px;
+
+    font-size: 25px;
+
+    color: #64748b;
+}
+
+.dico-empty h2 {
+    margin: 0 0 6px;
+
+    color: var(--text);
+
+    font-size: 17px;
+}
+
+.dico-empty p {
+    margin: 0;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .dico-page {
+        width: min(100% - 24px, 1000px);
+        padding-top: 30px;
+    }
+
+    .dico-header h1 {
+        font-size: 23px;
+    }
+
+    .dico-entry {
+        grid-template-columns: 1fr;
+    }
+
+    .dico-term {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .dico-definition {
+        padding-top: 12px;
+    }
+
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dictionnaire NSI | NSI Hub</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dico.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+
+    <a href="index.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        Retour à l'accueil
+    </a>
+
+    <main class="dico-page">
+        <section class="dico-header">
+
+            <div class="dico-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div>
+                <h1>Dictionnaire NSI</h1>
+                <p>
+                    Recherche rapidement un terme informatique
+                    et découvre sa définition.
+                </p>
+            </div>
+
+        </section>
+
+
+        <nav class="dico-filters" id="dico-filters" aria-label="Filtrer les termes par thème">
+            <button class="dico-filter is-active" type="button" data-category="all" aria-pressed="true">Tout</button>
+            <button class="dico-filter" type="button" data-category="javascript" aria-pressed="false">JavaScript</button>
+            <button class="dico-filter" type="button" data-category="html" aria-pressed="false">HTML</button>
+            <button class="dico-filter" type="button" data-category="css" aria-pressed="false">CSS</button>
+            <button class="dico-filter" type="button" data-category="python" aria-pressed="false">Python</button>
+            <button class="dico-filter" type="button" data-category="algorithmes" aria-pressed="false">Algorithmes</button>
+            <button class="dico-filter" type="button" data-category="reseaux" aria-pressed="false">Réseaux</button>
+            <button class="dico-filter" type="button" data-category="donnees" aria-pressed="false">Données / SQL</button>
+            <button class="dico-filter" type="button" data-category="nsi" aria-pressed="false">Autres notions NSI</button>
+        </nav>
+
+
+        <section class="dico-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="dico-search-input"
+                placeholder="Rechercher un terme..."
+                autocomplete="off"
+            >
+
+            <span id="dico-count"></span>
+
+        </section>
+
+
+        <div id="dico-results"></div>
+
+
+        <div class="dico-empty" id="dico-empty">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <h2>Aucun résultat</h2>
+
+            <p>
+                Aucun terme ne correspond à ta recherche.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <p>NSI Hub · Dictionnaire informatique</p>
+    </footer>
+
+
+    <script src="dico.js"></script>
+
+</body>
+
+</html>
