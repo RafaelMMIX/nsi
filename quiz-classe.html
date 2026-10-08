@@ -1,0 +1,12 @@
+﻿<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quiz en classe | NSI Hub</title><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="classroom.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></head>
+<body class="classroom-page">
+<script>if(localStorage.getItem("nsiLevel")!=="professeur")location.replace("index.html");</script>
+<main class="classroom-shell teacher-shell">
+<header class="classroom-header"><a href="jeux.html" class="classroom-back"><i class="fa-solid fa-arrow-left"></i> Quiz &amp; Jeux</a><div><span class="eyebrow">NSI Hub · Professeur</span><h1><i class="fa-solid fa-users"></i> Quiz en classe</h1></div><a href="presentation.html" class="classroom-back">Mode présentation</a></header>
+<p class="classroom-notice" id="service-notice" role="status" hidden></p>
+<section class="classroom-card" id="setup-panel"><h2>Créer une partie</h2><p>Choisis un quiz existant. Ses questions et réponses proviennent du même catalogue que Quiz &amp; Jeux.</p><div class="setup-grid"><label>Niveau du quiz<select id="quiz-level"><option value="premiere">Première</option><option value="terminale">Terminale</option></select></label><label>Quiz<select id="quiz-select"></select></label><label>Durée par question<select id="duration"><option value="10">10 secondes</option><option value="15">15 secondes</option><option value="20" selected>20 secondes</option><option value="30">30 secondes</option><option value="45">45 secondes</option><option value="60">60 secondes</option><option value="0">Sans limite</option></select></label></div><p class="quiz-summary" id="quiz-summary"></p><button class="classroom-button primary" id="create-game"><i class="fa-solid fa-plus"></i> Créer une partie</button><h3>Historique des parties sur cet appareil</h3><div id="history-list" class="history-list"></div></section>
+<section class="classroom-card game-panel" id="game-panel" hidden aria-live="polite"></section>
+</main>
+<script src="jeux-data.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="classroom-core.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script src="classroom-teacher.js"></script>
+</body></html>

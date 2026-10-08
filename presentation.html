@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<title>Mode présentation | NSI Hub</title>
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="presentation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script>if (localStorage.getItem("nsiLevel") !== "professeur") window.location.replace("index.html");</script>
+</head>
+<body class="presentation-page">
+<main class="presentation-shell" id="presentation-shell">
+<header class="presentation-header">
+  <a class="presentation-brand" href="index.html"><i class="fa-solid fa-code" aria-hidden="true"></i><span><strong>NSI Hub</strong><small>Mode présentation · Mode Professeur</small></span></a>
+  <div class="presentation-clock" aria-label="Heure et date"><strong id="clock">--:--</strong><span id="date"></span></div>
+</header>
+<section class="presentation-stage" id="stage" aria-live="polite">
+  <div class="waiting-screen" id="waiting-screen"><i class="fa-solid fa-code" aria-hidden="true"></i><h1>NSI Hub</h1><p>Prêt pour le cours.</p><a class="large-button primary-button" href="quiz-classe.html"><i class="fa-solid fa-users"></i> Lancer un quiz en classe</a></div>
+</section>
+<section class="quick-section" aria-labelledby="quick-title">
+  <div class="section-heading"><div><span class="eyebrow">Accès rapide</span><h2 id="quick-title">Pour le cours</h2></div><button class="text-button" id="shortcuts-open" aria-haspopup="dialog"><i class="fa-regular fa-keyboard"></i> Raccourcis clavier</button></div>
+  <div class="quick-grid">
+    <a class="quick-card" href="index.html"><i class="fa-solid fa-house"></i><span>Accueil</span></a>
+    <a class="quick-card" href="index.html#resources"><i class="fa-solid fa-folder-open"></i><span>Ressources</span></a>
+    <a class="quick-card" href="outils.html"><i class="fa-solid fa-screwdriver-wrench"></i><span>Outils</span></a>
+    <a class="quick-card" href="quiz-classe.html"><i class="fa-solid fa-users"></i><span>Quiz en classe</span></a>
+    <a class="quick-card" href="dico.html"><i class="fa-solid fa-book"></i><span>Dictionnaire</span></a>
+    <a class="quick-card" href="notebooks.html"><i class="fa-solid fa-book-open"></i><span>Notebook</span></a>
+  </div>
+  <div class="quick-grid tool-shortcuts">
+    <a class="quick-card" href="outils.html#convertisseur"><i class="fa-solid fa-right-left"></i><span>Convertisseur binaire</span></a>
+    <a class="quick-card" href="outils.html#ascii"><i class="fa-solid fa-font"></i><span>ASCII</span></a>
+  </div>
+</section>
+<section class="quick-section resource-section" aria-labelledby="resources-title">
+  <div class="section-heading"><div><span class="eyebrow">Liens externes</span><h2 id="resources-title">Ressources rapides</h2></div></div>
+  <div class="resource-grid">
+    <a class="resource-card" href="https://lycees.netocentre.fr" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-building-columns"></i><span>ENT</span><small>Portail du lycée</small></a>
+    <a class="resource-card" href="https://cvl-41.elea.apps.education.fr/course/view.php?id=127" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-chalkboard"></i><span>Éléa</span><small>Cours NSI</small></a>
+    <a class="resource-card" href="https://pixees.fr/informatiquelycee/outils_nsi/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-lightbulb"></i><span>Pixees</span><small>Ressources NSI</small></a>
+    <a class="resource-card" href="https://pythontutor.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-python"></i><span>Python Tutor</span><small>Visualiser du code</small></a>
+    <a class="resource-card" href="https://github.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span>GitHub</span><small>Dépôts de code</small></a>
+    <a class="resource-card" href="https://docs.python.org/fr/3/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-python"></i><span>Documentation Python</span><small>Référence officielle</small></a>
+  </div>
+</section>
+<dialog class="shortcuts-dialog" id="shortcuts-dialog" aria-labelledby="shortcuts-title">
+  <div class="dialog-heading"><h2 id="shortcuts-title">Raccourcis clavier</h2><button class="icon-button" id="shortcuts-close" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button></div>
+  <dl><div><dt>F</dt><dd>Activer / quitter le plein écran</dd></div><div><dt>Échap</dt><dd>Quitter le plein écran</dd></div><div><dt>H</dt><dd>Accueil</dd></div><div><dt>R</dt><dd>Ressources</dd></div><div><dt>O</dt><dd>Outils</dd></div><div><dt>Q</dt><dd>Quiz &amp; Jeux</dd></div><div><dt>N</dt><dd>Notebook</dd></div><div><dt>?</dt><dd>Afficher les raccourcis</dd></div></dl>
+</dialog>
+<div class="presentation-toolbar" id="presentation-toolbar" aria-label="Outils de présentation">
+  <button class="toolbar-button" id="fullscreen-toggle"><i class="fa-solid fa-expand"></i><span>Passer en plein écran</span></button>
+  <div class="scale-control" role="group" aria-label="Taille du contenu"><span>Taille</span><button data-scale="normal">Normal</button><button data-scale="large">Grand</button><button data-scale="xlarge">Très grand</button></div>
+  <button class="toolbar-button" id="toolbar-shortcuts"><i class="fa-regular fa-keyboard"></i><span>Raccourcis</span></button>
+  <a class="toolbar-button" href="index.html"><i class="fa-solid fa-house"></i><span>Accueil</span></a>
+  <a class="toolbar-button" href="index.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Quitter</span></a>
+</div>
+<p class="presentation-toast" id="toast" role="status" aria-live="polite"></p>
+</main>
+<script src="presentation.js"></script>
+</body>
+</html>

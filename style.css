@@ -858,6 +858,11 @@ header p {
     transition: 0.2s ease;
 }
 
+#presentation-nav-link[hidden],
+#classroom-nav-link[hidden] {
+    display: none !important;
+}
+
 .nav-link:hover {
     color: var(--text);
     background: var(--surface-light);

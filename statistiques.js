@@ -120,6 +120,26 @@
         const gamePercent = gameEntries.length ? Math.round(gameEntries.reduce((sum, item) => sum + (Number(item.percent) || 0), 0) / gameEntries.length) : 0;
         put("stat-games", gameEntries.length);
         put("games-progress-summary", gameEntries.length ? `${gameEntries.length} activités terminées · réussite moyenne : ${gamePercent} %. Tes meilleurs scores sont enregistrés sur cet appareil.` : "Tes activités Quiz & Jeux terminées apparaîtront ici.");
+        const classroomSection = document.getElementById("classroom-stats");
+        if (classroomSection && localStorage.getItem("nsiLevel") === "professeur") {
+            classroomSection.hidden = false;
+            let sessions = []; try { sessions = JSON.parse(localStorage.getItem("nsiClassroomHistory")) || []; } catch (_) {}
+            const playerRows = sessions.flatMap(session => session.rankings || []);
+            put("classroom-games", sessions.length);
+            put("classroom-questions", sessions.reduce((sum, session) => sum + (session.questions || 0), 0));
+            put("classroom-players", sessions.reduce((sum, session) => sum + (session.players || 0), 0));
+            put("classroom-best", playerRows.length ? Math.max(...playerRows.map(player => player.score || 0)) : "—");
+            put("classroom-wins", sessions.reduce((sum, session) => sum + (session.rankings?.length ? 1 : 0), 0));
+            put("classroom-average", playerRows.length ? Math.round(playerRows.reduce((sum, player) => sum + (player.score || 0), 0) / playerRows.length) : "—");
+            const bestResponse = playerRows.map(player => player.bestTimeMs).filter(value => Number.isFinite(value));
+            put("classroom-best-time", bestResponse.length ? `${(Math.min(...bestResponse) / 1000).toFixed(2)} s` : "—");
+            const totalOpportunities = sessions.reduce((sum, session) => sum + (session.questions || 0) * (session.players || 0), 0);
+            const totalCorrect = playerRows.reduce((sum, player) => sum + (player.correct || 0), 0);
+            put("classroom-success", totalOpportunities ? `${Math.round(totalCorrect / totalOpportunities * 100)} %` : "—");
+            const historyRoot = document.getElementById("classroom-history"); historyRoot.replaceChildren();
+            if (!sessions.length) historyRoot.textContent = "Aucune partie terminée.";
+            sessions.slice(0, 10).forEach(session => { const row = document.createElement("div"); row.className = "ranked-row"; const title = document.createElement("span"); title.textContent = `${session.quizTitle} · ${session.code} · ${new Date(session.date).toLocaleDateString("fr-FR")} · ${session.players} joueur(s)`; const winner = document.createElement("strong"); winner.textContent = session.rankings?.[0] ? `${session.rankings[0].nickname} (${session.rankings[0].score} pts)` : "—"; row.append(title, winner); historyRoot.append(row); });
+        }
         let favorites = []; let notebooks = []; try { favorites = JSON.parse(localStorage.getItem("nsiFavorites")) || []; } catch (_) {} try { notebooks = JSON.parse(localStorage.getItem("nsiNotebooks")) || []; } catch (_) {}
         put("stat-favorites", favorites.length); put("stat-notebooks", notebooks.length); put("stat-notebooks-created", current.notebookCreates); put("notebook-count", notebooks.length); put("stat-searches", current.searches);
         put("stat-tools", Object.values(current.tools).reduce((n, v) => n + v, 0)); put("stat-runs", current.pythonRuns); put("stat-success", current.runSuccess); put("stat-errors", current.runErrors);

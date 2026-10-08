@@ -1,8 +1,23 @@
 const changelog = [
     {
-        version: "1.3.0",
+        version: "1.2.5",
         date: "08 octobre 2026",
         changes: [
+            {
+                type: "new",
+                title: "Quiz en classe",
+                description: "Le professeur crée une partie à partir des quiz existants et partage un QR code. Les élèves rejoignent avec un pseudo, répondent depuis leur appareil et voient les classements calculés selon la justesse et la rapidité. Les résultats alimentent l'historique local et les statistiques du professeur."
+            },
+            {
+                type: "new",
+                title: "Mode présentation",
+                description: "Ajout d'un espace réservé au profil professeur pour les cours projetés : horloge, plein écran, raccourcis clavier, réglage de la taille du texte et accès rapide aux ressources, outils, notebooks et Quiz en classe."
+            },
+            {
+                type: "improved",
+                title: "Quiz partagés avec Quiz & Jeux",
+                description: "Les quiz en classe réutilisent le catalogue existant avec des identifiants de questions stables. La navigation professeur et les statistiques incluent désormais les parties, les scores, les participations et les temps de réponse."
+            },
             {
                 type: "new",
                 title: "Espace Quiz & Jeux",

@@ -278,6 +278,16 @@
         Accueil
     </a>
 
+    <a href="presentation.html" class="nav-link" id="presentation-nav-link" hidden>
+        <i class="fa-solid fa-display"></i>
+        Mode présentation
+    </a>
+
+    <a href="quiz-classe.html" class="nav-link" id="classroom-nav-link" hidden>
+        <i class="fa-solid fa-users"></i>
+        Quiz en classe
+    </a>
+
     <a href="outils.html" class="nav-link">
         <i class="fa-solid fa-screwdriver-wrench"></i>
         Outils
@@ -345,7 +355,7 @@
 
 
         <!-- COURS & LYCÉE -->
-        <section class="category">
+        <section class="category" id="resources">
 
             <div class="category-title">
                 <div class="category-icon blue">
@@ -1103,6 +1113,12 @@
     <script src="welcome.js"></script>
     <script src="script.js"></script>
     <script src="profiles.js"></script>
+    <script>
+        if (localStorage.getItem("nsiLevel") === "professeur") {
+            document.getElementById("presentation-nav-link").hidden = false;
+            document.getElementById("classroom-nav-link").hidden = false;
+        }
+    </script>
 
     <script src="statistiques.js"></script>
 </body>
