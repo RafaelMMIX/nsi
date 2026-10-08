@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
     <title>Paramètres | NSI Hub</title>
 
     <link rel="stylesheet" href="style.css">
@@ -217,8 +219,8 @@
                 <h3>Mode développeur</h3>
 
                 <p>
-                    Désactive les délais et facilite le test
-                    des fonctionnalités du site.
+                    Ouvre l'accueil directement et donne accès aux écrans
+                    de test et aux rappels réutilisables.
                 </p>
             </div>
 
@@ -228,6 +230,7 @@
             <input
                 type="checkbox"
                 id="dev-mode-toggle"
+                aria-label="Activer le mode développeur"
             >
 
             <span class="settings-switch-slider"></span>
@@ -247,11 +250,39 @@
             <strong>Mode développeur actif</strong>
 
             <p>
-                Les délais et certaines protections sont désactivés
-                pour faciliter les tests.
+                L'accueil s'ouvre directement, les écrans de test peuvent
+                être rejoués et les rappels sont affichés à chaque visite.
             </p>
         </div>
     </div>
+
+            <div class="dev-mode-tools" id="dev-mode-tools" hidden>
+                <div class="dev-mode-tools-heading">
+                    <strong><i class="fa-solid fa-vial"></i> Outils de test</strong>
+                    <span>Ces raccourcis ne changent pas le mode normal du site.</span>
+                </div>
+
+                <div class="dev-mode-actions">
+                    <a class="dev-action-button" href="loading.html?preview=1">
+                        <i class="fa-solid fa-spinner"></i>
+                        Tester le chargement
+                    </a>
+                    <a class="dev-action-button" href="felicitation.html">
+                        <i class="fa-solid fa-party-horn"></i>
+                        Rejouer les félicitations
+                    </a>
+                    <a class="dev-action-button" href="index.html?devConfetti=1">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Tester les confettis
+                    </a>
+                    <button class="dev-action-button secondary" id="dev-reset-tests" type="button">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Réinitialiser les états de test
+                    </button>
+                </div>
+
+                <p class="dev-test-status" id="dev-test-status" aria-live="polite"></p>
+            </div>
 
 </section>
 

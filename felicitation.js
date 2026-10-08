@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const revealButton = document.getElementById("reveal-button");
     const result = document.getElementById("celebration-result");
     const continueButton = document.getElementById("continue-button");
+    const content = document.getElementById("celebration-content");
+    const intro = document.getElementById("celebration-intro");
+    const question = document.getElementById("question");
     const canvas = document.getElementById("confetti-canvas");
 
     const ctx = canvas.getContext("2d");
 
     const devMode = localStorage.getItem("nsiDevMode") === "true";
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     /*
      * ---------------------------------------------------------
@@ -158,6 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function launchConfetti(amount = 180) {
 
+        if (prefersReducedMotion) return;
+
         createConfetti(amount);
 
         if (!animationFrame) {
@@ -176,8 +182,15 @@ document.addEventListener("DOMContentLoaded", () => {
     revealButton.addEventListener("click", () => {
 
         revealButton.classList.add("hidden");
+        revealButton.setAttribute("aria-expanded", "true");
+        content.classList.add("is-revealed");
 
         result.classList.add("visible");
+
+        window.setTimeout(() => {
+            question.hidden = true;
+            intro.hidden = true;
+        }, prefersReducedMotion ? 0 : 360);
 
         /*
          * Petit délai pour que l'animation
@@ -187,6 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             launchConfetti(220);
         }, 250);
+
+        window.setTimeout(() => continueButton.focus(), prefersReducedMotion ? 0 : 650);
 
     });
 

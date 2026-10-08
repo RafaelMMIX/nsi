@@ -516,26 +516,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const devMode =
         localStorage.getItem("nsiDevMode") === "true";
 
-    /*
-     * 15 % de chance de lancer les confettis.
-     */
-    const shouldCelebrate =
-        devMode ||
-        Math.random() < 0.15;
+    const devIndicator = document.getElementById("dev-indicator");
+    const forceDevConfetti =
+        new URLSearchParams(window.location.search).get("devConfetti") === "1";
+
+    if (devIndicator) {
+        devIndicator.style.display = devMode ? "inline-flex" : "none";
+    }
+
+    /* En mode développeur, les confettis se lancent uniquement via le bouton de test. */
+    const shouldCelebrate = devMode
+        ? forceDevConfetti
+        : Math.random() < 0.15;
 
     if (!shouldCelebrate) {
         return;
     }
 
-    /*
-     * Entre 3 et 15 secondes.
-     */
-    const delay =
-        devMode
-            ? 1000
-            : Math.floor(
-                Math.random() * 12000
-            ) + 3000;
+    /* En mode normal, petite célébration aléatoire entre 3 et 15 secondes. */
+    const delay = devMode
+        ? 150
+        : Math.floor(Math.random() * 12000) + 3000;
 
     setTimeout(() => {
 

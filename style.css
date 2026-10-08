@@ -5093,3 +5093,84 @@ footer a:active {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Outils du mode développeur */
+.dev-mode-tools {
+    display: grid;
+    gap: 14px;
+    margin-top: 12px;
+    padding: 17px;
+    border: 1px solid rgba(245, 158, 11, 0.18);
+    border-radius: 13px;
+    background: linear-gradient(145deg, rgba(245, 158, 11, 0.06), rgba(17, 24, 39, 0.62));
+    animation: dev-tools-in 0.25s ease both;
+}
+
+.dev-mode-tools[hidden] { display: none; }
+.dev-mode-tools-heading { display: grid; gap: 4px; }
+.dev-mode-tools-heading strong { color: #fbbf24; font-size: 13px; }
+.dev-mode-tools-heading strong i { margin-right: 6px; }
+.dev-mode-tools-heading span { color: var(--text-secondary); font-size: 11px; line-height: 1.5; }
+
+.dev-mode-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.dev-action-button {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 9px;
+    padding: 9px 11px;
+    border: 1px solid rgba(245, 158, 11, 0.18);
+    border-radius: 9px;
+    background: rgba(17, 24, 39, 0.78);
+    color: var(--text);
+    font: inherit;
+    font-size: 11px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.dev-action-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(245, 158, 11, 0.42);
+    background: rgba(245, 158, 11, 0.08);
+}
+
+.dev-action-button i { width: 15px; color: #fbbf24; text-align: center; }
+.dev-action-button.secondary { color: var(--text-secondary); }
+.dev-action-button.secondary i { color: #94a3b8; }
+.dev-test-status { min-height: 16px; margin: 0; color: #a7f3d0; font-size: 11px; line-height: 1.45; }
+
+#dev-indicator {
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    font-variant-numeric: tabular-nums;
+}
+
+.settings-switch input:focus-visible + .settings-switch-slider {
+    outline: 3px solid rgba(251, 191, 36, 0.75);
+    outline-offset: 3px;
+}
+
+@keyframes dev-tools-in {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .dev-mode-actions { grid-template-columns: 1fr; }
+    .dev-mode-tools { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dev-mode-tools { animation: none; }
+    .dev-action-button { transition: none; }
+}

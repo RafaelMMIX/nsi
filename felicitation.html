@@ -19,11 +19,11 @@
 
 <body class="celebration-page">
 
-    <canvas id="confetti-canvas"></canvas>
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
     <main class="celebration-container">
 
-        <div class="celebration-content">
+        <div class="celebration-content" id="celebration-content">
 
             <div class="celebration-badge">
                 <i class="fa-solid fa-star"></i>
@@ -34,12 +34,14 @@
                 Tu sais quoi ?
             </div>
 
-            <button class="reveal-button" id="reveal-button">
+            <p class="celebration-intro" id="celebration-intro">Une petite annonce qui mérite une grande célébration.</p>
+
+            <button class="reveal-button" id="reveal-button" type="button" aria-expanded="false" aria-controls="celebration-result">
                 <span>J'ai une idée...</span>
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
 
-            <div class="celebration-result" id="celebration-result">
+            <div class="celebration-result" id="celebration-result" aria-live="polite">
 
                 <div class="result-icon">
                     <i class="fa-solid fa-party-horn"></i>
@@ -67,7 +69,7 @@
                     <span>★</span>
                 </div>
 
-                <button class="continue-button" id="continue-button">
+                <button class="continue-button" id="continue-button" type="button">
                     Continuer vers NSI Hub
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
