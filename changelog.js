@@ -17,6 +17,31 @@ const changelog = [
                 type: "new",
                 title: "Ressources pour approfondir les définitions",
                 description: "Chaque entrée du dictionnaire propose un lien pour en savoir plus : MDN pour les technologies web, la documentation Python ou Wikipédia pour les autres notions."
+            },
+            {
+                type: "improved",
+                title: "Page À propos enrichie",
+                description: "La page présente désormais les statistiques du projet, son parcours, les technologies utilisées, les choix de vie privée, les pistes d’évolution, les remerciements et des moyens de contribuer. Des compteurs animés et un petit secret complètent la page."
+            },
+            {
+                type: "improved",
+                title: "Accueil et page de félicitations",
+                description: "L’accueil et la page de félicitations ont été retravaillés pour rendre leur présentation plus claire et leurs animations plus soignées."
+            },
+            {
+                type: "improved",
+                title: "Écran de chargement animé",
+                description: "L’écran de chargement bénéficie d’une animation plus complète, d’une progression visible, de conseils, d’un bouton pour passer l’animation et d’une durée légèrement prolongée."
+            },
+            {
+                type: "improved",
+                title: "Mode développeur",
+                description: "Le mode développeur propose des raccourcis pour prévisualiser le chargement, rejouer les félicitations, tester les confettis et réinitialiser les états de test. Son activation est mémorisée et ses effets sont indiqués dans l’interface."
+            },
+            {
+                type: "improved",
+                title: "Favicon sur toutes les pages",
+                description: "Le favicon du site est maintenant référencé sur l’ensemble des pages HTML."
             }
         ]
     },
