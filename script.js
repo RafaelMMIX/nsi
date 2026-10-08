@@ -311,15 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Afficher l'annonce uniquement aux élèves
-    const nsiLevel = localStorage.getItem("nsiLevel");
-
-    if (nsiLevel === "professeur") {
-        announcement.classList.add("hidden");
-        announcementTab.classList.add("hidden");
-        return;
-    }
-
     // Fermer l'annonce
     announcementClose.addEventListener("click", () => {
         announcement.classList.add("hidden");

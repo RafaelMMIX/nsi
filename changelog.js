@@ -9,6 +9,11 @@ const changelog = [
                 description: "Le professeur crée une partie à partir des quiz existants et partage un QR code. Les élèves rejoignent avec un pseudo, répondent depuis leur appareil et voient les classements calculés selon la justesse et la rapidité. Les résultats alimentent l'historique local et les statistiques du professeur."
             },
             {
+                type: "improved",
+                title: "Annonces visibles par les professeurs",
+                description: "Les annonces importantes de l'accueil sont désormais également accessibles avec le profil professeur."
+            },
+            {
                 type: "new",
                 title: "Mode présentation",
                 description: "Ajout d'un espace réservé au profil professeur pour les cours projetés : horloge, plein écran, raccourcis clavier, réglage de la taille du texte et accès rapide aux ressources, outils, notebooks et Quiz en classe."
