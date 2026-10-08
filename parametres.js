@@ -1,4 +1,4 @@
-const currentLevel =
+﻿const currentLevel =
     document.getElementById("current-level");
 
 const changeLevelButton =
@@ -66,28 +66,9 @@ importDataFile?.addEventListener("change", async () => {
 // ==============================
 
 function displayLevel() {
-
-    const level =
-        localStorage.getItem("nsiLevel");
-
-
-    if (level === "premiere") {
-
-        currentLevel.textContent =
-            "Première";
-
-    } else if (level === "terminale") {
-
-        currentLevel.textContent =
-            "Terminale";
-
-    } else {
-
-        currentLevel.textContent =
-            "Non défini";
-
-    }
-
+    const level = localStorage.getItem("nsiLevel");
+    const labels = { snt: "SNT", premiere: "Première", terminale: "Terminale", professeur: "Professeur" };
+    currentLevel.textContent = labels[level] || "Non défini";
 }
 
 

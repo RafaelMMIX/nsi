@@ -3617,6 +3617,28 @@ footer a:active {
 }
 
 /* Accueil : mise en valeur des ressources et de la navigation */
+.profile-welcome {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: -20px 0 30px;
+    padding: 16px 18px;
+    border: 1px solid rgba(129, 140, 248, 0.25);
+    border-radius: 14px;
+    background: linear-gradient(110deg, rgba(99, 102, 241, 0.12), rgba(17, 24, 39, 0.68));
+}
+.profile-welcome[hidden] { display: none; }
+.profile-welcome > i { color: #a5b4fc; font-size: 22px; }
+.profile-welcome-copy { flex: 1; }
+.profile-welcome-copy strong { color: var(--text-primary); }
+.profile-welcome-copy p { margin: 4px 0 0; color: var(--text-secondary); line-height: 1.45; }
+.profile-shortcuts { display: flex; flex-wrap: wrap; gap: 7px; }
+.profile-shortcuts a { padding: 7px 10px; border: 1px solid var(--border); border-radius: 9px; color: var(--text-primary); font-size: .82rem; text-decoration: none; }
+.profile-shortcuts a:hover { border-color: #818cf8; background: rgba(99, 102, 241, .12); }
+.profile-recommended { border-color: rgba(129, 140, 248, .5) !important; }
+.level-card:not(.level-card-disabled) .coming-soon-badge { display: none; }
+@media (max-width: 700px) { .profile-welcome { align-items: flex-start; flex-wrap: wrap; } .profile-shortcuts { width: 100%; padding-left: 36px; } }
+
 .home-container {
     width: min(1180px, calc(100% - 48px));
     padding-top: 34px;

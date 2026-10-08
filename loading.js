@@ -10,6 +10,7 @@ const skipButton = document.getElementById("loading-skip");
 const steps = [...document.querySelectorAll(".loading-step")];
 
 const tips = {
+    snt: ["Le Web repose sur des pages reliées par des liens.", "Un réseau relie des appareils pour échanger des informations.", "Les données personnelles doivent être protégées."],
     premiere: [
         "Python utilise l'indentation pour définir les blocs de code.",
         "Une liste Python peut contenir plusieurs types de données.",
@@ -57,6 +58,7 @@ const tips = {
 };
 
 const statusMessages = {
+    snt: ["Préparation de ton espace SNT...", "Chargement des ressources...", "Préparation des outils...", "Organisation de ton espace...", "Vérification des ressources...", "Mise en place des outils numériques...", "Finalisation de ton espace...", "Presque prêt..."],
     premiere: [
         "Préparation de ton espace de Première...",
         "Chargement des ressources...",

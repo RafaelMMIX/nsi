@@ -5,6 +5,11 @@ const changelog = [
         changes: [
             {
                 type: "improved",
+                title: "Profils personnalisés",
+                description: "Les profils SNT, Première, Terminale et Professeur sont maintenant sélectionnables. L’accueil propose des raccourcis et met en évidence les ressources adaptées au profil choisi, qui est aussi affiché dans les paramètres."
+            },
+            {
+                type: "improved",
                 title: "Les notebooks sont de retour",
                 description: "Les notebooks fonctionnent à nouveau : chaque document retrouve ses propres cellules, qui s'enregistrent automatiquement. Python peut être exécuté dans le navigateur et les notebooks peuvent être exportés aux formats Jupyter (.ipynb) et Python (.py)."
             },
