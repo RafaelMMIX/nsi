@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ANNONCE ACTUELLE
     // ==============================
 
-    const current = announcements[0];
+    const current = announcements[announcements.length - 1];
 
     currentContainer.innerHTML = `
 
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ANCIENNES ANNONCES
     // ==============================
 
-    const oldAnnouncements = announcements.slice(1);
+    const oldAnnouncements = announcements.slice(0, -1).reverse();
 
 
     if (oldAnnouncements.length === 0) {

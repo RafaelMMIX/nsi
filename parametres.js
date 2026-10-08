@@ -17,6 +17,51 @@ const saveNameButton =
     document.getElementById("save-name");
 
 // ==============================
+// SAUVEGARDE / RESTAURATION
+// ==============================
+const exportDataButton = document.getElementById("export-data");
+const importDataButton = document.getElementById("import-data-button");
+const importDataFile = document.getElementById("import-data-file");
+const backupStatus = document.getElementById("backup-status");
+
+exportDataButton?.addEventListener("click", () => {
+    const data = Object.fromEntries(
+        Object.keys(localStorage).filter(key => key.startsWith("nsi")).map(key => [key, localStorage.getItem(key)])
+    );
+    const blob = new Blob([JSON.stringify({ format: "nsi-hub-backup", version: 1, exportedAt: new Date().toISOString(), data }, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `nsi-hub-sauvegarde-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+    backupStatus.textContent = "Sauvegarde téléchargée.";
+});
+
+importDataButton?.addEventListener("click", () => importDataFile.click());
+importDataFile?.addEventListener("change", async () => {
+    const file = importDataFile.files?.[0];
+    if (!file) return;
+    try {
+        const backup = JSON.parse(await file.text());
+        if (backup.format !== "nsi-hub-backup" || !backup.data || typeof backup.data !== "object" || Array.isArray(backup.data)) {
+            throw new Error("Format de sauvegarde invalide.");
+        }
+        if (!confirm("Restaurer cette sauvegarde ? Les données NSI Hub actuelles seront remplacées.")) return;
+        Object.keys(localStorage).filter(key => key.startsWith("nsi")).forEach(key => localStorage.removeItem(key));
+        Object.entries(backup.data).forEach(([key, value]) => {
+            if (key.startsWith("nsi") && typeof value === "string") localStorage.setItem(key, value);
+        });
+        backupStatus.textContent = "Données restaurées. La page va se recharger.";
+        setTimeout(() => location.reload(), 700);
+    } catch (error) {
+        backupStatus.textContent = error.message || "Impossible de lire cette sauvegarde.";
+    } finally {
+        importDataFile.value = "";
+    }
+});
+
+// ==============================
 // NIVEAU
 // ==============================
 

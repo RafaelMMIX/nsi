@@ -3529,6 +3529,9 @@ header p {
     .about-secret-trigger, .about-action-button, .about-stat-card { transition: none; }
 }
 
+.backup-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+#backup-status { min-height: 1.4em; color: var(--text-secondary, #94a3b8); }
+
 /* Liens du footer */
 footer a {
     color: var(--text-secondary);

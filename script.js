@@ -99,7 +99,6 @@ function searchCards() {
 
 search.addEventListener("input", searchCards);
 
-
 /* ==============================
    CTRL + K
 ============================== */
@@ -226,6 +225,10 @@ favoriteButtons.forEach(button => {
         } else {
 
             favorites.push(id);
+
+            const category = button.closest(".category")?.querySelector("h2")?.textContent.trim();
+            const title = button.closest(".card")?.querySelector("h3")?.textContent.trim();
+            window.nsiTrack?.("favoriteAdded", { category, title });
 
         }
 

@@ -7,5 +7,13 @@ const announcements = [
         buttonText: "Découvrir NSI Hub",
         buttonUrl: "about.html",
         date: "2026-10-02"
+    },
+    {
+        id: "annonce-notebooks-retour",
+        title: "Les notebooks sont de retour !",
+        message: "Tu peux à nouveau créer et utiliser tes notebooks NSI. Tes cellules sont sauvegardées automatiquement et tu peux exporter ton travail en fichier Jupyter (.ipynb) ou Python (.py).",
+        buttonText: "Découvrir les notebooks",
+        buttonUrl: "notebooks.html",
+        date: "2026-10-08"
     }
 ];

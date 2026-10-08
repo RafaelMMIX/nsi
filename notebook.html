@@ -28,9 +28,9 @@
             <p>Écris, exécute et organise ton code directement dans ton navigateur.</p>
         </div>
 
-        <a href="index.html" class="back-button">
+        <a href="notebooks.html" class="back-button">
             <i class="fa-solid fa-arrow-left"></i>
-            Accueil
+            Mes notebooks
         </a>
     </header>
 
@@ -53,6 +53,16 @@
                 Tout exécuter
             </button>
 
+            <button id="export-ipynb" class="notebook-button" title="Télécharger au format Jupyter">
+                <i class="fa-solid fa-download"></i>
+                Exporter .ipynb
+            </button>
+
+            <button id="export-python" class="notebook-button" title="Télécharger en script Python">
+                <i class="fa-brands fa-python"></i>
+                Exporter .py
+            </button>
+
             <span id="save-status" class="save-status">
                 <i class="fa-solid fa-cloud"></i>
                 Sauvegardé
@@ -73,5 +83,6 @@
 
     <script src="notebook.js"></script>
 
+    <script src="statistiques.js"></script>
 </body>
 </html>

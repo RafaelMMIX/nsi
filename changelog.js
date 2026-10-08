@@ -4,6 +4,16 @@ const changelog = [
         date: "08 octobre 2026",
         changes: [
             {
+                type: "improved",
+                title: "Les notebooks sont de retour",
+                description: "Les notebooks fonctionnent à nouveau : chaque document retrouve ses propres cellules, qui s'enregistrent automatiquement. Python peut être exécuté dans le navigateur et les notebooks peuvent être exportés aux formats Jupyter (.ipynb) et Python (.py)."
+            },
+            {
+                type: "new",
+                title: "Page Statistiques personnelles",
+                description: "Une nouvelle page regroupe les visites, le temps d’utilisation, les ressources ouvertes, les recherches, les favoris et l’activité des notebooks. Des graphiques d’activité, un export et un import des statistiques sont disponibles ; les données restent stockées localement sur l’appareil. Les quiz, exercices et notions maîtrisées ne sont pas encore suivis."
+            },
+            {
                 type: "new",
                 title: "Dictionnaire NSI",
                 description: "Création d'un dictionnaire informatique avec plus de 370 mots et définitions autour de la NSI, de la programmation, des réseaux et du web."

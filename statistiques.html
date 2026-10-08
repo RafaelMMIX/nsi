@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Statistiques | NSI Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="statistiques.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="page-header">
+        <div><h1><i class="fa-solid fa-chart-pie"></i> Mes statistiques</h1><p>Ton activité NSI Hub, conservée sur cet appareil.</p></div>
+        <a href="index.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Accueil</a>
+    </header>
+    <main class="stats-page">
+        <p id="activity-summary" class="activity-summary" aria-live="polite">Tes statistiques apparaîtront ici au fil de ton utilisation.</p>
+        <section class="stats-section"><h2>Statistiques générales</h2><div class="stats-grid">
+            <article class="stats-card"><i class="fa-solid fa-arrow-up-right-from-square blue"></i><div><strong id="stat-resources">0</strong><span>Ressources ouvertes</span></div></article>
+            <article class="stats-card"><i class="fa-regular fa-eye purple"></i><div><strong id="stat-views">0</strong><span>Pages visitées</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-star yellow"></i><div><strong id="stat-favorites">0</strong><span>Favoris</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-book green"></i><div><strong id="stat-notebooks">0</strong><span>Notebooks</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-circle-plus cyan"></i><div><strong id="stat-notebooks-created">0</strong><span>Notebooks créés depuis le suivi</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-magnifying-glass cyan"></i><div><strong id="stat-searches">0</strong><span>Recherches</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-screwdriver-wrench orange"></i><div><strong id="stat-tools">0</strong><span>Outils utilisés</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-play pink"></i><div><strong id="stat-runs">0</strong><span>Cellules Python exécutées</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-circle-check green"></i><div><strong id="stat-success">0</strong><span>Exécutions réussies</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-triangle-exclamation orange"></i><div><strong id="stat-errors">0</strong><span>Erreurs rencontrées</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-question purple"></i><div><strong>—</strong><span>Quiz terminés (non suivi)</span></div></article>
+        </div></section>
+
+        <section class="stats-section"><h2>Temps d'utilisation</h2><div class="stats-grid time-grid">
+            <article class="stats-card"><i class="fa-regular fa-clock blue"></i><div><strong id="time-total">0</strong><span>Au total</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-sun orange"></i><div><strong id="time-today">0</strong><span>Aujourd'hui</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-calendar-week purple"></i><div><strong id="time-week">0</strong><span>Cette semaine</span></div></article>
+            <article class="stats-card"><i class="fa-regular fa-calendar blue"></i><div><strong id="time-month">0</strong><span>Ce mois-ci</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-calendar-check green"></i><div><strong id="active-days">0</strong><span>Jours d'utilisation</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-fire orange"></i><div><strong id="streak-days">0</strong><span>Jours consécutifs</span></div></article>
+        </div></section>
+
+        <section class="stats-section"><h2>Activité</h2><div class="stats-panels">
+            <article class="stats-panel"><h3>7 derniers jours</h3><div id="activity-7" class="activity-chart" aria-label="Activité des 7 derniers jours"></div></article>
+            <article class="stats-panel"><h3>30 derniers jours</h3><div id="activity-30" class="activity-chart activity-chart-30" aria-label="Activité des 30 derniers jours"></div></article>
+        </div><div class="stats-grid compact-grid">
+            <article class="stats-card"><i class="fa-regular fa-calendar blue"></i><div><strong id="best-weekday">—</strong><span>Jour le plus actif</span></div></article>
+            <article class="stats-card"><i class="fa-regular fa-hourglass-half purple"></i><div><strong id="best-hour">—</strong><span>Heure la plus active</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-bolt yellow"></i><div><strong id="actions-today">0</strong><span>Actions aujourd'hui</span></div></article>
+        </div></section>
+
+        <section class="stats-section"><h2>Ressources</h2><div class="stats-panels">
+            <article class="stats-panel"><h3>Top 5 des ressources</h3><div id="resource-top" class="ranked-list"></div></article>
+            <article class="stats-panel"><h3>Dernières ressources ouvertes</h3><div id="resource-recent" class="ranked-list"></div></article>
+            <article class="stats-panel"><h3>Catégories les plus ajoutées en favoris</h3><div id="favorite-categories" class="ranked-list"></div></article>
+            <article class="stats-panel"><h3>Derniers favoris ajoutés</h3><div id="favorite-recent" class="ranked-list"></div></article>
+        </div><div class="stats-grid compact-grid">
+            <article class="stats-card"><i class="fa-solid fa-crown yellow"></i><div><strong id="resource-favorite">—</strong><span>Ressource la plus utilisée</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-folder purple"></i><div><strong id="category-favorite">—</strong><span>Catégorie la plus consultée</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-shapes cyan"></i><div><strong id="resource-unique">0</strong><span>Ressources différentes</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-heart pink"></i><div><strong id="favorite-most-used">—</strong><span>Favori le plus utilisé</span></div></article>
+        </div></section>
+
+        <section class="stats-section"><h2>Notebooks</h2><div class="stats-grid">
+            <article class="stats-card"><i class="fa-solid fa-book green"></i><div><strong id="notebook-count">0</strong><span>Notebooks actuels</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-table-cells blue"></i><div><strong id="cell-count">0</strong><span>Cellules créées (suivies)</span></div></article>
+            <article class="stats-card"><i class="fa-brands fa-python cyan"></i><div><strong id="python-cells">0</strong><span>Cellules Python créées</span></div></article>
+            <article class="stats-card"><i class="fa-brands fa-markdown purple"></i><div><strong id="markdown-cells">0</strong><span>Cellules Markdown créées</span></div></article>
+            <article class="stats-card"><i class="fa-solid fa-book-open orange"></i><div><strong id="notebook-used">—</strong><span>Notebook le plus utilisé</span></div></article>
+        </div></section>
+
+        <section class="stats-section"><h2>Révisions et progression</h2><article class="stats-panel unavailable-panel"><i class="fa-solid fa-circle-info"></i><p>Le site ne suit pas encore les quiz, exercices, notions maîtrisées, objectifs ou badges. Ces indicateurs s'afficheront quand ces activités seront disponibles et enregistrées localement.</p></article></section>
+
+        <section class="stats-section"><h2>Profil et données locales</h2><div class="stats-profile" id="profile-info"></div>
+            <article class="stats-panel local-panel"><i class="fa-solid fa-lock"></i><p>Les statistiques sont enregistrées uniquement dans le stockage local de ce navigateur. Elles ne sont pas transmises. La navigation privée, un autre appareil ou l'effacement du stockage peuvent les réinitialiser.</p></article>
+            <div class="stats-actions">
+                <button type="button" id="export-stats" class="stats-button"><i class="fa-solid fa-download"></i> Exporter mes statistiques</button>
+                <button type="button" id="import-stats-button" class="stats-button"><i class="fa-solid fa-upload"></i> Importer mes statistiques</button>
+                <input type="file" id="import-stats-file" accept="application/json,.json" hidden>
+                <button type="button" id="reset-stats" class="stats-button danger"><i class="fa-solid fa-rotate-left"></i> Réinitialiser mes statistiques</button>
+                <button type="button" id="delete-local-data" class="stats-button danger"><i class="fa-solid fa-trash"></i> Supprimer toutes mes données locales</button>
+            </div><p id="stats-status" class="stats-status" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+    <script src="statistiques.js"></script>
+</body>
+</html>

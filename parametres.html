@@ -320,6 +320,22 @@
                 </div>
             </div>
 
+            <div class="settings-card">
+                <div class="setting-info">
+                    <div class="setting-icon"><i class="fa-solid fa-box-archive"></i></div>
+                    <div>
+                        <h3>Sauvegarde / restauration</h3>
+                        <p>Exporte ou restaure les données NSI Hub enregistrées dans ce navigateur.</p>
+                    </div>
+                </div>
+                <div class="backup-actions">
+                    <button type="button" id="export-data" class="setting-button">Exporter JSON</button>
+                    <button type="button" id="import-data-button" class="setting-button">Importer JSON</button>
+                    <input type="file" id="import-data-file" accept="application/json,.json" hidden>
+                </div>
+            </div>
+            <p id="backup-status" role="status" aria-live="polite"></p>
+
             <div class="settings-card danger-card">
 
                 <div class="setting-info">
@@ -355,6 +371,7 @@
 
     <script src="parametres.js"></script>
 
+    <script src="statistiques.js"></script>
 </body>
 
 </html>

@@ -13,15 +13,21 @@ const newNotebookButton =
 
 function getNotebooks() {
 
-    const saved =
-        localStorage.getItem(STORAGE_KEY);
+    let saved;
+    try {
+        saved = localStorage.getItem(STORAGE_KEY);
+    } catch (error) {
+        console.error("Impossible d'accéder aux notebooks :", error);
+        return [];
+    }
 
     if (!saved) {
         return [];
     }
 
     try {
-        return JSON.parse(saved);
+        const notebooks = JSON.parse(saved);
+        return Array.isArray(notebooks) ? notebooks : [];
     } catch (error) {
 
         console.error(
@@ -68,7 +74,9 @@ function createNotebook() {
 
     const notebook = {
 
-        id: crypto.randomUUID(),
+        id: globalThis.crypto?.randomUUID
+            ? crypto.randomUUID()
+            : `notebook-${Date.now()}-${Math.random().toString(36).slice(2)}`,
 
         name: name.trim(),
 
@@ -94,6 +102,8 @@ function createNotebook() {
 
 
     notebooks.push(notebook);
+
+    window.nsiTrack?.("notebookCreated");
 
     saveNotebooks(notebooks);
 
