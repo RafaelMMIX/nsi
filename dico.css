@@ -250,6 +250,16 @@
     border-radius: 2px;
 }
 
+.dico-filter,
+.dico-more-link {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dico-entry:focus-within {
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
 
 /* =========================================================
    AUCUN RÉSULTAT
@@ -320,4 +330,19 @@
         padding-top: 12px;
     }
 
+    .dico-entry-content {
+        padding-bottom: 14px;
+    }
+
+    .dico-filter {
+        min-height: 40px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dico-entry,
+    .dico-filter {
+        transition: none;
+    }
 }

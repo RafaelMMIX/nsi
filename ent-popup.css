@@ -38,6 +38,10 @@
     position: relative;
 
     width: min(440px, 100%);
+    max-height: 90vh;
+    max-height: min(90dvh, 760px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
 
     padding: 28px;
 
@@ -203,7 +207,8 @@
 @media (max-width: 500px) {
 
     .ent-popup {
-        padding: 23px;
+        padding: 23px 18px;
+        border-radius: 14px;
     }
 
     .ent-popup-actions {
@@ -216,4 +221,27 @@
         width: 100%;
     }
 
+}
+
+.ent-popup-close,
+.ent-popup-ent,
+.ent-popup-continue {
+    min-height: 44px;
+}
+
+.ent-popup-close:focus-visible,
+.ent-popup-ent:focus-visible,
+.ent-popup-continue:focus-visible {
+    outline: 3px solid rgba(129, 140, 248, 0.8);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ent-popup,
+    .ent-popup-overlay,
+    .ent-popup-close,
+    .ent-popup-ent,
+    .ent-popup-continue {
+        transition: none;
+    }
 }

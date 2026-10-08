@@ -4,6 +4,7 @@ const closeButton = document.getElementById("contribution-close");
 
 const ideaButton = document.getElementById("idea-button");
 const bugButton = document.getElementById("bug-button");
+const resourceButton = document.getElementById("resource-button");
 
 const form = document.getElementById("contribution-form");
 const messageInput = document.getElementById("contribution-message");
@@ -39,6 +40,14 @@ function openContribution(type) {
 
         icon.innerHTML =
             '<i class="fa-solid fa-lightbulb"></i>';
+
+    } else if (type === "resource") {
+
+        title.textContent = "Proposer une ressource";
+        description.textContent = "Tu connais une ressource utile pour la NSI ?";
+        label.textContent = "Nom, lien et intérêt de la ressource";
+        messageInput.placeholder = "Nom de la ressource, adresse web et pourquoi elle serait utile...";
+        icon.innerHTML = '<i class="fa-solid fa-book-medical"></i>';
 
     } else {
 
@@ -82,6 +91,10 @@ ideaButton.addEventListener("click", () => {
 
 bugButton.addEventListener("click", () => {
     openContribution("bug");
+});
+
+resourceButton.addEventListener("click", () => {
+    openContribution("resource");
 });
 
 closeButton.addEventListener("click", closeContribution);
@@ -143,6 +156,18 @@ ${message}
 
 Merci !`;
 
+    } else if (contributionType === "resource") {
+
+        subject = "[NSI Hub] Proposition de ressource";
+        body =
+`Bonjour,
+
+Je souhaite proposer cette ressource pour NSI Hub :
+
+${message}
+
+Merci !`;
+
     } else {
 
         subject =
@@ -168,4 +193,65 @@ Merci !`;
 
     window.location.href = mailto;
 
+});
+
+
+/* Statistiques animées */
+
+const counters = document.querySelectorAll(".count-up");
+
+function animateCounter(counter) {
+    const target = Number(counter.dataset.target);
+    const suffix = counter.dataset.suffix || "";
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        counter.textContent = `${target}${suffix}`;
+        return;
+    }
+
+    const duration = 850;
+    const startTime = performance.now();
+
+    function update(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = `${Math.round(target * eased)}${suffix}`;
+
+        if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+}
+
+if ("IntersectionObserver" in window) {
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => statsObserver.observe(counter));
+} else {
+    counters.forEach(animateCounter);
+}
+
+
+/* Petit easter egg : cliquer cinq fois sur l'icône */
+
+const secretTrigger = document.getElementById("about-secret-trigger");
+const secretMessage = document.getElementById("about-secret-message");
+let secretClicks = 0;
+
+secretTrigger.addEventListener("click", () => {
+    secretClicks += 1;
+    secretTrigger.classList.add("is-clicked");
+
+    if (secretClicks >= 5) {
+        secretMessage.hidden = false;
+        secretMessage.classList.add("is-visible");
+        secretTrigger.setAttribute("aria-label", "Secret découvert !");
+    }
 });

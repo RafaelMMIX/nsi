@@ -28,18 +28,36 @@
         <div class="loading-content">
 
             <div class="loading-logo">
-                <span>NSI</span>
+                <span class="loading-logo-nsi">NSI</span>
                 <strong>Hub</strong>
             </div>
 
-            <div class="loading-spinner"></div>
+            <p class="loading-tagline">Ton espace pour la NSI</p>
 
-            <p id="loading-status">
+            <div class="loading-visual" aria-hidden="true">
+                <div class="loading-orbit loading-orbit-one"></div>
+                <div class="loading-orbit loading-orbit-two"></div>
+                <div class="loading-core"><i class="fa-solid fa-code"></i></div>
+                <span class="loading-orbit-dot"></span>
+            </div>
+
+            <p id="loading-status" aria-live="polite">
                 Préparation de ton espace...
             </p>
 
-            <div class="loading-progress">
+            <div class="loading-progress-meta">
+                <span>INITIALISATION</span>
+                <span id="loading-percent">0 %</span>
+            </div>
+
+            <div class="loading-progress" role="progressbar" aria-label="Chargement de ton espace" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                 <div id="loading-progress-bar"></div>
+            </div>
+
+            <div class="loading-steps" aria-hidden="true">
+                <span class="loading-step active" data-step="0"></span>
+                <span class="loading-step" data-step="1"></span>
+                <span class="loading-step" data-step="2"></span>
             </div>
 
             <div class="loading-tip">
@@ -52,6 +70,8 @@
                     <p id="loading-tip"></p>
                 </div>
             </div>
+
+            <button class="loading-skip" id="loading-skip" type="button">Passer l'animation <i class="fa-solid fa-arrow-right"></i></button>
 
         </div>
 

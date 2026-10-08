@@ -26,6 +26,7 @@
 
 .celebration-container {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -351,5 +352,24 @@
     .celebration-footer {
         width: 90%;
         text-align: center;
+    }
+}
+
+.reveal-button:focus-visible,
+.continue-button:focus-visible {
+    outline: 3px solid rgba(165, 180, 252, 0.9);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .celebration-page { overflow: auto; }
+    .celebration-badge,
+    .celebration-question,
+    .reveal-button,
+    .continue-button,
+    .celebration-result,
+    .celebration-footer {
+        animation: none !important;
+        transition: none !important;
     }
 }

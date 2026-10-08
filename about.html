@@ -38,9 +38,9 @@
 
         <section class="about-hero">
 
-            <div class="about-icon">
+            <button class="about-icon about-secret-trigger" id="about-secret-trigger" type="button" aria-label="Découvrir le secret de NSI Hub" title="Un petit secret ?">
                 <i class="fa-solid fa-code"></i>
-            </div>
+            </button>
 
             <h2>NSI Hub</h2>
 
@@ -49,6 +49,70 @@
                 la pratique et l'organisation autour de la NSI.
             </p>
 
+            <p class="about-secret-message" id="about-secret-message" aria-live="polite" hidden>
+                Bien joué, tu as trouvé le petit secret de NSI Hub ! ✨
+            </p>
+
+            <div class="about-quick-links">
+                <a class="about-action-button" href="https://github.com/rafaelmmix/nsi/" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i> Voir le projet sur GitHub
+                </a>
+                <a class="about-action-button secondary" href="changelog.html">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Voir le changelog
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- Statistiques -->
+
+        <section class="about-section">
+            <div class="about-section-header">
+                <div class="about-section-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                <div><h2>NSI Hub en quelques chiffres</h2><p>Les dimensions actuelles du projet</p></div>
+            </div>
+
+            <div class="about-stats-grid">
+                <article class="about-stat-card"><strong><span class="count-up" data-target="13">13</span></strong><span>pages</span></article>
+                <article class="about-stat-card"><strong><span class="count-up" data-target="14">14</span></strong><span>fonctionnalités principales</span></article>
+                <article class="about-stat-card"><strong><span class="count-up" data-target="13">13</span></strong><span>ressources sur l'accueil</span></article>
+                <article class="about-stat-card"><strong><span class="count-up" data-target="3">3</span></strong><span>outils de développement</span></article>
+                <article class="about-stat-card"><strong><span class="count-up" data-target="0">0</span></strong><span>compte nécessaire</span></article>
+                <article class="about-stat-card"><strong><span class="count-up" data-target="100" data-suffix="%">100%</span></strong><span>gratuit</span></article>
+            </div>
+        </section>
+
+
+        <!-- Pourquoi -->
+
+        <section class="about-section">
+            <div class="about-section-header">
+                <div class="about-section-icon"><i class="fa-solid fa-bullseye"></i></div>
+                <div><h2>Pourquoi NSI Hub ?</h2><p>Un point de départ commun pour la NSI</p></div>
+            </div>
+            <div class="about-card about-reasons-grid">
+                <article><i class="fa-solid fa-folder-open"></i><h3>Tout regrouper</h3><p>Retrouver les cours, plateformes et outils utiles depuis un seul endroit.</p></article>
+                <article><i class="fa-solid fa-book-open-reader"></i><h3>Réviser plus facilement</h3><p>Pratiquer, rechercher une notion et organiser ses révisions.</p></article>
+                <article><i class="fa-solid fa-people-group"></i><h3>Servir la communauté NSI</h3><p>Proposer un outil pratique pour les élèves et les professeurs.</p></article>
+            </div>
+        </section>
+
+
+        <!-- Parcours du projet -->
+
+        <section class="about-section">
+            <div class="about-section-header">
+                <div class="about-section-icon"><i class="fa-solid fa-route"></i></div>
+                <div><h2>Parcours du projet</h2><p>Les principales étapes de NSI Hub</p></div>
+            </div>
+            <ol class="about-timeline">
+                <li><span class="timeline-date">Septembre 2026</span><h3>Création de NSI Hub</h3><p>Le projet démarre avec l'objectif de centraliser les ressources de NSI.</p></li>
+                <li><span class="timeline-date">Premières versions</span><h3>Les premiers outils</h3><p>Recherche de ressources, favoris, mémo et personnalisation de l'accueil.</p></li>
+                <li><span class="timeline-date">Évolution du projet</span><h3>Profils et Notebook</h3><p>Ajout de la sélection de profil et d'un espace pour créer et exécuter des notebooks Python.</p></li>
+                <li><span class="timeline-date">Automne 2026</span><h3>Plus de ressources et d'informations</h3><p>Ajout des annonces, du partage, des outils de développement et de ressources pour les cours.</p></li>
+                <li><span class="timeline-date">08 octobre 2026</span><h3>Le dictionnaire NSI</h3><p>Publication d'un dictionnaire de plus de 370 termes, avec filtres thématiques et liens pour approfondir.</p></li>
+            </ol>
         </section>
 
 
@@ -123,6 +187,10 @@
                     GitHub Pages
                 </span>
 
+                <span class="technology"><i class="fa-brands fa-python"></i> Pyodide</span>
+                <span class="technology"><i class="fa-solid fa-icons"></i> Font Awesome</span>
+                <span class="technology"><i class="fa-solid fa-hard-drive"></i> LocalStorage</span>
+
             </div>
 
         </section>
@@ -167,6 +235,16 @@
                     <strong>GitHub Pages</strong>
                 </div>
 
+                <div class="about-info-card">
+                    <span>Création du projet</span>
+                    <strong>Septembre 2026</strong>
+                </div>
+
+                <div class="about-info-card">
+                    <span>Dernière mise à jour</span>
+                    <strong>08 octobre 2026</strong>
+                </div>
+
             </div>
 
             <a href="changelog.html" class="about-changelog-button">
@@ -174,6 +252,78 @@
                 Voir les nouveautés
             </a>
 
+        </section>
+
+
+        <!-- Vie privée -->
+
+        <section class="about-section">
+            <div class="about-section-header">
+                <div class="about-section-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div><h2>Vie privée</h2><p>Des préférences conservées dans ton navigateur</p></div>
+            </div>
+            <div class="about-card about-privacy-card">
+                <ul>
+                    <li>Pas de compte à créer pour utiliser NSI Hub.</li>
+                    <li>Les préférences, favoris et notebooks sont enregistrés localement sur ton appareil.</li>
+                    <li>NSI Hub n'utilise pas de serveur pour synchroniser ces données.</li>
+                    <li>Tu peux supprimer les données locales depuis les <a href="parametres.html">paramètres</a>.</li>
+                </ul>
+                <p class="about-note">Les liens vers des services externes ouvrent des sites qui ont leurs propres règles de confidentialité.</p>
+            </div>
+        </section>
+
+
+        <!-- Fonctionnalités et évolution -->
+
+        <section class="about-section">
+            <div class="about-section-header">
+                <div class="about-section-icon"><i class="fa-solid fa-code-branch"></i></div>
+                <div><h2>Évolution du projet</h2><p>Ce qui existe et ce qui peut encore évoluer</p></div>
+            </div>
+            <div class="about-roadmap-grid">
+                <article class="about-roadmap-card">
+                    <span class="roadmap-label available">Disponible</span>
+                    <h3>Fonctionnalités actuelles</h3>
+                    <p>Ressources, favoris, recherche, mémo, profils, annonces, partage, prompts, notebooks Python et dictionnaire filtrable.</p>
+                </article>
+                <article class="about-roadmap-card">
+                    <span class="roadmap-label evolving">En évolution</span>
+                    <h3>Améliorations en cours</h3>
+                    <p>Le contenu et l'organisation du site évoluent selon les retours des élèves et des professeurs.</p>
+                </article>
+                <article class="about-roadmap-card">
+                    <span class="roadmap-label ideas">À proposer</span>
+                    <h3>Prochaines idées</h3>
+                    <p>Les nouvelles ressources, améliorations et fonctionnalités sont choisies au fil des suggestions reçues.</p>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- Expérimental -->
+
+        <section class="about-section">
+            <div class="about-section-header">
+                <div class="about-section-icon"><i class="fa-solid fa-flask"></i></div>
+                <div><h2>Fonctionnalités expérimentales</h2><p>Des éléments qui peuvent encore changer</p></div>
+            </div>
+            <div class="about-card">
+                <p>NSI Hub est en développement. Le Notebook Python (exécuté dans le navigateur avec Pyodide), les profils et les animations peuvent évoluer ou rencontrer des limites selon le navigateur et l'appareil.</p>
+            </div>
+        </section>
+
+
+        <!-- Remerciements -->
+
+        <section class="about-section">
+            <div class="about-section-header">
+                <div class="about-section-icon"><i class="fa-solid fa-hands-clapping"></i></div>
+                <div><h2>Remerciements</h2><p>Merci à celles et ceux qui font avancer le projet</p></div>
+            </div>
+            <div class="about-card">
+                <p>Merci au professeur de NSI pour ses retours, aux élèves qui partagent leurs idées, aux sites et ressources pédagogiques référencés, ainsi qu'aux créateurs des outils utilisés pour développer NSI Hub.</p>
+            </div>
         </section>
 
 
@@ -210,7 +360,12 @@
                     
                         <button class="contribute-button" id="bug-button">
                             <i class="fa-solid fa-bug"></i>
-                            Signaler une erreur
+                            Signaler un problème
+                        </button>
+
+                        <button class="contribute-button" id="resource-button">
+                            <i class="fa-solid fa-book-medical"></i>
+                            Proposer une ressource
                         </button>
                     
                     </div>

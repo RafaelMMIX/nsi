@@ -246,7 +246,7 @@
 
     background: rgba(17, 24, 39, 0.45);
 
-    opacity: 0.55;
+    opacity: 0.78;
 
     transition:
         opacity 0.2s ease,
@@ -254,7 +254,7 @@
 }
 
 .old-announcement:hover {
-    opacity: 0.8;
+    opacity: 1;
     background: var(--surface);
 }
 
@@ -374,4 +374,25 @@
         padding: 14px;
     }
 
+    .announcement-section-title {
+        font-size: 11px;
+        letter-spacing: 0.5px;
+    }
+
+    .announcement-page-button {
+        min-height: 42px;
+    }
+
+}
+
+.announcement-page-button:focus-visible {
+    outline: 3px solid rgba(129, 140, 248, 0.8);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .announcement-page-button,
+    .old-announcement {
+        transition: none;
+    }
 }

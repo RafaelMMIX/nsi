@@ -37,6 +37,10 @@
     position: relative;
 
     width: min(460px, 100%);
+    max-height: 90vh;
+    max-height: min(90dvh, 760px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
 
     padding: 28px;
 
@@ -215,11 +219,32 @@
 @media (max-width: 500px) {
 
     .share-popup {
-        padding: 23px;
+        padding: 23px 18px;
+        border-radius: 14px;
     }
 
     .share-buttons {
         grid-template-columns: 1fr;
     }
 
+}
+
+.share-popup-close,
+.share-button {
+    min-height: 44px;
+}
+
+.share-popup-close:focus-visible,
+.share-button:focus-visible {
+    outline: 3px solid rgba(129, 140, 248, 0.8);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .share-popup,
+    .share-popup-overlay,
+    .share-button,
+    .share-popup-close {
+        transition: none;
+    }
 }

@@ -252,7 +252,7 @@
     <!-- Background -->
     <div class="background"></div>
 
-    <main class="container">
+    <main class="container home-container">
 
         <!-- HEADER -->
         <header class="header">
@@ -308,13 +308,14 @@
 
 
         <!-- SEARCH -->
-        <section class="search-container">
+        <section class="search-container" role="search" aria-label="Rechercher une ressource">
 
             <i class="fa-solid fa-magnifying-glass"></i>
 
             <input
                 type="text"
                 id="search"
+                aria-label="Rechercher un outil ou une ressource"
                 placeholder="Rechercher un outil..."
                 autocomplete="off"
             >

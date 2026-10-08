@@ -3,6 +3,11 @@ const level = localStorage.getItem("nsiLevel");
 const loadingStatus = document.getElementById("loading-status");
 const loadingTip = document.getElementById("loading-tip");
 const progressBar = document.getElementById("loading-progress-bar");
+const progressTrack = document.querySelector(".loading-progress");
+const progressLabel = document.getElementById("loading-percent");
+const loadingScreen = document.querySelector(".loading-screen");
+const skipButton = document.getElementById("loading-skip");
+const steps = [...document.querySelectorAll(".loading-step")];
 
 const tips = {
     premiere: [
@@ -90,44 +95,71 @@ const selectedTips = tips[level] || tips.premiere;
 const selectedStatuses = statusMessages[level] || statusMessages.premiere;
 
 // Tip aléatoire
-loadingTip.textContent =
-    selectedTips[Math.floor(Math.random() * selectedTips.length)];
+loadingTip.textContent = selectedTips[Math.floor(Math.random() * selectedTips.length)];
 
-let progress = 0;
-let statusIndex = 0;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const duration = prefersReducedMotion ? 700 : 3200;
+const statusMilestones = [22, 48, 74, 92];
+const statusIndexes = [1, 2, 4, 6];
+let currentStatus = 0;
+let animationFrame;
+let hasRedirected = false;
 
-const interval = setInterval(() => {
+function redirectToHome() {
+    if (hasRedirected) return;
+    hasRedirected = true;
+    cancelAnimationFrame(animationFrame);
+    window.location.replace("index.html");
+}
 
-    progress += Math.floor(Math.random() * 8) + 3;
+function updateStatus(message) {
+    loadingStatus.classList.remove("is-changing");
+    void loadingStatus.offsetWidth;
+    loadingStatus.textContent = message;
+    loadingStatus.classList.add("is-changing");
+}
 
-    if (progress > 100) {
-        progress = 100;
-    }
-
+function updateProgress(value) {
+    const progress = Math.min(100, Math.floor(value));
     progressBar.style.width = `${progress}%`;
+    progressTrack.setAttribute("aria-valuenow", String(progress));
+    progressLabel.textContent = `${progress} %`;
 
-    // Change le texte à différents moments
-    if (progress >= 25 && statusIndex === 0) {
-        statusIndex = 1;
-        loadingStatus.textContent = selectedStatuses[1];
-    }
+    const activeStep = Math.min(2, Math.floor(progress / 34));
+    steps.forEach((step, index) => {
+        step.classList.toggle("active", index === activeStep && progress < 100);
+        step.classList.toggle("done", index < activeStep || progress === 100);
+    });
+}
 
-    if (progress >= 55 && statusIndex === 1) {
-        statusIndex = 2;
-        loadingStatus.textContent = selectedStatuses[2];
-    }
+function completeLoading() {
+    updateProgress(100);
+    updateStatus("Ton espace est prêt !");
+    loadingScreen.classList.add("is-complete");
+    document.querySelector(".loading-core i").className = "fa-solid fa-check";
+    skipButton.hidden = true;
+    window.setTimeout(redirectToHome, prefersReducedMotion ? 100 : 400);
+}
 
-    if (progress >= 80 && statusIndex === 2) {
-        statusIndex = 3;
-        loadingStatus.textContent = selectedStatuses[3];
+function animateLoading(startTime) {
+    if (hasRedirected) return;
+
+    const elapsed = performance.now() - startTime;
+    const progress = Math.min(100, (elapsed / duration) * 100);
+    updateProgress(progress);
+
+    while (currentStatus < statusMilestones.length && progress >= statusMilestones[currentStatus]) {
+        updateStatus(selectedStatuses[statusIndexes[currentStatus]]);
+        currentStatus += 1;
     }
 
     if (progress >= 100) {
-        clearInterval(interval);
-
-        setTimeout(() => {
-            window.location.replace("index.html");
-        }, 500);
+        completeLoading();
+        return;
     }
 
-}, 120);
+    animationFrame = requestAnimationFrame(() => animateLoading(startTime));
+}
+
+skipButton.addEventListener("click", redirectToHome);
+animationFrame = requestAnimationFrame(animateLoading.bind(null, performance.now()));
