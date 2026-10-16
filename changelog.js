@@ -1,5 +1,15 @@
 const changelog = [
     {
+        version: "1.2.6",
+        date: "16 octobre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Ajout de PIX",
+                description: "Un accès direct à PIX est désormais disponible dans la section « Cours & Lycée » pour accéder à la plateforme d'évaluation et de certification des compétences numériques."
+            }
+    },
+    {
         version: "1.2.5",
         date: "08 octobre 2026",
         changes: [
