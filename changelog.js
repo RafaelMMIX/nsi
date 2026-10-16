@@ -7,6 +7,11 @@ const changelog = [
                 type: "bug",
                 title: "Page changelog de nouveau disponible",
                 description: "Suite a un incident mineur (oublie d'un caractère), la page changelog a été indisponible."
+            },
+            {
+                type: "improved",
+                title: "Versionnement plus précis",
+                description: "Le système de version adopte désormais un quatrième numéro (ex. : 1.2.5.1) pour identifier plus précisément les petites mises à jour et les corrections de bugs."
             }
         ]
     },
