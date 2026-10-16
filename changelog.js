@@ -239,7 +239,8 @@ const icons = {
     improved: "fa-wand-magic-sparkles",
     fixed: "fa-bug",
     removed: "fa-trash",
-    accepted: "fa-lightbulb"
+    accepted: "fa-lightbulb",
+    bug: "fa-bug"
 };
 
 
@@ -248,7 +249,8 @@ const labels = {
     improved: "Amélioration",
     fixed: "Correction",
     removed: "Suppression",
-    accepted: "Idée à venir"
+    accepted: "Idée à venir",
+    bug: "Bug résolu"
 };
 
 
