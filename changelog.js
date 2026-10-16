@@ -256,7 +256,8 @@ const icons = {
     fixed: "fa-bug",
     removed: "fa-trash",
     accepted: "fa-lightbulb",
-    bug: "fa-bug"
+    bug: "fa-bug",
+    cancelled: "fa-ban",
 };
 
 
@@ -266,6 +267,7 @@ const labels = {
     fixed: "Correction",
     removed: "Suppression",
     accepted: "Idée à venir",
+    cancelled: "Idée annulée",
     bug: "Bug résolu"
 };
 
