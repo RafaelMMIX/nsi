@@ -5204,3 +5204,8 @@ footer a:active {
     .dev-mode-tools { animation: none; }
     .dev-action-button { transition: none; }
 }
+
+.changelog-type.bug {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.12);
+}
