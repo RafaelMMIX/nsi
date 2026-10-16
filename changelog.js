@@ -12,7 +12,11 @@ const changelog = [
                 type: "improved",
                 title: "Versionnement plus précis",
                 description: "Le système de version adopte désormais un quatrième numéro (ex. : 1.2.5.1) pour identifier plus précisément les petites mises à jour et les corrections de bugs."
-            }
+            },
+            {
+                type:"cancelled",
+                title: "J'ai voulu faire un truc moi même",
+                description: "Bah enfait j'annule le projet, trop dur... Jvais demander a codex de me faire ça mdrrrrrrr, ou va sur le github, pour m'aider un peu (va sur la page about.html, et va sur le github)."
         ]
     },
     {
