@@ -269,6 +269,9 @@ const labels = {
     bug: "Bug résolu"
 };
 
+const importantClass = entry.important === true
+    ? " changelog-entry-important"
+    : "";
 
 changelog.forEach((release) => {
 
