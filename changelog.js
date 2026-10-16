@@ -17,6 +17,7 @@ const changelog = [
                 type:"cancelled",
                 title: "J'ai voulu faire un truc moi même",
                 description: "Bah enfait j'annule le projet, trop dur... Jvais demander a codex de me faire ça mdrrrrrrr, ou va sur le github, pour m'aider un peu (va sur la page about.html, et va sur le github)."
+            }
         ]
     },
     {
