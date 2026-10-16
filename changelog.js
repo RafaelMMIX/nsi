@@ -1,5 +1,16 @@
 const changelog = [
     {
+        version: "1.2.6.1",
+        date: "16 octobre 2026",
+        changes: [
+            {
+                type: "bug",
+                title: "Page changelog de nouveau disponible",
+                description: "Suite a un incident mineur (oublie d'un caractère), la page changelog a été indisponible."
+            }
+        ]
+    },
+    {
         version: "1.2.6",
         date: "16 octobre 2026",
         changes: [
