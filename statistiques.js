@@ -4,7 +4,7 @@
         "index.html": "Accueil", "outils.html": "Outils", "dico.html": "Dictionnaire",
         "notebooks.html": "Notebooks", "notebook.html": "Notebook", "parametres.html": "Paramètres",
         "about.html": "À propos", "annonces.html": "Annonces", "changelog.html": "Nouveautés",
-        "prompt.html": "Prompts", "selection.html": "Sélection", "felicitation.html": "Félicitations",
+        "prompt.html": "Prompts", "selection.html": "Sélection",
         "loading.html": "Chargement", "statistiques.html": "Statistiques"
     };
     const localDay = date => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;

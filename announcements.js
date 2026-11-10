@@ -29,7 +29,7 @@ const announcements = [
         title: "Les cartes communautaires débarquent sur NSI Hub !",
         message: "Une nouvelle fonctionnalité fait son arrivée sur NSI Hub ! Tu peux désormais découvrir une sélection de cartes créées pour notre jeu TCG et les ajouter à ta propre collection en quelques clics. Chaque carte dispose d'un aperçu visuel et d'un bouton pour copier son code de partage. Il ne te reste plus qu'à l'importer directement dans ton jeu ! De nouvelles cartes pourront être ajoutées progressivement. Bonne collection !",
         buttonText: "Découvrir les cartes",
-        buttonUrl: "cartes.html",
+        buttonUrl: "https://rafaelmmix.github.io/custom-tcg/tcg-cartes.html",
         date: "2026-11-10"
     },
 ];

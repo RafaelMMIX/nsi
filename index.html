@@ -24,10 +24,6 @@
     const fromLoading = sessionStorage.getItem("nsiFromLoading");
     const devMode = localStorage.getItem("nsiDevMode") === "true";
     
-    const teacherApproved =
-        localStorage.getItem("nsiTeacherApproved") === "true";
-    
-    
     /*
      * Pas encore de profil
      */
@@ -62,17 +58,6 @@
         sessionStorage.removeItem(
             "nsiFromLoading"
         );
-    
-        /*
-         * Première arrivée après l'approbation
-         */
-        if (!teacherApproved && !devMode) {
-    
-            window.location.replace(
-                "felicitation.html"
-            );
-    
-        }
     
     }
 </script>

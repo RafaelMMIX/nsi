@@ -114,7 +114,7 @@ const changelog = [
             {
                 type: "improved",
                 title: "Mode développeur",
-                description: "Le mode développeur propose des raccourcis pour prévisualiser le chargement, rejouer les félicitations, tester les confettis et réinitialiser les états de test. Son activation est mémorisée et ses effets sont indiqués dans l’interface."
+                description: "Le mode développeur propose des raccourcis pour prévisualiser le chargement, tester les confettis et réinitialiser les états de test. Son activation est mémorisée et ses effets sont indiqués dans l’interface."
             },
             {
                 type: "improved",

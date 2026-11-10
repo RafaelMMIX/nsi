@@ -173,12 +173,11 @@ resetDevTestsButton?.addEventListener("click", () => {
     [
         "nsiEntPopupDate",
         "nsiSharePopupDate",
-        "nsiLastWelcome",
-        "nsiTeacherApproved"
+        "nsiLastWelcome"
     ].forEach(key => localStorage.removeItem(key));
 
     devTestStatus.textContent =
-        "Les rappels et l'approbation ont été réinitialisés. Tu peux rejouer les écrans de test.";
+        "Les rappels ont été réinitialisés. Tu peux rejouer les écrans de test.";
 });
 
 // ==============================
