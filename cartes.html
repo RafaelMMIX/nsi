@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cartes.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Nunito:wght@400;700&display=swap"
+    >
+
+    <title>Cartes communautaires - NSI Hub</title>
+</head>
+
+<body>
+
+    <header class="page-header">
+
+        <a href="index.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+            Retour
+        </a>
+
+        <div>
+            <h1>Cartes communautaires</h1>
+            <p>Découvre et partage les cartes de la communauté TCG.</p>
+        </div>
+
+    </header>
+
+    <main class="cards-page">
+
+        <section class="cards-intro">
+            <div class="cards-intro-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div>
+                <h2>Ta prochaine carte t'attend.</h2>
+                <p>
+                    Explore les créations de la communauté et copie
+                    leur code pour les importer dans ton propre jeu.
+                </p>
+            </div>
+        </section>
+
+        <section class="cards-toolbar">
+
+            <div class="cards-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="cardSearch"
+                    placeholder="Rechercher une carte..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <div class="cards-filter">
+                <label for="rarityFilter">Rareté</label>
+
+                <select id="rarityFilter">
+                    <option value="all">Toutes les raretés</option>
+                    <option value="commune">Commune</option>
+                    <option value="rare">Rare</option>
+                    <option value="epique">Épique</option>
+                    <option value="legendaire">Légendaire</option>
+                </select>
+            </div>
+
+        </section>
+
+        <section class="cards-results">
+
+            <div class="cards-results-header">
+                <div>
+                    <h2>Bibliothèque</h2>
+                    <p id="cardsCount">Chargement des cartes...</p>
+                </div>
+            </div>
+
+            <div id="cardsGrid" class="cards-grid"></div>
+
+            <div id="cardsEmpty" class="cards-empty" hidden>
+                <i class="fa-solid fa-box-open"></i>
+                <h3>Aucune carte trouvée</h3>
+                <p>Essaie une autre recherche ou un autre filtre.</p>
+            </div>
+
+        </section>
+
+        <section class="cards-help">
+            <div class="cards-help-icon">
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+
+            <div>
+                <h3>Comment importer une carte ?</h3>
+                <p>
+                    Clique sur « Copier la carte », ouvre ton jeu TCG,
+                    puis utilise la fonction d'importation et colle
+                    le code obtenu.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="copyToast" class="copy-toast" role="status" aria-live="polite">
+        <i class="fa-solid fa-check"></i>
+        <span>Carte copiée !</span>
+    </div>
+
+    <script type="module" src="cartes.js"></script>
+
+    <script src="statistiques.js"></script>
+
+</body>
+</html>
