@@ -1,59 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <title>Mes notebooks | NSI Hub</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="notebook.css">
 </head>
 
-<body>
+<body class="notebook-page">
+    <div class="background" aria-hidden="true"></div>
 
-    <header class="page-header">
+    <main class="container nb-container">
+        <header class="header">
+            <div class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div><h1>Mes notebooks</h1><p>Python, SQL et texte dans ton navigateur.</p></div>
+            </div>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
+                <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
+                <a href="notebooks.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-book-open"></i> Notebook</a>
+                <a href="jeux.html" class="nav-link"><i class="fa-solid fa-gamepad"></i> Quiz &amp; Jeux</a>
+                <a href="dico.html" class="nav-link"><i class="fa-solid fa-book"></i> Dico</a>
+                <a href="statistiques.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Statistiques</a>
+                <a href="parametres.html" class="nav-link"><i class="fa-solid fa-gear"></i> Paramètres</a>
+            </nav>
+        </header>
 
-        <div>
-            <h1>📓 Mes notebooks</h1>
-            <p>Retrouve tous tes travaux NSI.</p>
+        <div class="nbl-toolbar">
+            <button type="button" id="new-notebook" class="nb-btn primary"><i class="fa-solid fa-plus"></i> Nouveau notebook</button>
+            <button type="button" id="import-ipynb" class="nb-btn"><i class="fa-solid fa-file-import"></i> Importer un .ipynb</button>
+            <input type="search" id="notebook-search" class="nbl-search" placeholder="Rechercher un notebook…" aria-label="Rechercher un notebook">
+            <input type="file" id="ipynb-file" accept=".ipynb,application/x-ipynb+json" multiple hidden>
         </div>
 
-        <a href="index.html" class="back-button">
-            <i class="fa-solid fa-arrow-left"></i>
-            Accueil
-        </a>
+        <div id="notebooks-list" class="nbl-list"></div>
 
-    </header>
-
-
-    <main class="notebooks-page">
-
-        <div class="notebooks-toolbar">
-
-            <button id="new-notebook" class="notebook-button primary">
-                <i class="fa-solid fa-plus"></i>
-                Nouveau notebook
-            </button>
-
-        </div>
-
-
-        <div id="notebooks-list" class="notebooks-list"></div>
-
+        <p class="nbl-note"><i class="fa-solid fa-lock"></i> Tes notebooks et leurs bases de données sont enregistrés uniquement dans ce navigateur. Pense à les exporter pour les garder ailleurs.</p>
     </main>
 
+    <dialog id="new-dialog" class="nbl-dialog" aria-labelledby="new-dialog-title">
+        <form method="dialog" id="new-form">
+            <header class="nbl-dialog-head">
+                <h2 id="new-dialog-title">Nouveau notebook</h2>
+                <button type="button" class="nb-icon-btn" data-close aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+            </header>
+            <label class="nbl-field">
+                <span>Nom</span>
+                <input type="text" id="new-name" maxlength="80" placeholder="Mon notebook" autocomplete="off">
+            </label>
+            <span class="nbl-field-label">Commencer avec</span>
+            <div id="template-grid" class="nbl-templates" role="radiogroup" aria-label="Modèle"></div>
+            <footer class="nbl-dialog-foot">
+                <button type="button" class="nb-btn" data-close>Annuler</button>
+                <button type="submit" class="nb-btn primary" value="create"><i class="fa-solid fa-plus"></i> Créer</button>
+            </footer>
+        </form>
+    </dialog>
 
+    <script src="notebook-modeles.js"></script>
     <script src="notebooks.js"></script>
-
     <script src="statistiques.js"></script>
 </body>
-
 </html>

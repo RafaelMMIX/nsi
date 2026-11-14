@@ -2,7 +2,7 @@
     const KEY = "nsiLocalStatistics";
     const localDay = date => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
     const today = localDay(new Date());
-    const empty = () => ({ views: 0, pages: {}, seconds: 0, days: {}, resources: {}, recentResources: [], searches: 0, tools: {}, sessions: 0, firstVisit: null, lastVisit: null, notebookCreates: 0, cellsCreated: 0, pythonCells: 0, markdownCells: 0, pythonRuns: 0, runSuccess: 0, runErrors: 0, notebookUses: {}, favoriteCategories: {}, favoriteAdded: [] });
+    const empty = () => ({ views: 0, pages: {}, seconds: 0, days: {}, resources: {}, recentResources: [], searches: 0, tools: {}, sessions: 0, firstVisit: null, lastVisit: null, notebookCreates: 0, cellsCreated: 0, pythonCells: 0, markdownCells: 0, sqlCells: 0, sqlRuns: 0, sqlSuccess: 0, sqlErrors: 0, pythonRuns: 0, runSuccess: 0, runErrors: 0, notebookUses: {}, favoriteCategories: {}, favoriteAdded: [] });
     function read() {
         try {
             const data = { ...empty(), ...(JSON.parse(localStorage.getItem(KEY)) || {}) };
@@ -27,10 +27,13 @@
         } else if (action === "search") data.searches++;
         else if (action === "tool") { const name = detail.name || "Outil"; data.tools[name] = (data.tools[name] || 0) + 1; }
         else if (action === "notebookCreated") data.notebookCreates++;
-        else if (action === "cellCreated") { data.cellsCreated++; detail.type === "markdown" ? data.markdownCells++ : data.pythonCells++; }
+        else if (action === "cellCreated") { data.cellsCreated++; if (detail.type === "markdown") data.markdownCells++; else if (detail.type === "sql") data.sqlCells++; else data.pythonCells++; }
         else if (action === "pythonRun") data.pythonRuns++;
         else if (action === "pythonSuccess") data.runSuccess++;
         else if (action === "pythonError") data.runErrors++;
+        else if (action === "sqlRun") data.sqlRuns++;
+        else if (action === "sqlSuccess") data.sqlSuccess++;
+        else if (action === "sqlError") data.sqlErrors++;
         else if (action === "notebookUse") { const name = detail.name || "Notebook"; data.notebookUses[name] = (data.notebookUses[name] || 0) + 1; }
         else if (action === "favoriteAdded") {
             const category = detail.category || "Autres"; data.favoriteCategories[category] = (data.favoriteCategories[category] || 0) + 1;
@@ -118,7 +121,7 @@
         put("stat-tools", Object.values(current.tools).reduce((n, v) => n + v, 0)); put("stat-runs", current.pythonRuns); put("stat-success", current.runSuccess); put("stat-errors", current.runErrors);
         put("time-total", fmtTime(current.seconds)); put("time-today", fmtTime(todayData.seconds)); put("time-week", fmtTime(weeklySecs)); put("time-month", fmtTime(monthSecs));
         put("active-days", activeDates.length); put("streak-days", streak()); put("actions-today", todayData.actions);
-        put("cell-count", current.cellsCreated); put("python-cells", current.pythonCells); put("markdown-cells", current.markdownCells);
+        put("cell-count", current.cellsCreated); put("python-cells", current.pythonCells); put("markdown-cells", current.markdownCells); put("sql-cells", current.sqlCells); put("sql-runs", current.sqlRuns);
         const resourceRows = Object.entries(current.resources).sort((a, b) => b[1].count - a[1].count);
         put("resource-unique", resourceRows.length); put("resource-favorite", resourceRows[0]?.[1].title || "—");
         const catCounts = {}; resourceRows.forEach(([, item]) => catCounts[item.category] = (catCounts[item.category] || 0) + item.count);
