@@ -1,5 +1,51 @@
 const changelog = [
     {
+        version: "1.3.0",
+        date: "14 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Notebooks SQL",
+                description: "Les notebooks accueillent maintenant des cellules SQL, exécutées dans le navigateur avec SQLite. Chaque notebook a sa propre base de données : la base d'exemple Lycée (élèves, classes, matières, professeurs, notes), une base vide ou un fichier .db / .sqlite importé. Les modifications sont enregistrées et un bouton permet de revenir à la base d'origine."
+            },
+            {
+                type: "new",
+                title: "Panneau Base de données",
+                description: "Un panneau affiche les tables, leurs colonnes, les clés primaires et étrangères, et le nombre de lignes. On peut ajouter une table depuis un fichier .csv et télécharger la base."
+            },
+            {
+                type: "new",
+                title: "Python et SQL ensemble",
+                description: "Depuis Python, requete() renvoie le résultat d'une requête et tableau() l'affiche. Le module sqlite3 fonctionne aussi sur la base du notebook."
+            },
+            {
+                type: "new",
+                title: "Un vrai éditeur de code",
+                description: "Coloration syntaxique, numéros de ligne, indentation automatique, complétion (Ctrl + Espace) et raccourcis : Ctrl + Entrée pour exécuter, Maj + Entrée pour passer à la cellule suivante."
+            },
+            {
+                type: "new",
+                title: "Erreurs expliquées en français",
+                description: "Les erreurs Python et SQL les plus courantes sont expliquées avec une piste pour les corriger, et la ligne concernée est surlignée."
+            },
+            {
+                type: "improved",
+                title: "input() fonctionne",
+                description: "Les programmes Python peuvent demander des valeurs avec input(). La dernière valeur d'une cellule s'affiche automatiquement, comme dans Jupyter."
+            },
+            {
+                type: "new",
+                title: "Tutos prêts à l'emploi",
+                description: "À la création d'un notebook, on peut partir d'un modèle : Découvrir les notebooks, Premiers pas en SQL, Jointures et agrégats, Modifier une base, Python + SQL. Les exercices ont leur solution."
+            },
+            {
+                type: "improved",
+                title: "Mes notebooks",
+                description: "Import de fichiers Jupyter (.ipynb), recherche, renommage et duplication. Export en .ipynb, .py, .sql et .db. Les pages notebooks utilisent maintenant le même menu que le reste du site."
+            }
+        ]
+    },
+    {
         version: "1.2.6.2",
         date: "14 novembre 2026",
         changes: [

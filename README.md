@@ -164,12 +164,30 @@ nsiMemo
 
 # 📓 Notebooks
 
-Des notebooks façon Jupyter, directement dans le navigateur :
+Des notebooks façon Jupyter, directement dans le navigateur, avec trois types de cellules :
 
-- 🐍 Cellules Python exécutées avec Pyodide
-- 📝 Cellules Markdown
-- 💾 Sauvegarde automatique locale
-- 📤 Export en `.ipynb` et `.py`
+- 🐍 **Python**, exécuté avec Pyodide (`input()` pris en charge)
+- 🗄️ **SQL**, exécuté avec SQLite (sql.js)
+- 📝 **Texte** en Markdown
+
+Fonctionnalités :
+
+- Éditeur de code (CodeMirror) : coloration, numéros de ligne, complétion, raccourcis clavier
+- Erreurs Python et SQL expliquées en français, ligne surlignée
+- Une base de données par notebook : base d'exemple **Lycée**, base vide ou fichier `.db` importé ; ajout de tables depuis un `.csv` ; bouton de réinitialisation
+- Panneau qui affiche les tables, colonnes, clés primaires et étrangères
+- Pont Python ↔ SQL : `requete()`, `tableau()` et module `sqlite3`
+- Modèles de départ : Découvrir les notebooks, Premiers pas en SQL, Jointures et agrégats, Modifier une base, Python + SQL
+- Import `.ipynb`, export `.ipynb`, `.py`, `.sql` et `.db`
+- Sauvegarde automatique locale
+
+Fichiers : `notebooks.html` / `notebooks.js` (liste), `notebook.html` / `notebook.js` / `notebook.css` (éditeur), `notebook-bases.js` (base Lycée), `notebook-modeles.js` (tutos), `notebook-erreurs.js` (explications des erreurs).
+
+```text
+nsiNotebooks                 liste des notebooks et de leurs cellules
+nsiNotebookDb:<id>           base de données de chaque notebook
+nsiNotebookDbOrigine:<id>    fichier .db importé d'origine
+```
 
 ---
 

@@ -3,86 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <title>Notebook | NSI Hub</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Icônes -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <!-- Éditeur de code (CodeMirror 5) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/lib/codemirror.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="notebook.css">
 
-    <!-- Pyodide -->
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.28.2/full/pyodide.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/lib/codemirror.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/mode/python/python.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/mode/sql/sql.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/mode/markdown/markdown.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/edit/matchbrackets.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/edit/closebrackets.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/comment/comment.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/display/placeholder.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/hint/show-hint.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/hint/sql-hint.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/codemirror@5.65.21/addon/hint/anyword-hint.js"></script>
+
+    <!-- Texte (Markdown) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+    <!-- SQL (SQLite dans le navigateur) et Python (Pyodide) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/sql.js@1.13.0/dist/sql-wasm.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/pyodide/v0.28.2/full/pyodide.js"></script>
+
+    <script defer src="notebook-bases.js"></script>
+    <script defer src="notebook-erreurs.js"></script>
+    <script defer src="notebook.js"></script>
+    <script defer src="statistiques.js"></script>
 </head>
 
-<body>
+<body class="notebook-page">
+    <div class="background" aria-hidden="true"></div>
 
-    <header class="page-header">
-        <div>
-            <h1>📓 NSI Notebook</h1>
-            <p>Écris, exécute et organise ton code directement dans ton navigateur.</p>
+    <div class="container nb-container">
+        <header class="header">
+            <div class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div><h1>Notebook</h1><p>Python, SQL et texte dans ton navigateur.</p></div>
+            </div>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
+                <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
+                <a href="notebooks.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-book-open"></i> Notebook</a>
+                <a href="jeux.html" class="nav-link"><i class="fa-solid fa-gamepad"></i> Quiz &amp; Jeux</a>
+                <a href="dico.html" class="nav-link"><i class="fa-solid fa-book"></i> Dico</a>
+                <a href="statistiques.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Statistiques</a>
+                <a href="parametres.html" class="nav-link"><i class="fa-solid fa-gear"></i> Paramètres</a>
+            </nav>
+        </header>
+
+        <div class="nb-titlebar">
+            <a href="notebooks.html" class="nb-back"><i class="fa-solid fa-arrow-left"></i> Mes notebooks</a>
+            <input id="nb-title" class="nb-title" type="text" value="Notebook" aria-label="Nom du notebook" maxlength="80" spellcheck="false">
+            <div class="nb-kernels">
+                <span id="python-status" class="nb-pill" title="Python se charge à la première exécution"><i class="fa-brands fa-python"></i> Python : en attente</span>
+                <span id="sql-status" class="nb-pill" title="SQLite se charge à la première requête"><i class="fa-solid fa-database"></i> SQL : en attente</span>
+            </div>
         </div>
 
-        <a href="notebooks.html" class="back-button">
-            <i class="fa-solid fa-arrow-left"></i>
-            Mes notebooks
-        </a>
-    </header>
-
-
-    <main class="notebook">
-
-        <div class="notebook-toolbar">
-            <button id="add-python" class="notebook-button">
-                <i class="fa-brands fa-python"></i>
-                Python
-            </button>
-
-            <button id="add-markdown" class="notebook-button">
-                <i class="fa-solid fa-heading"></i>
-                Markdown
-            </button>
-
-            <button id="run-all" class="notebook-button primary">
-                <i class="fa-solid fa-play"></i>
-                Tout exécuter
-            </button>
-
-            <button id="export-ipynb" class="notebook-button" title="Télécharger au format Jupyter">
-                <i class="fa-solid fa-download"></i>
-                Exporter .ipynb
-            </button>
-
-            <button id="export-python" class="notebook-button" title="Télécharger en script Python">
-                <i class="fa-brands fa-python"></i>
-                Exporter .py
-            </button>
-
-            <span id="save-status" class="save-status">
-                <i class="fa-solid fa-cloud"></i>
-                Sauvegardé
-            </span>
+        <div class="nb-toolbar" role="toolbar" aria-label="Outils du notebook">
+            <div class="nb-toolbar-group">
+                <button type="button" class="nb-btn" data-add="python" title="Ajouter une cellule Python"><i class="fa-brands fa-python"></i> Python</button>
+                <button type="button" class="nb-btn" data-add="sql" title="Ajouter une cellule SQL"><i class="fa-solid fa-database"></i> SQL</button>
+                <button type="button" class="nb-btn" data-add="markdown" title="Ajouter une cellule de texte"><i class="fa-solid fa-paragraph"></i> Texte</button>
+            </div>
+            <div class="nb-toolbar-group">
+                <button type="button" id="run-all" class="nb-btn primary"><i class="fa-solid fa-forward"></i> Tout exécuter</button>
+                <button type="button" id="restart-python" class="nb-btn" title="Effacer toutes les variables Python"><i class="fa-solid fa-rotate-right"></i> Redémarrer Python</button>
+                <button type="button" id="clear-outputs" class="nb-btn" title="Effacer les résultats affichés"><i class="fa-solid fa-eraser"></i> Effacer les sorties</button>
+            </div>
+            <div class="nb-toolbar-group nb-toolbar-end">
+                <button type="button" id="toggle-schema" class="nb-btn" aria-expanded="false" aria-controls="nb-schema"><i class="fa-solid fa-table-list"></i> Base de données</button>
+                <details class="nb-menu">
+                    <summary class="nb-btn"><i class="fa-solid fa-download"></i> Exporter</summary>
+                    <div class="nb-menu-list">
+                        <button type="button" data-export="ipynb"><i class="fa-solid fa-book"></i> Notebook Jupyter (.ipynb)</button>
+                        <button type="button" data-export="py"><i class="fa-brands fa-python"></i> Script Python (.py)</button>
+                        <button type="button" data-export="sql"><i class="fa-solid fa-file-code"></i> Requêtes SQL (.sql)</button>
+                        <button type="button" data-export="db"><i class="fa-solid fa-database"></i> Base de données (.db)</button>
+                    </div>
+                </details>
+                <details class="nb-menu nb-help">
+                    <summary class="nb-btn" title="Raccourcis clavier"><i class="fa-solid fa-keyboard"></i><span class="sr-only">Raccourcis clavier</span></summary>
+                    <div class="nb-menu-list nb-shortcuts">
+                        <p><kbd>Ctrl</kbd> + <kbd>Entrée</kbd> Exécuter la cellule</p>
+                        <p><kbd>Maj</kbd> + <kbd>Entrée</kbd> Exécuter et passer à la suivante</p>
+                        <p><kbd>Alt</kbd> + <kbd>Entrée</kbd> Exécuter et insérer une cellule</p>
+                        <p><kbd>Ctrl</kbd> + <kbd>Espace</kbd> Compléter (noms de tables, colonnes…)</p>
+                        <p><kbd>Ctrl</kbd> + <kbd>/</kbd> Commenter / décommenter</p>
+                        <p><kbd>Ctrl</kbd> + <kbd>S</kbd> Enregistrer</p>
+                        <p>Double-clic sur un texte pour le modifier.</p>
+                    </div>
+                </details>
+                <span id="save-status" class="nb-save" role="status"><i class="fa-solid fa-cloud"></i> Enregistré</span>
+            </div>
         </div>
 
+        <div class="nb-layout">
+            <main id="cells" class="nb-cells" aria-label="Cellules du notebook"></main>
 
-        <div id="cells"></div>
+            <aside id="nb-schema" class="nb-schema" hidden aria-label="Base de données du notebook">
+                <div class="nb-schema-head">
+                    <div>
+                        <span class="nb-schema-label">Base de données</span>
+                        <h2 id="schema-name">Lycée</h2>
+                    </div>
+                    <button type="button" id="close-schema" class="nb-icon-btn" aria-label="Fermer le panneau"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="nb-schema-actions">
+                    <button type="button" id="reset-db" class="nb-btn small" title="Remettre la base dans son état d'origine"><i class="fa-solid fa-clock-rotate-left"></i> Réinitialiser</button>
+                    <details class="nb-menu">
+                        <summary class="nb-btn small"><i class="fa-solid fa-arrow-right-arrow-left"></i> Changer</summary>
+                        <div class="nb-menu-list">
+                            <button type="button" data-base="lycee"><i class="fa-solid fa-school"></i> Base d'exemple : Lycée</button>
+                            <button type="button" data-base="vide"><i class="fa-regular fa-file"></i> Base vide</button>
+                            <button type="button" data-base="import-db"><i class="fa-solid fa-file-import"></i> Ouvrir un fichier .db / .sqlite</button>
+                            <button type="button" data-base="import-csv"><i class="fa-solid fa-file-csv"></i> Ajouter une table depuis un .csv</button>
+                        </div>
+                    </details>
+                </div>
+                <p id="schema-description" class="nb-schema-description"></p>
+                <div id="schema-tables" class="nb-schema-tables"><p class="nb-muted">Chargement…</p></div>
+                <div class="nb-schema-python">
+                    <strong><i class="fa-brands fa-python"></i> Depuis Python</strong>
+                    <code>requete("SELECT * FROM eleves")</code>
+                    <code id="schema-sqlite">sqlite3.connect("lycee.db")</code>
+                </div>
+            </aside>
+        </div>
 
-
-        <button id="add-cell" class="add-cell-button">
-            <i class="fa-solid fa-plus"></i>
-            Ajouter une cellule
-        </button>
-
-    </main>
-
-
-    <script src="notebook.js"></script>
-
-    <script src="statistiques.js"></script>
+        <input type="file" id="file-db" accept=".db,.sqlite,.sqlite3,.db3" hidden>
+        <input type="file" id="file-csv" accept=".csv,text/csv" hidden>
+        <div id="nb-toasts" class="nb-toasts" aria-live="polite"></div>
+    </div>
 </body>
 </html>
