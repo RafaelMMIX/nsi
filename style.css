@@ -858,8 +858,7 @@ header p {
     transition: 0.2s ease;
 }
 
-#presentation-nav-link[hidden],
-#classroom-nav-link[hidden] {
+#presentation-nav-link[hidden] {
     display: none !important;
 }
 

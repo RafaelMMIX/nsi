@@ -10,6 +10,7 @@
     <title>Outils NSI</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -204,11 +205,14 @@
                 return;
             }
 
-            const number = Number(value);
-
-            if (!Number.isInteger(number) || number < 0) {
+            // Entiers positifs uniquement (BigInt évite les pertes de précision sur les grands nombres)
+            if (!/^[0-9]+$/.test(value)) {
+                binary.value = "";
+                hexadecimal.value = "";
                 return;
             }
+
+            const number = BigInt(value);
 
             binary.value = number.toString(2);
 
@@ -228,12 +232,14 @@
             }
 
             if (!/^[01]+$/.test(value)) {
+                decimal.value = "";
+                hexadecimal.value = "";
                 return;
             }
 
-            const number = parseInt(value, 2);
+            const number = BigInt("0b" + value);
 
-            decimal.value = number;
+            decimal.value = number.toString();
 
             hexadecimal.value =
                 number.toString(16).toUpperCase();
@@ -252,12 +258,14 @@
             }
 
             if (!/^[0-9a-fA-F]+$/.test(value)) {
+                decimal.value = "";
+                binary.value = "";
                 return;
             }
 
-            const number = parseInt(value, 16);
+            const number = BigInt("0x" + value);
 
-            decimal.value = number;
+            decimal.value = number.toString();
 
             binary.value = number.toString(2);
 
@@ -296,6 +304,9 @@
             const code = char.charCodeAt(0);
 
             if (code > 127) {
+                asciiDecimal.value = "";
+                asciiBinary.value = "";
+                asciiHex.value = "";
                 return;
             }
 
@@ -328,6 +339,9 @@
                 number < 0 ||
                 number > 127
             ) {
+                asciiChar.value = "";
+                asciiBinary.value = "";
+                asciiHex.value = "";
                 return;
             }
 
@@ -355,12 +369,18 @@
             }
 
             if (!/^[01]+$/.test(value)) {
+                asciiChar.value = "";
+                asciiDecimal.value = "";
+                asciiHex.value = "";
                 return;
             }
 
             const number = parseInt(value, 2);
 
             if (number > 127) {
+                asciiChar.value = "";
+                asciiDecimal.value = "";
+                asciiHex.value = "";
                 return;
             }
 
@@ -387,12 +407,18 @@
             }
 
             if (!/^[0-9a-fA-F]+$/.test(value)) {
+                asciiChar.value = "";
+                asciiDecimal.value = "";
+                asciiBinary.value = "";
                 return;
             }
 
             const number = parseInt(value, 16);
 
             if (number > 127) {
+                asciiChar.value = "";
+                asciiDecimal.value = "";
+                asciiBinary.value = "";
                 return;
             }
 

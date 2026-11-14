@@ -268,11 +268,6 @@
         Mode présentation
     </a>
 
-    <a href="quiz-classe.html" class="nav-link" id="classroom-nav-link" hidden>
-        <i class="fa-solid fa-users"></i>
-        Quiz en classe
-    </a>
-
     <a href="outils.html" class="nav-link">
         <i class="fa-solid fa-screwdriver-wrench"></i>
         Outils
@@ -386,6 +381,7 @@
                 <a
     href="https://lycees.netocentre.fr/roundcubemail"
     class="card"
+    data-name="mails messagerie lycée roundcube"
     target="_blank"
     rel="noopener noreferrer"
 >
@@ -511,6 +507,7 @@
         <a
             href="https://www.qwant.com/"
             class="card"
+            data-name="qwant moteur de recherche français européen"
             target="_blank"
             rel="noopener noreferrer"
         >
@@ -1126,7 +1123,6 @@
     <script>
         if (localStorage.getItem("nsiLevel") === "professeur") {
             document.getElementById("presentation-nav-link").hidden = false;
-            document.getElementById("classroom-nav-link").hidden = false;
         }
     </script>
 

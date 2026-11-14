@@ -67,7 +67,7 @@
         make("SORTIE-PREM-002", "output", "premiere", "Listes", "Moyen", "Devine la sortie : listes", "Anticipe les effets d'accès et de modification d'une liste.", [
             question("Que vaut `nombres[1]` ?", ["4", "8", "12", "Erreur"], 1, "Les indices commencent à 0 : l'indice 1 contient 8.", "nombres = [4, 8, 12]\nprint(nombres[1])"),
             question("Qu'affiche le programme ?", ["[1, 2]", "[1, 2, 3]", "[3, 2, 1]", "Erreur"], 1, "append ajoute 3 à la fin de la liste.", "nombres = [1, 2]\nnombres.append(3)\nprint(nombres)"),
-            question("Que vaut `len(mot)` ?", ["3", "4", "5", "6"], 1, "La chaîne contient quatre caractères, espace compris.", "mot = 'NSI !'\nprint(len(mot))")
+            question("Que vaut `len(mot)` ?", ["3", "4", "5", "6"], 2, "La chaîne contient cinq caractères : N, S, I, l'espace et le point d'exclamation.", "mot = 'NSI !'\nprint(len(mot))")
         ], "fa-terminal"),
         make("BUG-PREM-001", "bug", "premiere", "Python", "Facile", "Trouve le bug : syntaxe", "Repère l'erreur qui empêche ce code de s'exécuter.", [
             question("Quel est le problème ?", ["Il manque les deux-points après range(5)", "print doit être en majuscules", "range ne peut pas prendre 5", "Aucun problème"], 0, "Une instruction for doit se terminer par deux-points.", "for i in range(5)\n    print(i)"),
@@ -143,12 +143,5 @@
         ], "fa-person-chalkboard")
     ];
     window.nsiQuizActivities = activities;
-    window.nsiClassroomQuizzes = activities.filter(item => item.type === "quiz").map(item => ({
-        id: item.id, level: item.level, title: item.title,
-        questions: item.questions.map((q, index) => ({
-            id: `${item.id}-Q${String(index + 1).padStart(2, "0")}`,
-            question: q.prompt, answers: q.options, correctAnswer: q.answer, explanation: q.explanation, code: q.code
-        }))
-    }));
 })();
 

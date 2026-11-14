@@ -43,7 +43,7 @@ function searchCards() {
 
     cards.forEach(card => {
 
-        const name = card.dataset.name.toLowerCase();
+        const name = (card.dataset.name || card.textContent || "").toLowerCase();
 
         if (name.includes(query)) {
 
