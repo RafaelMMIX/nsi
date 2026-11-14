@@ -140,6 +140,9 @@
 .community-card-rarity[data-rarity="rare"] { color: #7dc2ff; background: rgba(47,127,224,.12); border-color: rgba(96,165,250,.15); }
 .community-card-rarity[data-rarity="epique"] { color: #d7a4ff; background: rgba(154,69,224,.13); border-color: rgba(192,132,252,.15); }
 .community-card-rarity[data-rarity="legendaire"] { color: #ffd36b; background: rgba(224,162,26,.13); border-color: rgba(251,191,36,.18); }
+.community-card-rarity[data-rarity="superlegendaire"] { color: #ff8095; background: rgba(232,48,79,.14); border-color: rgba(255,128,149,.2); }
+.community-card-rarity[data-rarity="mythique"] { color: #7fe9f7; background: linear-gradient(90deg, rgba(255,110,199,.14), rgba(110,199,255,.14)); border-color: rgba(127,233,247,.22); }
+.community-card-rarity[data-rarity="perdue"] { color: #aef7e4; background: rgba(87,230,201,.1); border-color: rgba(87,230,201,.25); text-shadow: 0 0 8px rgba(87,230,201,.6); }
 .copy-card-button { display: inline-flex; width: 100%; min-height: 43px; align-items: center; justify-content: center; gap: 8px; padding: 10px 13px; color: white; background: #5b5ce2; border: 1px solid rgba(199,210,254,.16); border-radius: 10px; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: .045em; cursor: pointer; transition: background .2s, transform .2s, box-shadow .2s; }
 .copy-card-button:hover { background: #6b6cf0; box-shadow: 0 7px 16px rgba(79,70,229,.24); }
 .copy-card-button:active { transform: scale(.97); }

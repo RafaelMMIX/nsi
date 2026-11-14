@@ -1,0 +1,33 @@
+name: "🃏 Publier une carte"
+description: Propose une carte créée avec Booster perso pour la galerie « Cartes communautaires » de NSI Hub.
+title: "Carte : "
+labels: ["carte-en-attente"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ta carte sera vérifiée par Rafael avant d'apparaître sur NSI Hub.
+        Si le code n'est pas déjà rempli, colle-le ci-dessous (il a été copié automatiquement par Booster perso).
+  - type: input
+    id: pseudo
+    attributes:
+      label: Pseudo
+      description: Affiché sous la carte (« Créée par … »). Évite ton nom complet.
+      placeholder: Ton pseudo
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Code de la carte
+      description: Le code qui commence par TCG1- ou TCG0-.
+      placeholder: TCG1-…
+    validations:
+      required: true
+  - type: checkboxes
+    id: accord
+    attributes:
+      label: Responsabilité
+      options:
+        - label: Je suis seul·e responsable du contenu de cette carte (texte et image). J'ai le droit d'utiliser cette image, et la carte n'a rien d'offensant ni d'illégal.
+          required: true

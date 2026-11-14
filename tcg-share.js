@@ -6,7 +6,20 @@ export const RAR = {
     commune: { l: "Commune", w: 60 },
     rare: { l: "Rare", w: 25 },
     epique: { l: "Épique", w: 11 },
-    legendaire: { l: "Légendaire", w: 4 }
+    legendaire: { l: "Légendaire", w: 4 },
+    superlegendaire: { l: "Super légendaire", w: 1.4 },
+    mythique: { l: "Mythique", w: 0.45 },
+    perdue: { l: "Perdue", w: 0.12 }
+};
+
+// Types (cadre coloré + icône à côté du nom)
+export const TYPES = {
+    neutre: { l: "Neutre", i: "" },
+    feu: { l: "Feu", i: "🔥", c: "#e0502a" },
+    eau: { l: "Eau", i: "💧", c: "#2a8fe0" },
+    nature: { l: "Nature", i: "🌿", c: "#3aa24a" },
+    ombre: { l: "Ombre", i: "🌙", c: "#5a4a8a" },
+    lumiere: { l: "Lumière", i: "✨", c: "#d9b43a" }
 };
 
 // Base64 URL-safe
@@ -93,11 +106,12 @@ export async function decode(code) {
         new TextDecoder().decode(data)
     );
 
-    if (!Array.isArray(decoded) || decoded.length !== 4) {
+    // 4 champs, ou 5 quand la carte a un type
+    if (!Array.isArray(decoded) || decoded.length < 4 || decoded.length > 5) {
         throw new Error("Données de carte invalides");
     }
 
-    const [nom, rar, desc, img] = decoded;
+    const [nom, rar, desc, img, type] = decoded;
 
     if (
         typeof nom !== "string" ||
@@ -117,6 +131,7 @@ export async function decode(code) {
         rar,
         desc: String(desc || "").slice(0, 160),
         img: validImage ? img : "",
+        type: TYPES[type] ? type : "neutre",
         emoji: "🖼️"
     };
 }
@@ -177,6 +192,53 @@ const CARD_CSS = `
     --rc: var(--c-legendaire);
 }
 
+.card[data-r="superlegendaire"] { --rc: #e8304f; }
+.card[data-r="mythique"] { --rc: #28c7de; }
+.card[data-r="perdue"] { --rc: #57e6c9; }
+
+.card[data-t] {
+    border: 3px solid var(--tc);
+    box-shadow: inset 0 0 0 2px #fff8, 0 6px 18px rgba(0,0,0,.25);
+}
+
+.card[data-t] .art { border-color: var(--tc); }
+.card .ty { font-size: .9rem; }
+
+/* Super légendaire : rubis incandescent */
+.card[data-r="superlegendaire"] { animation: tcg-ember 1.8s ease-in-out infinite; }
+@keyframes tcg-ember {
+    50% { box-shadow: 0 6px 18px rgba(0,0,0,.25), 0 0 26px 4px #e8304f99; }
+}
+
+/* Mythique : reflet holographique arc-en-ciel */
+.card[data-r="mythique"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: .85;
+    background: linear-gradient(115deg, #ff6ec7, #ffd86e, #6effc4, #6ec7ff, #c76eff, #ff6ec7);
+    background-size: 320% 100%;
+    animation: tcg-holo 4.5s linear infinite;
+}
+@keyframes tcg-holo { to { background-position: 320% 0; } }
+
+/* Perdue : carte spectrale */
+.card[data-r="perdue"] {
+    background: radial-gradient(ellipse at 50% 115%, #1d5a4b66, transparent 60%),
+        linear-gradient(150deg, #16222c, #090e16 55%, #122028);
+    box-shadow: 0 6px 22px rgba(0,0,0,.5), 0 0 22px #57e6c933, inset 0 0 0 1px #57e6c966, inset 0 0 34px #57e6c91f;
+    animation: tcg-ghost 4s ease-in-out infinite;
+}
+.card[data-r="perdue"] .rar {
+    background: linear-gradient(90deg, #081210, #1d4a40, #081210);
+    color: #aef7e4;
+    text-shadow: 0 0 8px #57e6c9;
+}
+.card[data-r="perdue"] .art { border-color: #57e6c9aa; }
+@keyframes tcg-ghost { 50% { filter: brightness(1.18) saturate(1.2); } }
+
 .card .top {
     display: flex;
     justify-content: space-between;
@@ -225,7 +287,9 @@ const CARD_CSS = `
 }
 
 .card[data-r="legendaire"]::after,
-.card[data-r="epique"]::after {
+.card[data-r="epique"]::after,
+.card[data-r="superlegendaire"]::after,
+.card[data-r="perdue"]::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -246,6 +310,7 @@ const CARD_CSS = `
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .card,
     .card::after {
         animation: none !important;
     }
@@ -277,6 +342,18 @@ function cardElement(card) {
     name.textContent = card.nom || "Sans nom";
 
     top.append(name);
+
+    if (card.type && TYPES[card.type] && card.type !== "neutre") {
+        element.dataset.t = card.type;
+        element.style.setProperty("--tc", TYPES[card.type].c);
+
+        const icon = document.createElement("span");
+        icon.className = "ty";
+        icon.textContent = TYPES[card.type].i;
+        icon.title = TYPES[card.type].l;
+
+        top.append(icon);
+    }
 
     const art = document.createElement("div");
     art.className = "art";

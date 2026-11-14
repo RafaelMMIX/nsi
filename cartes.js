@@ -81,10 +81,39 @@ const copyToast = document.getElementById("copyToast");
 
 let decodedCards = [];
 
+// Cartes publiées depuis Booster perso (ajoutées automatiquement
+// par .github/workflows/cartes-publiques.yml après validation).
+async function loadPublicCards() {
+    try {
+        const response = await fetch(`cartes-publiques.json?v=${Date.now()}`);
+
+        if (!response.ok) {
+            return [];
+        }
+
+        const list = await response.json();
+
+        return Array.isArray(list)
+            ? list.filter(entry => entry && typeof entry.code === "string")
+            : [];
+
+    } catch (error) {
+        console.error("Impossible de charger les cartes publiques :", error);
+        return [];
+    }
+}
+
 async function loadCards() {
     decodedCards = [];
 
-    for (const [index, entry] of cartes.entries()) {
+    const publicCards = await loadPublicCards();
+    const knownCodes = new Set(cartes.map(entry => entry.code));
+    const allCards = [
+        ...cartes,
+        ...publicCards.filter(entry => !knownCodes.has(entry.code))
+    ];
+
+    for (const [index, entry] of allCards.entries()) {
         try {
             const card = await decode(entry.code);
 
