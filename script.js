@@ -6,6 +6,8 @@ const clock = document.getElementById("clock");
 
 function updateClock() {
 
+    if (!clock) return;
+
     const now = new Date();
 
     const hours = String(now.getHours()).padStart(2, "0");
@@ -539,3 +541,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }, delay);
 
 });
+
+
+/* ==============================
+   MÉMO
+============================== */
+
+(() => {
+    const memo = document.getElementById("memo");
+    const memoStatus = document.getElementById("memo-status");
+    const clearMemo = document.getElementById("clear-memo");
+
+    if (!memo || !memoStatus || !clearMemo) return;
+
+    const MEMO_KEY = "nsiMemo";
+    let saveTimer;
+
+    const setStatus = (icon, text) => {
+        memoStatus.replaceChildren();
+        const i = document.createElement("i");
+        i.className = `fa-solid ${icon}`;
+        memoStatus.append(i, ` ${text}`);
+    };
+
+    try { memo.value = localStorage.getItem(MEMO_KEY) || ""; } catch (_) {}
+
+    memo.addEventListener("input", () => {
+        setStatus("fa-pen", "Modification…");
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+            try {
+                localStorage.setItem(MEMO_KEY, memo.value);
+                setStatus("fa-cloud", "Enregistré automatiquement");
+            } catch (_) {
+                setStatus("fa-triangle-exclamation", "Impossible d'enregistrer");
+            }
+        }, 400);
+    });
+
+    clearMemo.addEventListener("click", () => {
+        if (!memo.value) return;
+        if (!confirm("Effacer tout le contenu du mémo ?")) return;
+        clearTimeout(saveTimer);
+        memo.value = "";
+        try { localStorage.removeItem(MEMO_KEY); } catch (_) {}
+        setStatus("fa-cloud", "Mémo effacé");
+        memo.focus();
+    });
+})();

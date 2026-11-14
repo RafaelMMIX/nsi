@@ -1,6 +1,3 @@
-const welcomeMessage =
-    document.getElementById("welcome-message");
-
 const welcomeName =
     document.getElementById("welcome-name");
 

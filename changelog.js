@@ -17,6 +17,31 @@ const changelog = [
                 type: "bug",
                 title: "Corrections diverses",
                 description: "Les icônes s'affichent à nouveau sur les pages Outils et Prompts, le convertisseur gère les grands nombres et vide les champs quand la saisie est invalide, et la bonne réponse d'une question de Quiz & Jeux sur len() a été corrigée."
+            },
+            {
+                type: "bug",
+                title: "Le mémo garde enfin tes notes",
+                description: "Le mémo de l'accueil affichait « Enregistré automatiquement » sans rien enregistrer. Tes notes sont maintenant conservées dans le navigateur, et le bouton « Effacer » fonctionne."
+            },
+            {
+                type: "bug",
+                title: "Favoris NSI Première et Pixees séparés",
+                description: "Ajouter NSI Première aux favoris ajoutait aussi Pixees (et inversement). Chaque carte a désormais son propre favori."
+            },
+            {
+                type: "improved",
+                title: "Page des annonces accessible",
+                description: "Un lien « Voir toutes les annonces » a été ajouté à la fenêtre d'annonce de l'accueil. La page affiche maintenant la bonne version, une horloge qui fonctionne et une navigation à jour."
+            },
+            {
+                type: "improved",
+                title: "Chargement plus rapide",
+                description: "L'écran de chargement dure maintenant 1,5 seconde au lieu de 3,2."
+            },
+            {
+                type: "improved",
+                title: "README à jour",
+                description: "La présentation du projet sur GitHub décrit maintenant les notebooks, les outils, Quiz & Jeux, le dictionnaire, les statistiques, les profils et le mode présentation."
             }
         ]
     },

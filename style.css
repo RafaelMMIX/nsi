@@ -5239,3 +5239,17 @@ footer a:active {
     font-weight: 800;
     letter-spacing: 0.6px;
 }
+
+/* Lien « Voir toutes les annonces » dans la fenêtre d'annonce */
+.announcement-all-link {
+    display: block;
+    margin-top: 14px;
+    color: var(--text-secondary, #9ca3af);
+    font-size: 13px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.announcement-all-link:hover {
+    color: var(--text, #f9fafb);
+}
