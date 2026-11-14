@@ -46,6 +46,26 @@ const unb64 = (s) => {
     return Uint8Array.from(atob(s), c => c.charCodeAt(0));
 };
 
+// Identifiant stable d'une carte (le même dans Booster perso
+// et dans .github/scripts/ajouter-carte.mjs)
+export async function cardId(card) {
+    const text = JSON.stringify([
+        card.nom,
+        card.rar,
+        String(card.desc || ""),
+        card.img || "",
+        card.type || "neutre"
+    ]);
+
+    const hash = new Uint8Array(
+        await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text))
+    );
+
+    return [...hash.slice(0, 8)]
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
+}
+
 // Compression / décompression
 async function pipe(data, Constructor) {
     if (typeof Constructor === "undefined") {

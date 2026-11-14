@@ -192,3 +192,38 @@
 @media (prefers-reduced-motion: reduce) {
     .cards-play-link, .community-card, .community-card-preview tcg-card, .copy-card-button, .copy-toast { transition: none; }
 }
+
+/* Boosters de la communauté */
+.boosters-section { margin-bottom: 28px; }
+.boosters-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.booster-item { display: flex; align-items: center; gap: 20px; min-width: 0; padding: 18px; background: radial-gradient(ellipse at 0% 50%, color-mix(in srgb, var(--pc) 22%, transparent), transparent 60%), var(--surface, #111827); border: 1px solid color-mix(in srgb, var(--pc) 35%, rgba(255,255,255,.08)); border-radius: 18px; }
+.nsi-pack { position: relative; flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 100px; height: 145px; padding: 8px; overflow: hidden; border-radius: 10px; color: #fff; text-align: center; background: linear-gradient(160deg, color-mix(in srgb, var(--pc) 55%, #000) 0%, var(--pc) 45%, color-mix(in srgb, var(--pc) 50%, #fff) 112%); box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,255,255,.25), inset 0 -24px 36px rgba(0,0,0,.3); animation: nsi-pack-float 3s ease-in-out infinite; }
+.nsi-pack::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(100deg, rgba(255,255,255,.12) 0 3px, transparent 3px 11px); }
+.nsi-pack::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 14px; background: color-mix(in srgb, var(--pc) 70%, #fff); background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 2px, transparent 2px 5px); }
+.nsi-pack span { position: relative; }
+.nsi-pack-emoji { font-size: 2.1rem; }
+.nsi-pack-name { font: 800 .82rem "Cinzel", Georgia, serif; line-height: 1.12; overflow-wrap: anywhere; text-shadow: 0 2px 6px rgba(0,0,0,.5); }
+@keyframes nsi-pack-float { 50% { transform: translateY(-5px); } }
+.booster-info { display: grid; gap: 9px; min-width: 0; flex: 1; }
+.booster-info h3 { margin: 0; font-size: 18px; overflow-wrap: anywhere; }
+.booster-info .community-card-author { margin: 0; }
+.booster-dots { display: flex; gap: 5px; }
+.booster-dot { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.12); }
+.booster-dot.on[data-rarity="commune"] { background: #8a90a0; }
+.booster-dot.on[data-rarity="rare"] { background: #2f7fe0; }
+.booster-dot.on[data-rarity="epique"] { background: #9a45e0; }
+.booster-dot.on[data-rarity="legendaire"] { background: #e0a21a; }
+.booster-dot.on[data-rarity="superlegendaire"] { background: #e8304f; }
+.booster-dot.on[data-rarity="mythique"] { background: linear-gradient(135deg, #ff6ec7, #6ec7ff); }
+.booster-dot.on[data-rarity="perdue"] { background: #57e6c9; box-shadow: 0 0 6px #57e6c9; }
+.booster-actions { display: grid; gap: 8px; }
+.booster-actions .copy-card-button { text-decoration: none; background: var(--pc); }
+.booster-actions .copy-card-button:hover { background: color-mix(in srgb, var(--pc) 80%, #fff); }
+.booster-see { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; padding: 8px 12px; color: #c7d2fe; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
+.booster-see:hover { background: rgba(255,255,255,.1); }
+.booster-filter { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; padding: 10px 14px; color: #e0e7ff; background: rgba(91,92,226,.14); border: 1px solid rgba(129,140,248,.25); border-radius: 12px; font-size: 14px; font-weight: 700; }
+.booster-filter[hidden] { display: none; }
+.booster-filter button { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; font: inherit; font-size: 12px; cursor: pointer; }
+@media (max-width: 760px) { .boosters-grid { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .booster-item { gap: 14px; padding: 14px; } .nsi-pack { width: 84px; height: 122px; } }
+@media (prefers-reduced-motion: reduce) { .nsi-pack { animation: none; } }

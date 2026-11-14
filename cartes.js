@@ -2,7 +2,9 @@
 // CARTES COMMUNAUTAIRES - NSI HUB
 // ============================================
 
-import { decode, RAR } from "./tcg-share.js";
+import { decode, cardId, RAR } from "./tcg-share.js";
+
+const TCG_URL = "https://rafaelmmix.github.io/custom-tcg/tcg-cartes.html";
 
 // ============================================
 // BASE DE DONNÉES DES CARTES
@@ -66,6 +68,15 @@ const rarityFilter = document.getElementById("rarityFilter");
 const cardsCount = document.getElementById("cardsCount");
 const cardsEmpty = document.getElementById("cardsEmpty");
 const copyToast = document.getElementById("copyToast");
+const boostersSection = document.getElementById("boostersSection");
+const boostersGrid = document.getElementById("boostersGrid");
+const boostersCount = document.getElementById("boostersCount");
+const boosterFilter = document.getElementById("boosterFilter");
+const boosterFilterText = document.getElementById("boosterFilterText");
+const RARITY_ORDER = Object.keys(RAR);
+
+let publicBoosters = [];
+let activeBooster = null;
 
 // ============================================
 // DONNÉES DÉCODÉES
@@ -116,6 +127,7 @@ async function loadCards() {
 
             decodedCards.push({
                 ...card,
+                cid: await cardId(card),
                 createur: entry.createur || "Communauté",
                 code: entry.code,
                 index
@@ -129,8 +141,131 @@ async function loadCards() {
         }
     }
 
+    publicBoosters = await loadPublicBoosters();
+    renderBoosters();
     renderCards();
 }
+
+// ============================================
+// BOOSTERS DE LA COMMUNAUTÉ
+// ============================================
+
+async function loadPublicBoosters() {
+    try {
+        const response = await fetch(`boosters-publics.json?v=${Date.now()}`);
+
+        if (!response.ok) {
+            return [];
+        }
+
+        const list = await response.json();
+
+        return Array.isArray(list)
+            ? list.filter(b => b && typeof b.nom === "string" && Array.isArray(b.cartes))
+            : [];
+
+    } catch (error) {
+        console.error("Impossible de charger les boosters :", error);
+        return [];
+    }
+}
+
+function boosterCards(booster) {
+    const ids = new Set(booster.cartes);
+    return decodedCards.filter(card => ids.has(card.cid));
+}
+
+function renderBoosters() {
+    boostersGrid.replaceChildren();
+    boostersSection.hidden = publicBoosters.length === 0;
+
+    boostersCount.textContent =
+        `${publicBoosters.length} booster${publicBoosters.length > 1 ? "s" : ""} à ouvrir`;
+
+    for (const booster of publicBoosters) {
+        boostersGrid.appendChild(createBoosterItem(booster));
+    }
+}
+
+function createBoosterItem(booster) {
+    const cardsInBooster = boosterCards(booster);
+    const color = /^#[0-9a-f]{6}$/i.test(booster.couleur) ? booster.couleur : "#3b4cca";
+
+    const item = document.createElement("article");
+    item.className = "booster-item";
+    item.style.setProperty("--pc", color);
+
+    // Visuel du booster
+    const pack = document.createElement("div");
+    pack.className = "nsi-pack";
+    pack.setAttribute("aria-hidden", "true");
+
+    const emoji = document.createElement("span");
+    emoji.className = "nsi-pack-emoji";
+    emoji.textContent = booster.emoji || "🃏";
+
+    const packName = document.createElement("span");
+    packName.className = "nsi-pack-name";
+    packName.textContent = booster.nom;
+
+    pack.append(emoji, packName);
+
+    // Informations
+    const info = document.createElement("div");
+    info.className = "booster-info";
+
+    const name = document.createElement("h3");
+    name.textContent = booster.nom;
+
+    const author = document.createElement("p");
+    author.className = "community-card-author";
+    author.textContent =
+        `Créé par ${booster.createur || "Communauté"} · ${cardsInBooster.length} cartes`;
+
+    const dots = document.createElement("div");
+    dots.className = "booster-dots";
+
+    const present = new Set(cardsInBooster.map(card => card.rar));
+
+    for (const rarity of RARITY_ORDER) {
+        const dot = document.createElement("span");
+        dot.className = "booster-dot" + (present.has(rarity) ? " on" : "");
+        dot.dataset.rarity = rarity;
+        dot.title = RAR[rarity].l;
+        dots.appendChild(dot);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "booster-actions";
+
+    const open = document.createElement("a");
+    open.className = "copy-card-button";
+    open.href = `${TCG_URL}#booster=${encodeURIComponent(booster.issue)}`;
+    open.target = "_blank";
+    open.rel = "noopener noreferrer";
+    open.innerHTML = '<i class="fa-solid fa-box-open" aria-hidden="true"></i><span>OUVRIR LE BOOSTER</span>';
+
+    const see = document.createElement("button");
+    see.type = "button";
+    see.className = "booster-see";
+    see.innerHTML = '<i class="fa-solid fa-eye" aria-hidden="true"></i><span>Voir les cartes</span>';
+    see.addEventListener("click", () => {
+        activeBooster = booster;
+        renderCards();
+        document.querySelector(".cards-results").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    actions.append(open, see);
+    info.append(name, author, dots, actions);
+    item.append(pack, info);
+
+    return item;
+}
+
+document.getElementById("boosterFilterClear").addEventListener("click", () => {
+    activeBooster = null;
+    renderCards();
+});
 
 // ============================================
 // NORMALISATION DE LA RECHERCHE
@@ -161,8 +296,18 @@ function renderCards() {
         const matchesRarity =
             rarity === "all" || card.rar === rarity;
 
-        return matchesSearch && matchesRarity;
+        const matchesBooster =
+            !activeBooster || activeBooster.cartes.includes(card.cid);
+
+        return matchesSearch && matchesRarity && matchesBooster;
     });
+
+    boosterFilter.hidden = !activeBooster;
+
+    if (activeBooster) {
+        boosterFilterText.textContent =
+            `${activeBooster.emoji || "🃏"} Cartes du booster « ${activeBooster.nom} »`;
+    }
 
     grid.replaceChildren();
 

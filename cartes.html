@@ -68,6 +68,16 @@
             </a>
         </p>
 
+        <section class="boosters-section" id="boostersSection" hidden>
+            <div class="cards-results-header">
+                <div>
+                    <h2>Boosters de la communauté</h2>
+                    <p id="boostersCount"></p>
+                </div>
+            </div>
+            <div id="boostersGrid" class="boosters-grid"></div>
+        </section>
+
         <section class="cards-toolbar">
 
             <div class="cards-search">
@@ -106,6 +116,14 @@
                     <h2>Bibliothèque</h2>
                     <p id="cardsCount">Chargement des cartes...</p>
                 </div>
+            </div>
+
+            <div id="boosterFilter" class="booster-filter" hidden>
+                <span id="boosterFilterText"></span>
+                <button type="button" id="boosterFilterClear">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    Tout afficher
+                </button>
             </div>
 
             <div id="cardsGrid" class="cards-grid"></div>

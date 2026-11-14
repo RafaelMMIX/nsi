@@ -1,7 +1,7 @@
 name: Cartes publiques
 
 # Quand Rafael met l'étiquette « carte-approuvee » sur une demande,
-# la carte est ajoutée à cartes-publiques.json, puis la demande est fermée.
+# la carte (ou le booster) est ajoutée à NSI Hub, puis la demande est fermée.
 on:
   issues:
     types: [labeled]
@@ -36,8 +36,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cartes-publiques.json
-          git commit -m "Carte publique : $NOM"
+          git add cartes-publiques.json boosters-publics.json
+          git commit -m "Publication : $NOM"
           git push
 
       - name: Répondre et fermer la demande

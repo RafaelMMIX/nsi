@@ -1,0 +1,33 @@
+name: "🎁 Publier un booster"
+description: Propose un booster créé avec Booster perso pour NSI Hub (au moins 10 cartes publiques, dont une de chaque rareté).
+title: "Booster : "
+labels: ["carte-en-attente"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ton booster sera vérifié par Rafael avant d'apparaître sur NSI Hub.
+        Toutes ses cartes doivent déjà être publiques dans les cartes communautaires.
+  - type: input
+    id: pseudo
+    attributes:
+      label: Pseudo
+      description: Affiché sous le booster (« Créé par … »). Évite ton nom complet.
+      placeholder: Ton pseudo
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Code du booster
+      description: Le code qui commence par BST1- ou BST0-.
+      placeholder: BST1-…
+    validations:
+      required: true
+  - type: checkboxes
+    id: accord
+    attributes:
+      label: Responsabilité
+      options:
+        - label: Je suis seul·e responsable du nom et du contenu de ce booster, et rien n'y est offensant ni illégal.
+          required: true
