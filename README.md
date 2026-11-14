@@ -80,6 +80,7 @@ NSI Hub permet d'accéder rapidement aux différents services utilisés au lycé
 - 🖥️ Écran partagé Éléa
 - 📚 Cours complet Éléa
 - 🎓 PIX
+- 🧪 Capytale
 
 Certaines ressources nécessitant une authentification peuvent afficher un rappel invitant l'utilisateur à se connecter préalablement à l'ENT.
 
@@ -90,8 +91,11 @@ Certaines ressources nécessitant une authentification peuvent afficher un rappe
 Une section dédiée aux moteurs de recherche permet notamment d'accéder à :
 
 - 🇫🇷 Qwant
+- 🌳 Ecosia
+- 💧 Lilo
+- 📖 Wikipédia
 
-L'objectif est de proposer des alternatives aux moteurs de recherche traditionnels.
+L'objectif est de proposer des alternatives européennes aux moteurs de recherche traditionnels.
 
 ---
 
@@ -103,6 +107,11 @@ NSI Hub centralise plusieurs plateformes utiles :
 - [France-IOI](https://www.france-ioi.org/)
 - [Python Tutor](https://pythontutor.com/)
 - [W3Schools](https://www.w3schools.com/)
+- [CodEx](https://codex.forge.apps.education.fr/) : exercices Python et SQL corrigés
+- [Documentation Python](https://docs.python.org/fr/3/)
+- [MDN Web Docs](https://developer.mozilla.org/fr/)
+- [VisuAlgo](https://visualgo.net/) : algorithmes animés
+- [Annales du bac NSI](https://www.freemaths.fr/sujets-du-bac/baccalaureat-general/numerique-et-sciences-informatiques)
 
 Ces ressources permettent notamment de travailler :
 
@@ -114,6 +123,15 @@ Ces ressources permettent notamment de travailler :
 - JavaScript
 - structures de données
 - notions de NSI
+
+---
+
+# 💻 Développement
+
+- [GitHub](https://github.com/)
+- [Basthon](https://basthon.fr/) : Python et SQL dans le navigateur
+- [draw.io](https://app.diagrams.net/) : schémas, graphes et diagrammes
+- Cours NSI Première et Terminale (Pixees)
 
 ---
 
