@@ -1,5 +1,26 @@
 const changelog = [
     {
+        version: "1.2.6.2",
+        date: "14 novembre 2026",
+        changes: [
+            {
+                type: "cancelled",
+                title: "Quiz en classe retiré",
+                description: "Le Quiz en classe (parties en direct avec Supabase) ne fonctionnait pas et a été retiré, ainsi que ses liens dans la navigation, le mode présentation et les statistiques. Les quiz de l'espace Quiz & Jeux restent disponibles."
+            },
+            {
+                type: "bug",
+                title: "Recherche de l'accueil réparée",
+                description: "La recherche plantait à cause des cartes Mails et Qwant, qui n'avaient pas de mots-clés."
+            },
+            {
+                type: "bug",
+                title: "Corrections diverses",
+                description: "Les icônes s'affichent à nouveau sur les pages Outils et Prompts, le convertisseur gère les grands nombres et vide les champs quand la saisie est invalide, et la bonne réponse d'une question de Quiz & Jeux sur len() a été corrigée."
+            }
+        ]
+    },
+    {
         version: "1.2.6.1",
         date: "16 octobre 2026",
         changes: [

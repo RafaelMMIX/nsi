@@ -220,7 +220,7 @@ function createBoosterItem(booster) {
     const author = document.createElement("p");
     author.className = "community-card-author";
     author.textContent =
-        `Créé par ${booster.createur || "Communauté"} · ${cardsInBooster.length} cartes`;
+        `Créé par ${booster.createur || "Communauté"} · ${cardsInBooster.length} carte${cardsInBooster.length > 1 ? "s" : ""}`;
 
     const dots = document.createElement("div");
     dots.className = "booster-dots";

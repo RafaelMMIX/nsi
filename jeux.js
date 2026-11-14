@@ -8,7 +8,6 @@
     const level = localStorage.getItem("nsiLevel");
     if (!labels[level]) { window.location.replace("selection.html"); return; }
     const isTeacher = level === "professeur";
-    if (isTeacher) document.getElementById("classroom-nav-link")?.removeAttribute("hidden");
     const progressKey = "nsiGamesProgress";
     const readProgress = () => { try { return JSON.parse(localStorage.getItem(progressKey)) || {}; } catch (_) { return {}; } };
     let progress = readProgress();
