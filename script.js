@@ -244,6 +244,7 @@ favoriteButtons.forEach(button => {
 
 
         updateFavorites();
+        updateFavoritesSection();
 
     });
 

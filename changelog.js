@@ -1,5 +1,21 @@
 const changelog = [
     {
+        version: "1.3.1",
+        date: "14 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Nouveaux liens sur l'accueil",
+                description: "Recherche : Ecosia, Lilo et Wikipédia. Apprendre : CodEx (exercices Python et SQL corrigés), la documentation Python en français, MDN Web Docs, VisuAlgo et les annales du bac NSI. Développement : Basthon et draw.io. Cours & Lycée : Capytale."
+            },
+            {
+                type: "bug",
+                title: "Favoris affichés tout de suite",
+                description: "Une ressource ajoutée aux favoris n'apparaissait dans « Mes favoris » qu'après avoir rechargé la page. Elle s'affiche maintenant immédiatement."
+            }
+        ]
+    },
+    {
         version: "1.3.0",
         date: "14 novembre 2026",
         changes: [
