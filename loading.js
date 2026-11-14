@@ -100,7 +100,7 @@ const selectedStatuses = statusMessages[level] || statusMessages.premiere;
 loadingTip.textContent = selectedTips[Math.floor(Math.random() * selectedTips.length)];
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const duration = prefersReducedMotion ? 700 : 3200;
+const duration = prefersReducedMotion ? 500 : 1500;
 const statusMilestones = [22, 48, 74, 92];
 const statusIndexes = [1, 2, 4, 6];
 let currentStatus = 0;

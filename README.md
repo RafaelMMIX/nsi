@@ -79,6 +79,7 @@ NSI Hub permet d'accéder rapidement aux différents services utilisés au lycé
 - ✉️ Messagerie
 - 🖥️ Écran partagé Éléa
 - 📚 Cours complet Éléa
+- 🎓 PIX
 
 Certaines ressources nécessitant une authentification peuvent afficher un rappel invitant l'utilisateur à se connecter préalablement à l'ENT.
 
@@ -140,3 +141,83 @@ La section **Mes favoris** apparaît automatiquement lorsqu'au moins une ressour
 
 ```text
 nsiFavorites
+```
+
+---
+
+# 📝 Mémo
+
+Un bloc-notes sur l'accueil permet de garder ses notes importantes. Il est enregistré automatiquement dans le navigateur.
+
+```text
+nsiMemo
+```
+
+---
+
+# 🧰 Outils
+
+- 🔢 Convertisseur décimal / binaire / hexadécimal (grands nombres pris en charge)
+- 🔤 Table ASCII : caractère, décimal, binaire et hexadécimal
+
+---
+
+# 📓 Notebooks
+
+Des notebooks façon Jupyter, directement dans le navigateur :
+
+- 🐍 Cellules Python exécutées avec Pyodide
+- 📝 Cellules Markdown
+- 💾 Sauvegarde automatique locale
+- 📤 Export en `.ipynb` et `.py`
+
+---
+
+# 🎮 Quiz & Jeux
+
+Des activités adaptées au profil choisi (SNT, Première, Terminale, Professeur) :
+
+- ❓ Quiz
+- ✅ Vrai ou faux
+- 🖨️ Devine la sortie d'un programme
+- 🐛 Trouve le bug
+- 🧭 Quel algorithme ?
+
+Les scores et la progression sont enregistrés localement. Chaque activité possède un identifiant et un lien de signalement.
+
+---
+
+# 📖 Dictionnaire NSI
+
+Plus de 370 définitions classées par thème (Python, données, réseaux, algorithmique…) avec recherche et filtres.
+
+---
+
+# 📊 Statistiques
+
+Une page récapitule son activité : temps passé, ressources ouvertes, notebooks, progression dans Quiz & Jeux…
+
+Les statistiques restent sur l'appareil et peuvent être exportées, importées ou réinitialisées.
+
+---
+
+# 👤 Profils
+
+Au premier lancement, on choisit son profil : **SNT**, **Première**, **Terminale** ou **Professeur**. L'accueil et les activités s'adaptent à ce choix, modifiable dans les paramètres.
+
+## 👨‍🏫 Mode présentation
+
+Réservé au profil Professeur : horloge, plein écran, raccourcis clavier, taille de texte réglable et accès rapide aux ressources pour les cours projetés.
+
+---
+
+# 📢 Annonces et nouveautés
+
+- Les annonces importantes s'affichent sur l'accueil, et toutes les annonces sont regroupées sur une page dédiée.
+- La page **Nouveautés** (changelog) liste les changements de chaque version.
+
+---
+
+# 🔒 Données
+
+NSI Hub fonctionne entièrement dans le navigateur et est hébergé sur GitHub Pages. Les favoris, le mémo, les notebooks, la progression et les statistiques sont stockés dans le `localStorage` : rien n'est envoyé à un serveur.

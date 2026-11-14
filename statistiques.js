@@ -1,12 +1,5 @@
 (function () {
     const KEY = "nsiLocalStatistics";
-    const labels = {
-        "index.html": "Accueil", "outils.html": "Outils", "dico.html": "Dictionnaire",
-        "notebooks.html": "Notebooks", "notebook.html": "Notebook", "parametres.html": "Paramètres",
-        "about.html": "À propos", "annonces.html": "Annonces", "changelog.html": "Nouveautés",
-        "prompt.html": "Prompts", "selection.html": "Sélection",
-        "loading.html": "Chargement", "statistiques.html": "Statistiques"
-    };
     const localDay = date => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
     const today = localDay(new Date());
     const empty = () => ({ views: 0, pages: {}, seconds: 0, days: {}, resources: {}, recentResources: [], searches: 0, tools: {}, sessions: 0, firstVisit: null, lastVisit: null, notebookCreates: 0, cellsCreated: 0, pythonCells: 0, markdownCells: 0, pythonRuns: 0, runSuccess: 0, runErrors: 0, notebookUses: {}, favoriteCategories: {}, favoriteAdded: [] });

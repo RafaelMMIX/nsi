@@ -38,7 +38,7 @@
             </div>
 
             <nav class="main-nav">
-    <a href="index.html" class="nav-link active">
+    <a href="index.html" class="nav-link">
         <i class="fa-solid fa-house"></i>
         Accueil
     </a>
@@ -48,10 +48,10 @@
         Outils
     </a>
 
-    <!-- <a href="notebooks.html" class="nav-link">
+    <a href="notebooks.html" class="nav-link">
         <i class="fa-solid fa-book-open"></i>
         Notebook
-    </a> -->
+    </a>
 
     <a href="parametres.html" class="nav-link">
         <i class="fa-solid fa-gear"></i>
@@ -115,11 +115,24 @@
 
     <footer>
         <p>
-            NSI Hub · <a href="changelog.html">v1.3.0</a>
+            NSI Hub · <a href="changelog.html" id="site-version">v</a>
         </p>
     </footer>
 
 
+    <script src="version.js"></script>
+    <script>
+        document.getElementById("site-version").textContent = `v${NSI_HUB_VERSION}`;
+
+        const annoncesClock = document.getElementById("clock");
+        const majHorloge = () => {
+            const now = new Date();
+            annoncesClock.textContent =
+                `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+        };
+        majHorloge();
+        setInterval(majHorloge, 1000);
+    </script>
     <script src="announcements.js"></script>
     <script src="annonces.js"></script>
 
