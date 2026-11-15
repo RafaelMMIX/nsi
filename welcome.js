@@ -8,12 +8,15 @@
     const welcomeName = document.getElementById("welcome-name");
     if (!welcomeName) return;
 
-    const firstName = (localStorage.getItem("nsiFirstName") || "").trim();
+    // Mode développeur : ?devWelcome=1 force le message (même sans prénom ni délai)
+    const forced = localStorage.getItem("nsiDevMode") === "true" &&
+        new URLSearchParams(window.location.search).get("devWelcome") === "1";
+    const firstName = (localStorage.getItem("nsiFirstName") || "").trim() || (forced ? "Développeur" : "");
     const lastWelcome = Number(localStorage.getItem("nsiLastWelcome"));
     const now = Date.now();
     const cooldown = 20 * 60 * 1000; // 20 minutes
 
-    if (!firstName || (lastWelcome && now - lastWelcome < cooldown)) return;
+    if (!firstName || (!forced && lastWelcome && now - lastWelcome < cooldown)) return;
 
     const hour = new Date().getHours();
     const day = new Date().getDay(); // 0 = dimanche, 6 = samedi

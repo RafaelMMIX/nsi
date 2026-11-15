@@ -26,7 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
      * - apparaît à chaque chargement
      */
 
+    const forced =
+        devMode && new URLSearchParams(window.location.search).get("devPopup") === "share";
+
     const shouldShow =
+        forced ||
         devMode ||
         (
             lastSharePopup !== today &&
@@ -49,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
             today
         );
 
-    }, devMode ? 1000 : 8000);
+    }, forced ? 300 : devMode ? 1000 : 8000);
 
 
     // Fermer
