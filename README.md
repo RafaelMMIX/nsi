@@ -327,6 +327,38 @@ Les retouches manuelles se font dans la section `MANUEL` du script.
 
 ---
 
+# 🕳️ Page 404
+
+GitHub Pages affiche `404.html` pour toute adresse introuvable, même dans un sous-dossier. La balise `<base href="/nsi/">` (remplacée par `/` en local) garde les liens et les styles fonctionnels quelle que soit l'adresse. `statistiques.js` n'y est volontairement pas chargé, pour ne pas compter de fausses pages.
+
+- Message d'erreur façon traceback Python avec l'adresse demandée
+- Suggestions des pages les plus proches (distance de Levenshtein)
+- Terminal (`help` pour la liste des commandes), anecdotes, blagues
+- Chasse aux bugs de 20 secondes (record dans `nsiBugHuntRecord`)
+- 12 easter eggs, dont la progression est gardée dans `nsiEasterEggs`
+
+<details>
+<summary>⚠️ Spoilers : liste des easter eggs</summary>
+
+| Easter egg | Comment le trouver |
+| --- | --- |
+| Code secret | Code Konami ↑ ↑ ↓ ↓ ← → ← → B A (mode rétro) |
+| Super-utilisateur | `sudo …` dans le terminal |
+| Apprenti destructeur | `rm -rf /` (rien n'est supprimé) |
+| Je suis une théière | `café`, `coffee`, `thé` ou `tea` (HTTP 418) |
+| Pilule rouge | `matrix` |
+| La grande question | `42` |
+| Changement de base | Cliquer 7 fois sur le « 404 » |
+| Exterminateur | 15 bugs ou plus à la chasse aux bugs |
+| Fouineur | `nsiHub.secret()` dans la console du navigateur |
+| Premier programme | `print("Hello World")` |
+| Pong | `ping` |
+| Noctambule | Ouvrir la page entre minuit et 5 h |
+
+</details>
+
+---
+
 # 🔒 Données
 
 NSI Hub fonctionne entièrement dans le navigateur et est hébergé sur GitHub Pages. Les favoris, le mémo, les notebooks, la progression et les statistiques sont stockés dans le `localStorage` : rien n'est envoyé à un serveur.

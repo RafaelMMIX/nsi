@@ -4,6 +4,25 @@
    modifier le script (section MANUEL) puis le relancer.
    ========================================================= */
 
+/* ---------- 404.css ---------- */
+
+html.theme-light .e404-traceback,
+html.theme-light .e404-terminal {
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.075);
+}
+
+html.theme-light .e404-progress span {
+    color: #fff;
+}
+
+html.theme-light .e404-arena {
+    background: rgba(249, 250, 252, 0.82);
+}
+
+html.theme-light .e404-toast {
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.09);
+}
+
 /* ---------- annonces.css ---------- */
 
 html.theme-light .current-announcement {

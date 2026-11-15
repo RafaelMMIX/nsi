@@ -1,5 +1,26 @@
 const changelog = [
     {
+        version: "1.6.1.0",
+        date: "15 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Une vraie page 404",
+                description: "Une adresse qui n'existe pas affiche maintenant une page 404 aux couleurs de NSI Hub, au lieu de la page grise de GitHub : message d'erreur façon Python, liens vers les pages qui ressemblent le plus à ce que tu cherchais et retour à l'accueil."
+            },
+            {
+                type: "new",
+                title: "Un terminal pour se perdre avec style",
+                description: "La page 404 contient un petit terminal : help, ls, cd, cat, whoami, des blagues d'informaticien, des anecdotes sur l'histoire de l'informatique… et plusieurs commandes cachées."
+            },
+            {
+                type: "new",
+                title: "12 easter eggs et une chasse aux bugs",
+                description: "Retrouve les 12 easter eggs cachés dans la page (ta progression est gardée), et écrase un maximum de bugs en 20 secondes pour battre ton record."
+            }
+        ]
+    },
+    {
         version: "1.6.0",
         date: "15 novembre 2026",
         changes: [

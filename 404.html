@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- GitHub Pages sert cette page pour n'importe quelle adresse introuvable (même dans un sous-dossier) :
+         on fixe donc la base des liens à la racine du site avant tout chargement. -->
+    <base href="/nsi/">
+    <script>
+        // En local (hors github.io), le site est servi depuis la racine
+        if (!/\.github\.io$/.test(location.hostname)) document.querySelector("base").href = "/";
+    </script>
+    <script src="preferences.js"></script>
+    <script src="devtools.js"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <title>404 · Page introuvable | NSI Hub</title>
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="404.css">
+    <link rel="stylesheet" href="theme-light.css">
+</head>
+
+<body class="page-404">
+    <div class="background" aria-hidden="true"></div>
+
+    <main class="container e404">
+
+        <a href="index.html" class="e404-brand"><span class="brand-icon"><i class="fa-solid fa-code"></i></span> NSI Hub</a>
+
+        <section class="e404-hero">
+            <h1 class="e404-code" id="e404-code" title="Clique-moi…" data-text="404">404</h1>
+            <p class="e404-subtitle" id="e404-subtitle">Page introuvable.</p>
+            <div class="e404-actions">
+                <a href="index.html" class="e404-button primary"><i class="fa-solid fa-house"></i> Retour à l'accueil</a>
+                <button type="button" class="e404-button" id="e404-back"><i class="fa-solid fa-arrow-left"></i> Page précédente</button>
+            </div>
+        </section>
+
+        <section class="e404-traceback" aria-label="Rapport d'erreur">
+            <div class="e404-window-bar"><span></span><span></span><span></span><em>erreur.py</em></div>
+<pre id="e404-traceback"></pre>
+        </section>
+
+        <section class="e404-suggestions">
+            <h2><i class="fa-solid fa-compass"></i> Tu cherchais peut-être…</h2>
+            <div class="e404-links" id="e404-links"></div>
+        </section>
+
+        <div class="e404-grid">
+            <section class="e404-terminal" aria-label="Terminal">
+                <div class="e404-window-bar"><span></span><span></span><span></span><em>invite@nsi-hub : ~</em></div>
+                <div class="e404-term-output" id="e404-term-output" aria-live="polite"></div>
+                <form class="e404-term-line" id="e404-term-form" autocomplete="off">
+                    <label for="e404-term-input"><span class="e404-prompt">invite@nsi-hub:~$</span></label>
+                    <input id="e404-term-input" type="text" spellcheck="false" autocapitalize="off" aria-label="Commande">
+                </form>
+            </section>
+
+            <div class="e404-side">
+                <section class="e404-card" id="e404-fact-card">
+                    <h2><i class="fa-solid fa-lightbulb"></i> Le savais-tu ?</h2>
+                    <p id="e404-fact"></p>
+                    <button type="button" class="e404-link-button" id="e404-next-fact">Une autre anecdote <i class="fa-solid fa-rotate"></i></button>
+                </section>
+
+                <section class="e404-card">
+                    <h2><i class="fa-solid fa-bug"></i> Chasse aux bugs</h2>
+                    <p>Écrase un maximum de bugs en 20 secondes. Record : <strong id="e404-record">0</strong></p>
+                    <button type="button" class="e404-button small" id="e404-play"><i class="fa-solid fa-play"></i> Jouer</button>
+                </section>
+
+                <section class="e404-card">
+                    <h2><i class="fa-solid fa-egg"></i> Easter eggs <span class="e404-egg-count" id="e404-egg-count">0 / 12</span></h2>
+                    <div class="e404-progress"><span id="e404-egg-bar"></span></div>
+                    <ul class="e404-eggs" id="e404-eggs"></ul>
+                </section>
+            </div>
+        </div>
+
+        <footer class="e404-footer">
+            <span>404 en binaire : <code>110010100</code></span>
+            <span>en hexadécimal : <code>0x194</code></span>
+            <span>en octal : <code>0o624</code></span>
+        </footer>
+    </main>
+
+    <div class="e404-arena" id="e404-arena" hidden>
+        <div class="e404-arena-hud">
+            <span><i class="fa-solid fa-bug"></i> <strong id="e404-score">0</strong></span>
+            <span><i class="fa-regular fa-clock"></i> <strong id="e404-time">20</strong> s</span>
+            <button type="button" id="e404-quit" aria-label="Quitter le jeu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
+    <canvas class="e404-matrix" id="e404-matrix" hidden></canvas>
+    <div class="e404-toast" id="e404-toast" role="status" aria-live="polite"></div>
+
+    <script src="version.js"></script>
+    <script src="404.js"></script>
+</body>
+</html>
