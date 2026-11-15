@@ -293,6 +293,7 @@ Les versions jusqu'à 1.6.0 ont été numérotées avec 3 chiffres (1.6.0 = 1.6.
 - **Thème** : sombre, clair ou automatique (suit le réglage de l'appareil)
 - **Animations** : peuvent être coupées sur tout le site (elles sont aussi réduites si l'appareil le demande)
 - **Profil** : niveau et prénom
+- **Mes cours de NSI** : créneaux de NSI et rappels avant les cours (voir ci-dessous)
 - **Espace utilisé** : place occupée par NSI Hub (notebooks, bases SQL, statistiques…) et par les autres sites du domaine, détail par notebook
 - **Sauvegarde / restauration** en JSON, et effacement des données de NSI Hub
 
@@ -302,6 +303,23 @@ nsiAnimations   false pour couper les animations
 ```
 
 `preferences.js` est chargé dans le `<head>` de chaque page pour appliquer le thème sans clignotement.
+
+## 📅 Mes cours de NSI
+
+Dans Paramètres → Mes cours de NSI (`parametres.html#horaires`) :
+
+- **Créneaux** : jour, horaires, salle, toutes les semaines ou semaine A / B
+- **Vacances** : choix de la zone A, B ou C, pour couper les rappels pendant les vacances et les jours fériés
+- **Rappels** : la veille à l'heure choisie, et 1 h, 30, 15, 10 ou 5 min avant le cours
+- **Agenda du téléphone** (recommandé) : export `.ics`, avec les cours répétés chaque semaine jusqu'à la fin de l'année scolaire, les vacances exclues et les rappels intégrés. Les rappels arrivent même quand le site est fermé
+- **Notifications de NSI Hub** : envoyées seulement quand une page du site est ouverte. Un site statique ne peut pas envoyer de notification quand il est fermé. `preferences.js` charge `horaires.js` sur chaque page quand elles sont activées, et `sw.js` (service worker, sans cache) sert à les afficher sur Android
+
+```text
+nsiHoraires          créneaux, semaine A de référence, zone, rappels, notifications
+nsiHorairesEnvoyes   rappels déjà envoyés (évite les doublons entre onglets)
+```
+
+⚠️ Le calendrier des vacances est écrit dans `horaires.js` (`CALENDARS`) : il faut ajouter l'année suivante chaque année, à partir de l'arrêté publié au Journal officiel. Sans calendrier à jour, seules les vacances d'été sont coupées.
 
 ## 🧪 Mode développeur
 

@@ -6,6 +6,7 @@
    pour appliquer le thème et les animations sans clignotement.
    - nsiTheme      : "sombre" (par défaut), "clair" ou "auto"
    - nsiAnimations : "false" pour couper les animations
+   Charge aussi horaires.js (rappels de cours) si les notifications sont activées.
    ========================================================= */
 
 (function () {
@@ -52,6 +53,16 @@
     window.addEventListener("storage", event => {
         if (event.key === "nsiTheme" || event.key === "nsiAnimations" || event.key === null) apply();
     });
+
+    // Rappels de cours de NSI : chargés sur chaque page quand les notifications sont activées
+    try {
+        const horaires = JSON.parse(read("nsiHoraires"));
+        if (horaires && horaires.notifications === true) {
+            const script = document.createElement("script");
+            script.src = "horaires.js";
+            document.head.appendChild(script);
+        }
+    } catch (_) {}
 
     window.nsiPreferences = {
         apply,

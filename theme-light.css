@@ -1027,6 +1027,14 @@ html.theme-light .copy-button.primary:hover {
     color: #1f1f1f;
 }
 
+html.theme-light .horaires-method .settings-switch input:checked + .settings-switch-slider::before {
+    color: #fff;
+}
+
+html.theme-light .setting-button.primary:hover {
+    color: #1f1f1f;
+}
+
 /* ==============================
    RETOUCHES MANUELLES
 ============================== */
