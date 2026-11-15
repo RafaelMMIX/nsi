@@ -222,6 +222,12 @@ html.theme-light {
 html.theme-light ::selection {
     background: rgba(99, 102, 241, 0.25);
 }
+
+html.theme-light .card[data-indisponible]:hover {
+    border-color: var(--border);
+    box-shadow: none;
+    transform: none;
+}
 """
 
 

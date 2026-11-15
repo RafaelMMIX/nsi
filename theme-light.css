@@ -992,6 +992,10 @@ html.theme-light .nsi-devbar-panel {
     box-shadow: 0 20px 50px rgba(15, 23, 42, 0.135);
 }
 
+html.theme-light .unavailable-notice {
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
+}
+
 /* ==============================
    RETOUCHES MANUELLES
 ============================== */
@@ -1007,4 +1011,10 @@ html.theme-light {
 
 html.theme-light ::selection {
     background: rgba(99, 102, 241, 0.25);
+}
+
+html.theme-light .card[data-indisponible]:hover {
+    border-color: var(--border);
+    box-shadow: none;
+    transform: none;
 }

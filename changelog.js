@@ -1,5 +1,16 @@
 const changelog = [
     {
+        version: "1.5.1",
+        date: "15 novembre 2026",
+        changes: [
+            {
+                type: "improved",
+                title: "Mails momentanément indisponibles",
+                description: "La messagerie du lycée ne fonctionne toujours pas : la carte Mails est grisée et marquée « Indisponible ». Un clic affiche un message au lieu d'ouvrir une page qui ne répond pas. Elle reviendra dès que le service sera rétabli."
+            }
+        ]
+    },
+    {
         version: "1.5.0",
         date: "15 novembre 2026",
         changes: [
