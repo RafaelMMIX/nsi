@@ -1,4 +1,4 @@
-﻿const currentLevel =
+const currentLevel =
     document.getElementById("current-level");
 
 const changeLevelButton =
@@ -122,8 +122,53 @@ animationsToggle.addEventListener(
             animationsToggle.checked
         );
 
+        window.nsiPreferences?.apply();
+        updateAnimationsDescription();
+
     }
 );
+
+function updateAnimationsDescription() {
+    const description = document.getElementById("animations-description");
+    if (!description) return;
+    const systemReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    description.textContent = !animationsToggle.checked
+        ? "Désactivées sur tout le site"
+        : systemReduced
+            ? "Ton appareil demande moins d'animations : les effets restent réduits"
+            : "Transitions, effets et confettis de l'interface";
+}
+
+updateAnimationsDescription();
+
+// ==============================
+// THÈME
+// ==============================
+
+const themeButtons = document.querySelectorAll(".theme-choice [data-theme]");
+const themeDescription = document.getElementById("theme-description");
+
+function displayTheme() {
+    const choice = window.nsiPreferences?.themeChoice() || localStorage.getItem("nsiTheme") || "sombre";
+    themeButtons.forEach(button => {
+        const active = button.dataset.theme === choice;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-checked", String(active));
+    });
+    const resolved = window.nsiPreferences?.resolvedTheme() === "clair" ? "clair" : "sombre";
+    themeDescription.textContent = choice === "auto"
+        ? `Suit le réglage de ton appareil (actuellement ${resolved})`
+        : choice === "clair" ? "Clair" : "Sombre";
+}
+
+themeButtons.forEach(button => button.addEventListener("click", () => {
+    localStorage.setItem("nsiTheme", button.dataset.theme);
+    window.nsiPreferences?.apply();
+    displayTheme();
+}));
+
+window.matchMedia("(prefers-color-scheme: light)").addEventListener?.("change", displayTheme);
+displayTheme();
 
 // ==============================
 // MODE DEV
@@ -189,7 +234,7 @@ clearDataButton.addEventListener(
     () => {
 
         const confirmation = confirm(
-            "Cette action supprimera toutes les données locales de NSI Hub. Continuer ?"
+            "Cette action supprimera toutes les données de NSI Hub enregistrées dans ce navigateur (favoris, notebooks, statistiques, préférences…). Les autres sites, comme Booster perso, ne sont pas touchés. Continuer ?"
         );
 
 
@@ -198,11 +243,17 @@ clearDataButton.addEventListener(
         }
 
 
-        localStorage.clear();
+        // Le stockage est partagé avec les autres pages de rafaelmmix.github.io :
+        // on ne supprime que les clés de NSI Hub (elles commencent toutes par « nsi »).
+        [localStorage, sessionStorage].forEach(storage => {
+            Object.keys(storage)
+                .filter(key => key.startsWith("nsi"))
+                .forEach(key => storage.removeItem(key));
+        });
 
 
         alert(
-            "Les données locales ont été supprimées."
+            "Les données de NSI Hub ont été supprimées."
         );
 
 
@@ -223,6 +274,13 @@ if (savedName) {
     firstNameInput.value = savedName;
 }
 
+
+firstNameInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        saveNameButton.click();
+    }
+});
 
 saveNameButton.addEventListener(
     "click",
@@ -265,7 +323,120 @@ saveNameButton.addEventListener(
 );
 
 // ==============================
+// ESPACE UTILISÉ
+// ==============================
+
+const STORAGE_LIMIT = 5 * 1024 * 1024; // environ 5 Mo (en caractères) par site
+const STORAGE_GROUPS = [
+    { id: "notebooks", label: "Notebooks", color: "var(--blue)", test: key => key === "nsiNotebooks" || key === "nsiNotebook" },
+    { id: "bases", label: "Bases SQL des notebooks", color: "var(--cyan)", test: key => key.startsWith("nsiNotebookDb") },
+    { id: "stats", label: "Statistiques", color: "var(--purple)", test: key => key === "nsiLocalStatistics" },
+    { id: "autres", label: "Autres données NSI Hub", color: "var(--green)", test: key => key.startsWith("nsi") },
+    { id: "externe", label: "Autres sites (ex. Booster perso)", color: "var(--orange)", test: () => true }
+];
+
+function formatSize(chars) {
+    if (chars < 1024) return `${chars} o`;
+    if (chars < 1024 * 1024) return `${(chars / 1024).toFixed(chars < 10240 ? 1 : 0).replace(".", ",")} Ko`;
+    return `${(chars / 1024 / 1024).toFixed(2).replace(".", ",")} Mo`;
+}
+
+function itemSize(key) {
+    const value = localStorage.getItem(key);
+    return key.length + (value ? value.length : 0);
+}
+
+function displayStorage() {
+    const totals = Object.fromEntries(STORAGE_GROUPS.map(group => [group.id, 0]));
+    Object.keys(localStorage).forEach(key => {
+        const group = STORAGE_GROUPS.find(g => g.test(key));
+        totals[group.id] += itemSize(key);
+    });
+    const used = Object.values(totals).reduce((a, b) => a + b, 0);
+    const nsiUsed = used - totals.externe;
+    const percent = Math.min(100, used / STORAGE_LIMIT * 100);
+
+    document.getElementById("storage-summary").textContent =
+        `${formatSize(used)} utilisés sur environ 5 Mo (${percent < 1 && used ? "< 1" : Math.round(percent)} %), dont ${formatSize(nsiUsed)} pour NSI Hub.`;
+
+    const bar = document.getElementById("storage-bar");
+    bar.innerHTML = "";
+    bar.classList.toggle("warning", percent >= 80);
+    STORAGE_GROUPS.forEach(group => {
+        if (!totals[group.id]) return;
+        const segment = document.createElement("span");
+        segment.style.width = `${Math.max(0.6, totals[group.id] / STORAGE_LIMIT * 100)}%`;
+        segment.style.background = group.color;
+        segment.title = `${group.label} : ${formatSize(totals[group.id])}`;
+        bar.appendChild(segment);
+    });
+
+    const legend = document.getElementById("storage-legend");
+    legend.innerHTML = "";
+    STORAGE_GROUPS.forEach(group => {
+        if (!totals[group.id]) return;
+        const item = document.createElement("li");
+        const dot = document.createElement("span");
+        dot.className = "storage-dot";
+        dot.style.background = group.color;
+        item.append(dot, `${group.label} `);
+        const size = document.createElement("strong");
+        size.textContent = formatSize(totals[group.id]);
+        item.appendChild(size);
+        legend.appendChild(item);
+    });
+    if (!legend.children.length) legend.innerHTML = "<li>Aucune donnée enregistrée.</li>";
+
+    displayNotebookStorage();
+}
+
+function displayNotebookStorage() {
+    const list = document.getElementById("storage-notebooks");
+    const details = document.getElementById("storage-details");
+    let notebooks = [];
+    try { notebooks = JSON.parse(localStorage.getItem("nsiNotebooks") || "[]"); } catch (_) {}
+    list.innerHTML = "";
+    details.hidden = !notebooks.length;
+
+    notebooks
+        .map(notebook => ({
+            notebook,
+            cells: JSON.stringify(notebook.cells || []).length,
+            base: itemSize(`nsiNotebookDb:${notebook.id}`) - `nsiNotebookDb:${notebook.id}`.length,
+            origin: itemSize(`nsiNotebookDbOrigine:${notebook.id}`) - `nsiNotebookDbOrigine:${notebook.id}`.length
+        }))
+        .sort((a, b) => (b.cells + b.base + b.origin) - (a.cells + a.base + a.origin))
+        .forEach(({ notebook, cells, base, origin }) => {
+            const item = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = `notebook.html?id=${encodeURIComponent(notebook.id)}`;
+            link.textContent = notebook.name || "Notebook sans nom";
+            const info = document.createElement("span");
+            info.className = "storage-notebook-info";
+            info.textContent = `${formatSize(cells + base + origin)} · cellules ${formatSize(cells)}${base > 0 ? ` · base ${formatSize(base)}` : ""}${origin > 0 ? ` · fichier importé ${formatSize(origin)}` : ""}`;
+            item.append(link, info);
+            if (base > 0) {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "setting-button small";
+                button.textContent = "Remettre la base d'origine";
+                button.title = "Supprime la base modifiée enregistrée : le notebook repartira de sa base d'origine";
+                button.addEventListener("click", () => {
+                    if (!confirm(`Remettre la base de « ${notebook.name} » dans son état d'origine ? Les modifications faites dans la base (ajouts, suppressions, tables créées) seront perdues.`)) return;
+                    localStorage.removeItem(`nsiNotebookDb:${notebook.id}`);
+                    displayStorage();
+                });
+                item.appendChild(button);
+            }
+            list.appendChild(item);
+        });
+}
+
+window.addEventListener("storage", displayStorage);
+
+// ==============================
 // INITIALISATION
 // ==============================
 
 displayLevel();
+displayStorage();

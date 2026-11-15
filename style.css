@@ -5253,3 +5253,234 @@ footer a:active {
 .announcement-all-link:hover {
     color: var(--text, #f9fafb);
 }
+
+
+/* ==============================
+   ANIMATIONS DÉSACTIVÉES (Paramètres)
+============================== */
+
+html.no-animations {
+    scroll-behavior: auto;
+}
+
+html.no-animations *,
+html.no-animations *::before,
+html.no-animations *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+}
+
+
+/* ==============================
+   EN-TÊTE STANDARD (titre + menu en dessous)
+============================== */
+
+.page-header-nav {
+    display: block;
+    margin-bottom: 28px;
+}
+
+.page-header-nav .brand {
+    margin-bottom: 20px;
+}
+
+.page-header-nav .main-nav,
+.dico-main-nav {
+    flex-wrap: wrap;
+}
+
+.page-top {
+    padding-bottom: 0;
+}
+
+.dico-main-nav {
+    margin-bottom: 30px;
+}
+
+
+/* ==============================
+   PARAMÈTRES : THÈME ET ESPACE UTILISÉ
+============================== */
+
+.theme-choice {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface-light);
+}
+
+.theme-choice button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.theme-choice button:hover {
+    color: var(--text);
+}
+
+.theme-choice button.active {
+    background: var(--blue);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.storage-card {
+    margin-bottom: 10px;
+    padding: 17px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+}
+
+.storage-head {
+    margin-bottom: 14px;
+}
+
+.storage-bar {
+    display: flex;
+    height: 12px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--surface-light);
+    box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.storage-bar span {
+    height: 100%;
+    transition: width 0.4s;
+}
+
+.storage-bar span + span {
+    border-left: 2px solid var(--surface);
+}
+
+.storage-bar.warning {
+    box-shadow: inset 0 0 0 1px var(--red), 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.storage-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 12px 0 4px;
+    padding: 0;
+    list-style: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.storage-legend strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.storage-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    margin-right: 6px;
+    border-radius: 50%;
+}
+
+.storage-details {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.storage-details summary {
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.storage-details ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.storage-details li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-light);
+}
+
+.storage-details a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.storage-details a:hover {
+    text-decoration: underline;
+}
+
+.storage-notebook-info {
+    flex: 1;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.setting-button.small {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.storage-note {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+.storage-note code {
+    font-size: 12px;
+}
+
+@media (max-width: 650px) {
+    .theme-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 650px) {
+    .settings-card {
+        flex-wrap: wrap;
+    }
+
+    .settings-card .name-setting {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .settings-card .name-setting .setting-input {
+        flex: 1;
+        min-width: 0;
+        width: auto;
+    }
+}

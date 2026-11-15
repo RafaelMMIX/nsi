@@ -348,7 +348,11 @@ document.getElementById("announcement-button").href =
  * =========================================================
  */
 
-function launchIndexConfetti() {
+function launchIndexConfetti(force = false) {
+
+    // Pas de confettis si les animations sont désactivées (Paramètres ou système),
+    // sauf pour le test explicite du mode développeur
+    if (!force && window.nsiPreferences?.reducedMotion()) return;
 
     const canvas = document.createElement("canvas");
 
@@ -537,7 +541,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
 
-        launchIndexConfetti();
+        launchIndexConfetti(forceDevConfetti);
 
     }, delay);
 

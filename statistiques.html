@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="preferences.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Statistiques | NSI Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="statistiques.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="theme-light.css">
 </head>
 <body>
-    <header class="page-header">
-        <div><h1><i class="fa-solid fa-chart-pie"></i> Mes statistiques</h1><p>Ton activité NSI Hub, conservée sur cet appareil.</p></div>
-        <a href="index.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Accueil</a>
-    </header>
+    <div class="container page-top">
+        <header class="header page-header-nav">
+            <div class="brand"><div class="brand-icon"><i class="fa-solid fa-chart-pie"></i></div><div><h1>Mes statistiques</h1><p>Ton activité NSI Hub, conservée sur cet appareil.</p></div></div>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
+                <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
+                <a href="notebooks.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Notebook</a>
+                <a href="jeux.html" class="nav-link"><i class="fa-solid fa-gamepad"></i> Quiz &amp; Jeux</a>
+                <a href="dico.html" class="nav-link"><i class="fa-solid fa-book"></i> Dico</a>
+                <a href="statistiques.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-chart-pie"></i> Statistiques</a>
+                <a href="parametres.html" class="nav-link"><i class="fa-solid fa-gear"></i> Paramètres</a>
+            </nav>
+        </header>
+    </div>
     <main class="stats-page">
         <p id="activity-summary" class="activity-summary" aria-live="polite">Tes statistiques apparaîtront ici au fil de ton utilisation.</p>
         <section class="stats-section"><h2>Statistiques générales</h2><div class="stats-grid">
