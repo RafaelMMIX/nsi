@@ -9,6 +9,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
+    <script src="preferences.js"></script>
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <link rel="stylesheet" href="theme-light.css">
 </head>
 
 
@@ -24,19 +26,17 @@
 
     <main class="container">
 
-        <header>
-
-            <a href="index.html" class="back-button">
-                <i class="fa-solid fa-arrow-left"></i>
-                Retour à l'accueil
-            </a>
-
-            <h1>🤖 Prompts utiles</h1>
-
-            <p>
-                Des prompts prêts à utiliser pour la NSI, ajoute juste ton code.
-            </p>
-
+        <header class="header page-header-nav">
+            <div class="brand"><div class="brand-icon"><i class="fa-solid fa-robot"></i></div><div><h1>Prompts utiles</h1><p>Des prompts prêts à utiliser pour la NSI, ajoute juste ton code.</p></div></div>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
+                <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
+                <a href="notebooks.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Notebook</a>
+                <a href="jeux.html" class="nav-link"><i class="fa-solid fa-gamepad"></i> Quiz &amp; Jeux</a>
+                <a href="dico.html" class="nav-link"><i class="fa-solid fa-book"></i> Dico</a>
+                <a href="statistiques.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Statistiques</a>
+                <a href="parametres.html" class="nav-link"><i class="fa-solid fa-gear"></i> Paramètres</a>
+            </nav>
         </header>
 
 

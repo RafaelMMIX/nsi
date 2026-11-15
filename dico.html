@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="preferences.js"></script>
 
     <title>Dictionnaire NSI | NSI Hub</title>
 
@@ -16,17 +17,24 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
+    <link rel="stylesheet" href="theme-light.css">
 </head>
 
 <body>
 
 
-    <a href="index.html" class="back-button">
-        <i class="fa-solid fa-arrow-left"></i>
-        Retour à l'accueil
-    </a>
 
     <main class="dico-page">
+        <nav class="main-nav dico-main-nav" aria-label="Navigation principale">
+            <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
+            <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
+            <a href="notebooks.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Notebook</a>
+            <a href="jeux.html" class="nav-link"><i class="fa-solid fa-gamepad"></i> Quiz &amp; Jeux</a>
+            <a href="dico.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-book"></i> Dico</a>
+            <a href="statistiques.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Statistiques</a>
+            <a href="parametres.html" class="nav-link"><i class="fa-solid fa-gear"></i> Paramètres</a>
+        </nav>
+
         <section class="dico-header">
 
             <div class="dico-icon">

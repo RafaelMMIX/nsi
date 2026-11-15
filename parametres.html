@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="preferences.js"></script>
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
@@ -15,23 +16,25 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
+    <link rel="stylesheet" href="theme-light.css">
 </head>
 
 <body>
 
-    <header class="page-header">
-
-        <div>
-            <h1>⚙️ Paramètres</h1>
-            <p>Personnalise ton expérience NSI Hub.</p>
-        </div>
-
-        <a href="index.html" class="back-button">
-            <i class="fa-solid fa-arrow-left"></i>
-            Accueil
-        </a>
-
-    </header>
+    <div class="container page-top">
+        <header class="header page-header-nav">
+            <div class="brand"><div class="brand-icon"><i class="fa-solid fa-gear"></i></div><div><h1>Paramètres</h1><p>Personnalise ton expérience NSI Hub.</p></div></div>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
+                <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
+                <a href="notebooks.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Notebook</a>
+                <a href="jeux.html" class="nav-link"><i class="fa-solid fa-gamepad"></i> Quiz &amp; Jeux</a>
+                <a href="dico.html" class="nav-link"><i class="fa-solid fa-book"></i> Dico</a>
+                <a href="statistiques.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Statistiques</a>
+                <a href="parametres.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-gear"></i> Paramètres</a>
+            </nav>
+        </header>
+    </div>
 
 
     <main class="settings-page">
@@ -139,25 +142,21 @@
             </div>
 
 
-            <div class="settings-card">
-
+            <div class="settings-card theme-card">
                 <div class="setting-info">
-
                     <div class="setting-icon">
-                        <i class="fa-solid fa-moon"></i>
+                        <i class="fa-solid fa-circle-half-stroke"></i>
                     </div>
-
                     <div>
                         <h3>Thème</h3>
-                        <p>Sombre</p>
+                        <p id="theme-description">Sombre</p>
                     </div>
-
                 </div>
-
-                <span class="setting-badge">
-                    Actuel
-                </span>
-
+                <div class="theme-choice" role="radiogroup" aria-label="Thème du site">
+                    <button type="button" role="radio" data-theme="sombre"><i class="fa-solid fa-moon"></i> Sombre</button>
+                    <button type="button" role="radio" data-theme="clair"><i class="fa-solid fa-sun"></i> Clair</button>
+                    <button type="button" role="radio" data-theme="auto"><i class="fa-solid fa-display"></i> Auto</button>
+                </div>
             </div>
 
 
@@ -171,7 +170,7 @@
 
                     <div>
                         <h3>Animations</h3>
-                        <p>Animations de l'interface</p>
+                        <p id="animations-description">Transitions, effets et confettis de l'interface</p>
                     </div>
 
                 </div>
@@ -316,6 +315,28 @@
                 </div>
             </div>
 
+            <div class="storage-card" id="storage-card">
+                <div class="storage-head">
+                    <div class="setting-info">
+                        <div class="setting-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                        <div>
+                            <h3>Espace utilisé</h3>
+                            <p id="storage-summary">Calcul…</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="storage-bar" id="storage-bar" role="img" aria-label="Répartition de l'espace utilisé"></div>
+                <ul class="storage-legend" id="storage-legend"></ul>
+                <details class="storage-details" id="storage-details">
+                    <summary>Détail par notebook</summary>
+                    <ul id="storage-notebooks"></ul>
+                </details>
+                <p class="storage-note">
+                    Le navigateur accorde environ 5 Mo à chaque site. Cet espace est partagé avec les autres
+                    pages hébergées sur <code>rafaelmmix.github.io</code> (comme Booster perso).
+                </p>
+            </div>
+
             <div class="settings-card">
                 <div class="setting-info">
                     <div class="setting-icon"><i class="fa-solid fa-box-archive"></i></div>
@@ -343,8 +364,7 @@
                     <div>
                         <h3>Effacer les données locales</h3>
                         <p>
-                            Supprime les favoris, notebooks,
-                            préférences et autres données locales.
+                            Supprime les favoris, notebooks, statistiques, préférences et autres données de NSI Hub. Les données des autres sites (comme Booster perso) ne sont pas touchées.
                         </p>
                     </div>
 

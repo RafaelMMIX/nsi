@@ -1,5 +1,41 @@
 const changelog = [
     {
+        version: "1.4.0",
+        date: "15 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Thème clair",
+                description: "NSI Hub existe maintenant en clair. Dans Paramètres, choisis Sombre, Clair ou Auto (le site suit alors le réglage de ton appareil). Le choix s'applique tout de suite sur toutes les pages, même dans les autres onglets."
+            },
+            {
+                type: "bug",
+                title: "« Effacer les données » ne touche plus aux autres sites",
+                description: "Le bouton vidait tout le stockage du navigateur, y compris celui des autres sites hébergés à la même adresse, comme Booster perso. Il ne supprime plus que les données de NSI Hub."
+            },
+            {
+                type: "bug",
+                title: "L'interrupteur Animations fonctionne",
+                description: "Il enregistrait le choix sans l'appliquer. Désactivé, il coupe maintenant les transitions, les effets, les confettis et raccourcit l'écran de chargement sur tout le site."
+            },
+            {
+                type: "new",
+                title: "Espace utilisé",
+                description: "Les Paramètres montrent la place occupée par NSI Hub (notebooks, bases SQL, statistiques…) et par les autres sites, avec le détail par notebook et un bouton pour remettre la base d'un notebook à son état d'origine."
+            },
+            {
+                type: "improved",
+                title: "Même menu sur toutes les pages",
+                description: "Paramètres, Outils, Prompts, Dico, Statistiques, Changelog et À propos utilisent maintenant le même en-tête et le même menu que le reste du site."
+            },
+            {
+                type: "improved",
+                title: "Petites améliorations",
+                description: "La touche Entrée enregistre le prénom, et la carte Prénom ne se chevauche plus sur téléphone."
+            }
+        ]
+    },
+    {
         version: "1.3.1",
         date: "14 novembre 2026",
         changes: [

@@ -204,7 +204,7 @@ function animateCounter(counter) {
     const target = Number(counter.dataset.target);
     const suffix = counter.dataset.suffix || "";
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.nsiPreferences?.reducedMotion() ?? window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         counter.textContent = `${target}${suffix}`;
         return;
     }

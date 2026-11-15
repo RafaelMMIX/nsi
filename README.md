@@ -254,6 +254,36 @@ Réservé au profil Professeur : horloge, plein écran, raccourcis clavier, tail
 
 ---
 
+# ⚙️ Paramètres
+
+- **Thème** : sombre, clair ou automatique (suit le réglage de l'appareil)
+- **Animations** : peuvent être coupées sur tout le site (elles sont aussi réduites si l'appareil le demande)
+- **Profil** : niveau et prénom
+- **Espace utilisé** : place occupée par NSI Hub (notebooks, bases SQL, statistiques…) et par les autres sites du domaine, détail par notebook
+- **Sauvegarde / restauration** en JSON, et effacement des données de NSI Hub
+
+```text
+nsiTheme        sombre | clair | auto
+nsiAnimations   false pour couper les animations
+```
+
+`preferences.js` est chargé dans le `<head>` de chaque page pour appliquer le thème sans clignotement.
+
+## 🎨 Thème clair
+
+Le thème sombre reste la référence. `theme-light.css` est **généré** par `scripts/theme-clair.py`, qui lit toutes les feuilles de style et calcule l'équivalent clair de chaque couleur. Après une modification des couleurs dans un fichier `.css` :
+
+```bash
+pip install tinycss2
+python3 scripts/theme-clair.py
+```
+
+Les retouches manuelles se font dans la section `MANUEL` du script.
+
+---
+
 # 🔒 Données
 
 NSI Hub fonctionne entièrement dans le navigateur et est hébergé sur GitHub Pages. Les favoris, le mémo, les notebooks, la progression et les statistiques sont stockés dans le `localStorage` : rien n'est envoyé à un serveur.
+
+Toutes les clés de NSI Hub commencent par `nsi`. Le domaine `rafaelmmix.github.io` étant partagé avec d'autres sites (comme Booster perso), NSI Hub ne touche jamais aux autres clés, même quand on efface ses données.
