@@ -271,6 +271,23 @@ Réservé au profil Professeur : horloge, plein écran, raccourcis clavier, tail
 
 ---
 
+## 🔢 Numéros de version
+
+La version (dans `version.js`) s'écrit avec **4 chiffres** : `A.B.C.D`
+
+| Chiffre | Quand l'augmenter | Exemple |
+|---|---|---|
+| **A** | Refonte totale du site | 1.6.0.0 → **2**.0.0.0 |
+| **B** | Grande nouveauté très importante | 1.6.0.0 → 1.**7**.0.0 |
+| **C** | Nouvelle fonctionnalité | 1.6.0.0 → 1.6.**1**.0 |
+| **D** | Correction de bug ou petit ajustement | 1.6.0.0 → 1.6.0.**1** |
+
+Quand un chiffre augmente, tous ceux à sa droite repartent à 0 (1.6.2.3 → 1.7.0.0). À chaque nouvelle version, ajouter une entrée en haut de `changelog.js` avec le même numéro.
+
+Les versions jusqu'à 1.6.0 ont été numérotées avec 3 chiffres (1.6.0 = 1.6.0.0).
+
+---
+
 # ⚙️ Paramètres
 
 - **Thème** : sombre, clair ou automatique (suit le réglage de l'appareil)
