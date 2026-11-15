@@ -218,7 +218,9 @@ resetDevTestsButton?.addEventListener("click", () => {
     [
         "nsiEntPopupDate",
         "nsiSharePopupDate",
-        "nsiLastWelcome"
+        "nsiLastWelcome",
+        "nsiLastWelcomeMessage",
+        "nsiAnnouncementSeen"
     ].forEach(key => localStorage.removeItem(key));
 
     devTestStatus.textContent =

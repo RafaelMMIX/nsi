@@ -32,4 +32,12 @@ const announcements = [
         buttonUrl: "https://rafaelmmix.github.io/custom-tcg/tcg-cartes.html",
         date: "2026-11-10"
     },
+    {
+        id: "annonce-v1-3-v1-4",
+        title: "NSI Hub 1.3 et 1.4 sont disponibles !",
+        message: "Deux grosses mises à jour viennent d'arriver. Avec la version 1.3, les notebooks deviennent complets : cellules Python, SQL et texte au même endroit, une base de données d'exemple « Lycée », un éditeur de code avec coloration, des erreurs expliquées en français et des tutos pour apprendre le SQL pas à pas. Avec la version 1.4, NSI Hub passe en thème clair si tu le souhaites (ou suit ton appareil), les animations peuvent être coupées et les Paramètres montrent la place utilisée par tes données. Toutes les pages ont aussi le même menu. Bonne découverte !",
+        buttonText: "Voir les nouveautés",
+        buttonUrl: "changelog.html",
+        date: "2026-11-15"
+    },
 ];

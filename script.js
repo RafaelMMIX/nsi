@@ -304,43 +304,66 @@ function updateFavoritesSection() {
 updateFavorites();
 updateFavoritesSection();
 
-document.addEventListener("DOMContentLoaded", () => {
+/* ==============================
+   ANNONCE IMPORTANTE
+   Elle s'ouvre une seule fois : une fois fermée (ou son bouton cliqué),
+   elle ne revient qu'à la publication d'une nouvelle annonce.
+   L'onglet « Info importante » permet de la rouvrir à tout moment.
+   En mode développeur, elle s'affiche à chaque visite.
+============================== */
 
+(() => {
     const announcement = document.getElementById("important-announcement");
     const announcementClose = document.getElementById("announcement-close");
     const announcementTab = document.getElementById("announcement-tab");
+    const announcementButton = document.getElementById("announcement-button");
+    const currentAnnouncement = typeof announcements !== "undefined" ? announcements[announcements.length - 1] : null;
 
-    if (!announcement || !announcementClose || !announcementTab) {
+    if (!announcement || !announcementClose || !announcementTab || !currentAnnouncement) {
+        announcement?.classList.add("hidden");
+        announcementTab?.classList.add("hidden");
         return;
     }
 
-    // Fermer l'annonce
-    announcementClose.addEventListener("click", () => {
-        announcement.classList.add("hidden");
-        announcementTab.classList.remove("hidden");
-    });
+    document.getElementById("announcement-title").textContent = currentAnnouncement.title;
+    document.getElementById("announcement-message").textContent = currentAnnouncement.message;
+    document.getElementById("announcement-button-text").textContent = currentAnnouncement.buttonText;
+    announcementButton.href = currentAnnouncement.buttonUrl;
 
-    // Rouvrir l'annonce
-    announcementTab.addEventListener("click", () => {
+    const SEEN_KEY = "nsiAnnouncementSeen";
+    const devMode = localStorage.getItem("nsiDevMode") === "true";
+    const alreadySeen = localStorage.getItem(SEEN_KEY) === currentAnnouncement.id;
+
+    function markSeen() {
+        localStorage.setItem(SEEN_KEY, currentAnnouncement.id);
+    }
+
+    function openAnnouncement() {
         announcement.classList.remove("hidden");
         announcementTab.classList.add("hidden");
+    }
+
+    function closeAnnouncement() {
+        announcement.classList.add("hidden");
+        announcementTab.classList.remove("hidden");
+        markSeen();
+    }
+
+    if (alreadySeen && !devMode) {
+        announcement.classList.add("hidden");
+        announcementTab.classList.remove("hidden");
+    } else {
+        openAnnouncement();
+    }
+
+    announcementClose.addEventListener("click", closeAnnouncement);
+    announcementTab.addEventListener("click", openAnnouncement);
+    announcementButton.addEventListener("click", markSeen);
+    announcement.querySelector(".announcement-overlay")?.addEventListener("click", closeAnnouncement);
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !announcement.classList.contains("hidden")) closeAnnouncement();
     });
-
-});
-
-const currentAnnouncement = announcements[announcements.length - 1];
-
-document.getElementById("announcement-title").textContent =
-    currentAnnouncement.title;
-
-document.getElementById("announcement-message").textContent =
-    currentAnnouncement.message;
-
-document.getElementById("announcement-button-text").textContent =
-    currentAnnouncement.buttonText;
-
-document.getElementById("announcement-button").href =
-    currentAnnouncement.buttonUrl;
+})();
 
 /*
  * =========================================================
