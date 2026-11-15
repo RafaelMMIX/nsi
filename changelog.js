@@ -1,5 +1,26 @@
 const changelog = [
     {
+        version: "1.4.1",
+        date: "15 novembre 2026",
+        changes: [
+            {
+                type: "improved",
+                title: "Messages de bienvenue variés",
+                description: "Le message de bienvenue avec ton prénom change à chaque fois : une vingtaine de variantes, selon le moment de la journée et le jour de la semaine, sans jamais répéter le même deux fois de suite."
+            },
+            {
+                type: "improved",
+                title: "L'annonce ne s'affiche plus à chaque visite",
+                description: "Une annonce s'ouvre une seule fois. Après l'avoir fermée, elle reste accessible avec l'onglet « Info importante », et ne revient d'elle-même qu'à la publication d'une nouvelle annonce. Elle se ferme aussi avec Échap ou en cliquant à côté."
+            },
+            {
+                type: "new",
+                title: "Annonce des versions 1.3 et 1.4",
+                description: "L'annonce de l'accueil présente les nouveautés des versions 1.3 (notebooks Python, SQL et texte) et 1.4 (thème clair, paramètres)."
+            }
+        ]
+    },
+    {
         version: "1.4.0",
         date: "15 novembre 2026",
         changes: [

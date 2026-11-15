@@ -249,7 +249,7 @@ Réservé au profil Professeur : horloge, plein écran, raccourcis clavier, tail
 
 # 📢 Annonces et nouveautés
 
-- Les annonces importantes s'affichent sur l'accueil, et toutes les annonces sont regroupées sur une page dédiée.
+- Les annonces importantes s'ouvrent une seule fois sur l'accueil (clé `nsiAnnouncementSeen`), restent accessibles avec l'onglet « Info importante », et sont toutes regroupées sur une page dédiée. Une nouvelle annonce s'ajoute à la fin de `announcements.js` avec un `id` unique.
 - La page **Nouveautés** (changelog) liste les changements de chaque version.
 
 ---
