@@ -125,6 +125,120 @@
         </section>
 
 
+        <!-- COURS DE NSI -->
+
+        <section class="settings-section" id="horaires">
+
+            <div class="settings-section-header">
+                <div class="settings-section-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div>
+                    <h2>Mes cours de NSI</h2>
+                    <p>Indique quand tu as NSI pour recevoir des rappels avant chaque cours.</p>
+                </div>
+            </div>
+
+            <div class="horaires-card">
+                <div class="horaires-head">
+                    <div class="setting-info">
+                        <div class="setting-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <h3>Emploi du temps</h3>
+                            <p id="horaires-next">Aucun créneau pour l'instant.</p>
+                        </div>
+                    </div>
+                    <span class="horaires-saved" id="horaires-saved" role="status" aria-live="polite"></span>
+                </div>
+
+                <div class="horaires-slots" id="horaires-slots"></div>
+
+                <button type="button" class="setting-button horaires-add" id="horaires-add">
+                    <i class="fa-solid fa-plus"></i> Ajouter un créneau
+                </button>
+
+                <div class="horaires-option" id="horaires-week-row" hidden>
+                    <span id="horaires-week-label">La semaine en cours est une semaine :</span>
+                    <div class="theme-choice" role="radiogroup" aria-label="Type de la semaine en cours">
+                        <button type="button" role="radio" data-week="A">Semaine A</button>
+                        <button type="button" role="radio" data-week="B">Semaine B</button>
+                    </div>
+                </div>
+
+                <div class="horaires-option">
+                    <label for="horaires-zone">Pas de rappel pendant les vacances de la</label>
+                    <select id="horaires-zone" class="setting-input horaires-select">
+                        <option value="aucune">Ne pas tenir compte des vacances</option>
+                        <option value="A">Zone A</option>
+                        <option value="B">Zone B</option>
+                        <option value="C">Zone C</option>
+                    </select>
+                </div>
+                <p class="horaires-hint" id="horaires-zone-hint"></p>
+            </div>
+
+            <div class="horaires-card">
+                <div class="setting-info">
+                    <div class="setting-icon"><i class="fa-solid fa-bell"></i></div>
+                    <div>
+                        <h3>Rappels</h3>
+                        <p>Quand veux-tu être prévenu ?</p>
+                    </div>
+                </div>
+                <div class="horaires-chips" id="horaires-reminders">
+                    <label class="horaires-chip">
+                        <input type="checkbox" id="horaires-eve">
+                        <span>La veille à</span>
+                        <input type="time" id="horaires-eve-time" class="horaires-time" value="19:00" aria-label="Heure du rappel la veille">
+                    </label>
+                </div>
+            </div>
+
+            <div class="horaires-card">
+                <div class="setting-info">
+                    <div class="setting-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div>
+                        <h3>Recevoir les rappels</h3>
+                        <p>Un site web ne peut pas envoyer de notification quand il est fermé : le plus fiable est d'ajouter tes cours à l'agenda de ton téléphone.</p>
+                    </div>
+                </div>
+
+                <div class="horaires-method recommended">
+                    <div>
+                        <h4><i class="fa-solid fa-calendar-plus"></i> Dans l'agenda du téléphone <span class="setting-badge">Recommandé</span></h4>
+                        <p>Tes cours et les rappels choisis sont ajoutés à ton agenda : les rappels arrivent même quand NSI Hub est fermé.</p>
+                    </div>
+                    <button type="button" class="setting-button primary" id="horaires-ics"><i class="fa-solid fa-download"></i> Ajouter à mon agenda</button>
+                    <p class="horaires-hint" id="horaires-ics-status" role="status" aria-live="polite"></p>
+                    <details class="horaires-help">
+                        <summary>Comment l'ajouter à mon agenda ?</summary>
+                        <ul>
+                            <li><strong>iPhone :</strong> ouvre le fichier téléchargé (dans Téléchargements ou l'app Fichiers), puis touche « Ajouter tout ».</li>
+                            <li><strong>Android (Google Agenda) :</strong> l'appli ne sait pas importer de fichier. Sur un ordinateur, va sur calendar.google.com → Paramètres → Importer et exporter, puis choisis le fichier. Si les rappels n'apparaissent pas, active les notifications de cet agenda et importe le fichier une deuxième fois.</li>
+                            <li><strong>Autres agendas</strong> (Samsung Agenda, Outlook…) : ouvre simplement le fichier.</li>
+                            <li>Si tu changes tes horaires, télécharge et importe le nouveau fichier : les cours déjà ajoutés sont mis à jour dans la plupart des agendas.</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="horaires-method">
+                    <div>
+                        <h4><i class="fa-solid fa-bell"></i> Notifications de NSI Hub</h4>
+                        <p id="horaires-notif-desc">Elles ne partent que si une page de NSI Hub est ouverte (même en arrière-plan).</p>
+                    </div>
+                    <div class="horaires-method-actions">
+                        <button type="button" class="setting-button" id="horaires-test" hidden>Tester</button>
+                        <label class="settings-switch">
+                            <input type="checkbox" id="horaires-notif" aria-label="Notifications de NSI Hub">
+                            <span class="settings-switch-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
         <!-- APPARENCE -->
 
         <section class="settings-section">
@@ -445,6 +559,8 @@
 
     <script src="announcements.js"></script>
     <script src="parametres.js"></script>
+    <script src="horaires.js"></script>
+    <script src="parametres-horaires.js"></script>
     <script src="parametres-dev.js"></script>
 
     <script src="statistiques.js"></script>

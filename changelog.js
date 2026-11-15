@@ -1,5 +1,26 @@
 const changelog = [
     {
+        version: "1.6.2.0",
+        date: "15 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Mes cours de NSI",
+                description: "Dans les Paramètres, indique tes créneaux de NSI : jour, horaires, salle, et même semaine A ou B. NSI Hub te montre quand a lieu ton prochain cours."
+            },
+            {
+                type: "new",
+                title: "Rappels avant les cours",
+                description: "Choisis quand être prévenu : la veille à 19 h (ou à l'heure de ton choix), 1 h, 30 min, 15 min, 10 min ou 5 min avant. Les rappels sont coupés pendant les vacances de ta zone et les jours fériés."
+            },
+            {
+                type: "new",
+                title: "Dans l'agenda de ton téléphone",
+                description: "Un bouton ajoute tes cours et tes rappels à l'agenda de ton téléphone : les rappels arrivent même quand NSI Hub est fermé. Tu peux aussi activer les notifications du site, qui marchent quand NSI Hub est ouvert."
+            }
+        ]
+    },
+    {
         version: "1.6.1.0",
         date: "15 novembre 2026",
         changes: [
