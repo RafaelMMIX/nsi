@@ -153,7 +153,14 @@ Une section dédiée aux assistants IA permet d'accéder rapidement à plusieurs
 - Claude
 - Mistral
 
-Une page dédiée aux **prompts utiles** permet également de conserver et retrouver des instructions pratiques pour différents usages.
+Une page dédiée aux **prompts utiles** propose une trentaine de prompts pour apprendre avec une IA, rangés en 8 thèmes : comprendre, coder et déboguer, s'entraîner et réviser, SQL, web, projets, bac et oral, et une partie pour les profs. La plupart demandent à l'IA de guider l'élève plutôt que de donner la réponse.
+
+- Recherche (sans tenir compte des accents) et filtres par thème
+- Favoris (`nsiPromptFavoris`)
+- Cases à remplir (code, erreur, notion…) insérées dans le prompt, avec aperçu ; le niveau est prérempli selon le profil
+- Lien direct vers un prompt : `prompt.html#prompt-<id>`
+
+Les prompts sont dans `prompts-data.js` : pour en ajouter un, copier un bloc et l'adapter (chaque `[CHAMP]` du texte devient une case à remplir).
 
 ---
 

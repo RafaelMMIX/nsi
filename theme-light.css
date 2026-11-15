@@ -996,6 +996,18 @@ html.theme-light .unavailable-notice {
     box-shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
 }
 
+html.theme-light .prompt-filter.active span {
+    background: rgba(15, 23, 42, 0.18);
+}
+
+html.theme-light .prompt-filter.active .fa-star {
+    color: #1f1f1f;
+}
+
+html.theme-light .copy-button.primary:hover {
+    color: #1f1f1f;
+}
+
 /* ==============================
    RETOUCHES MANUELLES
 ============================== */

@@ -1,5 +1,26 @@
 const changelog = [
     {
+        version: "1.6.0",
+        date: "15 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "31 prompts au lieu de 4",
+                description: "La page Prompts propose maintenant 31 prompts rangés en 8 thèmes : comprendre, coder et déboguer, s'entraîner et réviser, SQL, web, projets, bac et oral, et une partie pour les profs. La plupart demandent à l'IA de te guider plutôt que de te donner la réponse."
+            },
+            {
+                type: "new",
+                title: "Prompts à compléter",
+                description: "Clique sur « Utiliser » : remplis les cases (ton code, ton erreur, la notion…) et elles sont insérées dans le prompt, avec un aperçu avant de copier. Ton niveau est prérempli selon ton profil."
+            },
+            {
+                type: "new",
+                title: "Recherche, thèmes et favoris",
+                description: "Recherche un prompt, filtre par thème et ajoute tes prompts préférés en favoris pour les retrouver en un clic. Un encadré rappelle aussi comment bien utiliser l'IA."
+            }
+        ]
+    },
+    {
         version: "1.5.1",
         date: "15 novembre 2026",
         changes: [
