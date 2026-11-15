@@ -28,7 +28,7 @@
     <main class="container">
 
         <header class="header page-header-nav">
-            <div class="brand"><div class="brand-icon"><i class="fa-solid fa-robot"></i></div><div><h1>Prompts utiles</h1><p>Des prompts prêts à utiliser pour la NSI, ajoute juste ton code.</p></div></div>
+            <div class="brand"><div class="brand-icon"><i class="fa-solid fa-robot"></i></div><div><h1>Prompts utiles</h1><p>Des prompts prêts à utiliser avec une IA pour apprendre la NSI.</p></div></div>
             <nav class="main-nav" aria-label="Navigation principale">
                 <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
                 <a href="outils.html" class="nav-link"><i class="fa-solid fa-screwdriver-wrench"></i> Outils</a>
@@ -41,124 +41,38 @@
         </header>
 
 
-        <section class="prompt-list">
-
-            <!-- PROMPT 1 -->
-
-            <article class="prompt-card">
-
-                <div class="prompt-card-header">
-
-                    <div>
-                        <h2>🐛 Comprendre une erreur</h2>
-
-                        <p>
-                            Comprendre une erreur sans obtenir
-                            directement la solution.
-                        </p>
-                    </div>
-
-                    <button
-                        class="copy-button"
-                        data-prompt="Je suis en NSI et je rencontre cette erreur : [COLLE TON ERREUR]. Explique-moi ce que signifie cette erreur, pourquoi elle apparaît et donne-moi des pistes pour la corriger sans me donner directement la solution complète."
-                    >
-                        <i class="fa-regular fa-copy"></i>
-                        Copier
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- PROMPT 2 -->
-
-            <article class="prompt-card">
-
-                <div class="prompt-card-header">
-
-                    <div>
-                        <h2>🧑‍🏫 Me guider sans donner la réponse</h2>
-
-                        <p>
-                            Idéal pour travailler réellement
-                            au lieu de laisser l'IA faire l'exercice.
-                        </p>
-                    </div>
-
-                    <button
-                        class="copy-button"
-                        data-prompt="Agis comme mon professeur de NSI. Je vais te donner un exercice. Ne me donne pas directement la réponse. Aide-moi étape par étape, pose-moi des questions et donne-moi des indices lorsque je bloque."
-                    >
-                        <i class="fa-regular fa-copy"></i>
-                        Copier
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- PROMPT 3 -->
-
-            <article class="prompt-card">
-
-                <div class="prompt-card-header">
-
-                    <div>
-                        <h2>🔍 Analyser mon code</h2>
-
-                        <p>
-                            Comprendre ce qui fonctionne ou non
-                            dans ton programme.
-                        </p>
-                    </div>
-
-                    <button
-                        class="copy-button"
-                        data-prompt="Analyse mon code Python ci-dessous. Ne le réécris pas entièrement. Explique-moi ce qui fonctionne, les erreurs éventuelles, les mauvaises pratiques et comment je pourrais améliorer mon code. Je veux comprendre mes erreurs."
-                    >
-                        <i class="fa-regular fa-copy"></i>
-                        Copier
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- PROMPT 4 -->
-
-            <article class="prompt-card">
-
-                <div class="prompt-card-header">
-
-                    <div>
-                        <h2>📚 Comprendre un cours</h2>
-
-                        <p>
-                            Transformer une notion compliquée
-                            en explication simple.
-                        </p>
-                    </div>
-
-                    <button
-                        class="copy-button"
-                        data-prompt="Explique-moi cette notion de NSI : [NOTION]. Commence par une explication simple, puis donne un exemple concret et enfin un exemple en Python si c'est pertinent. Termine par les trois choses essentielles à retenir."
-                    >
-                        <i class="fa-regular fa-copy"></i>
-                        Copier
-                    </button>
-
-                </div>
-
-            </article>
-
+        <section class="prompt-tips" aria-label="Bien utiliser l'IA">
+            <div class="prompt-tips-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <div>
+                <strong>Bien utiliser l'IA</strong>
+                <ul>
+                    <li>L'IA t'aide à comprendre, mais c'est toi qui dois apprendre : la plupart de ces prompts lui demandent de te guider sans donner la réponse.</li>
+                    <li>Vérifie toujours ce qu'elle dit : elle peut se tromper avec beaucoup d'assurance. Teste le code qu'elle propose.</li>
+                    <li>Ne colle jamais d'informations personnelles (nom complet, adresse, mots de passe…) et respecte les consignes de ton professeur.</li>
+                </ul>
+            </div>
         </section>
+
+        <div class="prompt-toolbar">
+            <label class="prompt-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" id="prompt-search" placeholder="Rechercher un prompt (erreur, SQL, bac…)" aria-label="Rechercher un prompt">
+            </label>
+            <span class="prompt-count" id="prompt-count"></span>
+        </div>
+
+        <nav class="prompt-filters" id="prompt-filters" aria-label="Filtrer les prompts par thème"></nav>
+
+        <section class="prompt-list" id="prompt-list" aria-live="polite"></section>
+
+        <p class="prompt-footer">
+            Une idée de prompt utile ? <a href="about.html">Propose-la</a> !
+        </p>
 
     </main>
 
 
+    <script src="prompts-data.js"></script>
     <script src="prompt.js"></script>
 
     <script src="statistiques.js"></script>
