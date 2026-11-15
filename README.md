@@ -84,6 +84,16 @@ NSI Hub permet d'accéder rapidement aux différents services utilisés au lycé
 
 Certaines ressources nécessitant une authentification peuvent afficher un rappel invitant l'utilisateur à se connecter préalablement à l'ENT.
 
+### Ressource indisponible
+
+Pour griser une carte quand un service est en panne, ajouter l'attribut `data-indisponible` sur son `<a class="card">` avec le message à afficher :
+
+```html
+data-indisponible="La messagerie du lycée est momentanément indisponible."
+```
+
+La carte devient grise avec un badge « Indisponible », son lien est bloqué et un clic affiche le message (l'étoile des favoris reste utilisable). Il suffit de retirer l'attribut (et le `title`) quand le service revient. C'est le cas actuellement pour **Mails**.
+
 ---
 
 # 🔎 Recherche

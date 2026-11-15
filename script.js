@@ -304,6 +304,48 @@ function updateFavoritesSection() {
 updateFavorites();
 updateFavoritesSection();
 
+
+/* ==============================
+   RESSOURCES INDISPONIBLES
+   Une carte avec l'attribut data-indisponible="message" est grisée et
+   son lien est bloqué. Retirer l'attribut quand le service revient.
+============================== */
+
+(() => {
+    let notice = null;
+    let noticeTimer = null;
+
+    function showUnavailable(card) {
+        if (!notice) {
+            notice = document.createElement("div");
+            notice.className = "unavailable-notice";
+            notice.setAttribute("role", "status");
+            document.body.appendChild(notice);
+        }
+        const title = card.querySelector("h3")?.textContent.trim() || "Ce service";
+        notice.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> <span></span>';
+        notice.querySelector("span").textContent = card.dataset.indisponible || `${title} est momentanément indisponible.`;
+        notice.classList.add("visible");
+        clearTimeout(noticeTimer);
+        noticeTimer = setTimeout(() => notice.classList.remove("visible"), 4000);
+        card.classList.remove("unavailable-shake");
+        void card.offsetWidth;
+        card.classList.add("unavailable-shake");
+    }
+
+    function block(event) {
+        const card = event.target.closest(".card[data-indisponible]");
+        if (!card || event.target.closest(".favorite-button")) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        if (event.type === "click") showUnavailable(card);
+    }
+
+    // Phase de capture : passe avant le suivi des statistiques et le rappel ENT
+    document.addEventListener("click", block, true);
+    document.addEventListener("auxclick", block, true);
+})();
+
 /* ==============================
    ANNONCE IMPORTANTE
    Elle s'ouvre une seule fois : une fois fermée (ou son bouton cliqué),

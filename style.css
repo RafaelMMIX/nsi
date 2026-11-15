@@ -6011,3 +6011,82 @@ html.nsi-dev-outlines body *:not(.nsi-devbar):not(.nsi-devbar *) {
         width: 100%;
     }
 }
+
+
+/* ==============================
+   RESSOURCES INDISPONIBLES (data-indisponible)
+============================== */
+
+.card[data-indisponible] {
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+/* L'opacité est appliquée au contenu : l'animation d'apparition des cartes fixe celle de la carte */
+.card[data-indisponible] .card-icon,
+.card[data-indisponible] .card-content {
+    opacity: 0.5;
+}
+
+.card[data-indisponible]:hover {
+    transform: none;
+    border-color: var(--border);
+    box-shadow: none;
+}
+
+.card[data-indisponible] .open-icon {
+    visibility: hidden;
+}
+
+.card[data-indisponible] .card-content h3::after {
+    content: "Indisponible";
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.card.unavailable-shake {
+    animation: unavailable-shake 0.35s ease;
+}
+
+@keyframes unavailable-shake {
+    20%, 60% { translate: -4px 0; }
+    40%, 80% { translate: 4px 0; }
+}
+
+.unavailable-notice {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: min(520px, calc(100vw - 32px));
+    padding: 12px 16px;
+    border: 1px solid rgba(249, 115, 22, 0.45);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 10px);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.unavailable-notice.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.unavailable-notice i {
+    color: var(--orange);
+}
