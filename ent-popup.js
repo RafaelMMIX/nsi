@@ -73,6 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    // Mode développeur : ?devPopup=ent ouvre le rappel ENT directement
+    if (devMode && new URLSearchParams(window.location.search).get("devPopup") === "ent") {
+        setTimeout(() => popup.classList.add("visible"), 300);
+    }
+
+
     popup.addEventListener("click", (event) => {
 
         if (event.target === popup) {

@@ -269,6 +269,17 @@ nsiAnimations   false pour couper les animations
 
 `preferences.js` est chargé dans le `<head>` de chaque page pour appliquer le thème sans clignotement.
 
+## 🧪 Mode développeur
+
+Activable dans Paramètres → Développement (`nsiDevMode`). `devtools.js`, chargé sur chaque page, ne fait rien tant qu'il est désactivé. Une fois actif :
+
+- **Barre DEV** en bas à gauche : infos (version, page, thème, profil, écran, stockage, erreurs), thème, animations, profil, contours des éléments, tests de l'accueil
+- **Journal des erreurs** (`nsiDevErreurs`) : erreurs JavaScript, promesses rejetées, fichiers introuvables, copiable
+- **Inspecteur du stockage** : voir, modifier, copier, supprimer les clés `nsi…`
+- **Tests** : profil en un clic, annonces, bienvenue, popups, erreur de test, données de démo (`nsiDevDemo`)
+
+Paramètres d'URL de l'accueil (mode développeur uniquement) : `?devAnnonce=<id>`, `?devWelcome=1`, `?devPopup=ent`, `?devPopup=share`, `?devConfetti=1`.
+
 ## 🎨 Thème clair
 
 Le thème sombre reste la référence. `theme-light.css` est **généré** par `scripts/theme-clair.py`, qui lit toutes les feuilles de style et calcule l'équivalent clair de chaque couleur. Après une modification des couleurs dans un fichier `.css` :

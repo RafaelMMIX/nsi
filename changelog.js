@@ -1,5 +1,31 @@
 const changelog = [
     {
+        version: "1.5.0",
+        date: "15 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Barre DEV sur chaque page",
+                description: "En mode développeur, une barre en bas à gauche affiche la version, la page, le thème, le profil, la taille de l'écran, le stockage et le nombre d'erreurs. Elle permet de changer de thème, de couper les animations, de changer de profil, d'afficher le contour de tous les éléments et de lancer les tests de l'accueil."
+            },
+            {
+                type: "new",
+                title: "Journal des erreurs",
+                description: "Les erreurs JavaScript, les promesses rejetées et les fichiers introuvables de toutes les pages sont enregistrés et listés dans les Paramètres, avec la page, la ligne et la pile d'appels. Le journal se copie en un clic pour signaler un bug."
+            },
+            {
+                type: "new",
+                title: "Inspecteur du stockage",
+                description: "Toutes les données de NSI Hub enregistrées dans le navigateur, avec leur type et leur taille. Chaque valeur peut être consultée, modifiée (le JSON est vérifié avant l'enregistrement), copiée ou supprimée."
+            },
+            {
+                type: "new",
+                title: "Plus de tests",
+                description: "Changer de profil en un clic, prévisualiser n'importe quelle annonce (sans la marquer comme vue), forcer le message de bienvenue, ouvrir le rappel ENT ou la popup de partage, provoquer une erreur de test, et générer des données de démo (notebooks, favoris, statistiques) qui se suppriment sans rien abîmer."
+            }
+        ]
+    },
+    {
         version: "1.4.1",
         date: "15 novembre 2026",
         changes: [

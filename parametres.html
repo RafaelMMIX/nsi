@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="preferences.js"></script>
+    <script src="devtools.js"></script>
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
@@ -249,8 +250,7 @@
             <strong>Mode développeur actif</strong>
 
             <p>
-                L'accueil s'ouvre directement, les écrans de test peuvent
-                être rejoués et les rappels sont affichés à chaque visite.
+                L'accueil s'ouvre directement, une barre « DEV » apparaît en bas à gauche de chaque page, les erreurs sont enregistrées dans le journal et les rappels sont affichés à chaque visite.
             </p>
         </div>
     </div>
@@ -277,6 +277,64 @@
                 </div>
 
                 <p class="dev-test-status" id="dev-test-status" aria-live="polite"></p>
+
+                <!-- TESTS -->
+                <div class="dev-block">
+                    <h4><i class="fa-solid fa-vial-circle-check"></i> Tests</h4>
+
+                    <div class="dev-row">
+                        <span class="dev-row-label">Profil</span>
+                        <div class="dev-segment" id="dev-profiles" role="radiogroup" aria-label="Changer de profil">
+                            <button type="button" data-level="snt">SNT</button>
+                            <button type="button" data-level="premiere">Première</button>
+                            <button type="button" data-level="terminale">Terminale</button>
+                            <button type="button" data-level="professeur">Professeur</button>
+                        </div>
+                    </div>
+
+                    <div class="dev-row">
+                        <label class="dev-row-label" for="dev-announcement">Annonce</label>
+                        <select id="dev-announcement" class="setting-input dev-select"></select>
+                        <a class="dev-action-button" id="dev-announcement-preview" href="index.html?devAnnonce=derniere"><i class="fa-solid fa-eye"></i> Prévisualiser</a>
+                    </div>
+
+                    <div class="dev-mode-actions">
+                        <a class="dev-action-button" href="index.html?devWelcome=1"><i class="fa-solid fa-hand-sparkles"></i> Message de bienvenue</a>
+                        <a class="dev-action-button" href="index.html?devPopup=ent"><i class="fa-solid fa-school"></i> Rappel ENT</a>
+                        <a class="dev-action-button" href="index.html?devPopup=share"><i class="fa-solid fa-share-nodes"></i> Popup de partage</a>
+                        <button class="dev-action-button secondary" id="dev-throw" type="button"><i class="fa-solid fa-bug"></i> Provoquer une erreur de test</button>
+                    </div>
+
+                    <div class="dev-row dev-demo">
+                        <span class="dev-row-label">Données de démo</span>
+                        <button class="dev-action-button" id="dev-demo-create" type="button"><i class="fa-solid fa-wand-magic-sparkles"></i> Générer</button>
+                        <button class="dev-action-button secondary" id="dev-demo-remove" type="button"><i class="fa-solid fa-broom"></i> Supprimer</button>
+                    </div>
+                    <p class="dev-hint" id="dev-demo-status">Ajoute des notebooks, des favoris et des statistiques fictives pour tester les pages. « Supprimer » remet tout comme avant.</p>
+                </div>
+
+                <!-- JOURNAL DES ERREURS -->
+                <div class="dev-block" id="dev-errors">
+                    <div class="dev-block-head">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Journal des erreurs <span class="dev-count" id="dev-errors-count">0</span></h4>
+                        <div class="dev-block-actions">
+                            <button class="setting-button small" id="dev-errors-copy" type="button"><i class="fa-regular fa-copy"></i> Copier</button>
+                            <button class="setting-button small" id="dev-errors-clear" type="button"><i class="fa-solid fa-trash"></i> Vider</button>
+                        </div>
+                    </div>
+                    <p class="dev-hint">Les erreurs JavaScript, les promesses rejetées et les fichiers introuvables de toutes les pages sont enregistrés tant que le mode développeur est actif.</p>
+                    <ul class="dev-errors-list" id="dev-errors-list"></ul>
+                </div>
+
+                <!-- INSPECTEUR DU STOCKAGE -->
+                <div class="dev-block" id="dev-storage">
+                    <div class="dev-block-head">
+                        <h4><i class="fa-solid fa-database"></i> Inspecteur du stockage <span class="dev-count" id="dev-storage-count">0</span></h4>
+                        <input type="search" id="dev-storage-search" class="setting-input dev-search" placeholder="Filtrer les clés…" aria-label="Filtrer les clés">
+                    </div>
+                    <p class="dev-hint">Les données de NSI Hub (clés qui commencent par <code>nsi</code>). Clique sur une clé pour voir ou modifier sa valeur. Les données des autres sites ne sont pas affichées.</p>
+                    <div class="dev-storage-list" id="dev-storage-list"></div>
+                </div>
             </div>
 
 </section>
@@ -385,7 +443,9 @@
     </main>
 
 
+    <script src="announcements.js"></script>
     <script src="parametres.js"></script>
+    <script src="parametres-dev.js"></script>
 
     <script src="statistiques.js"></script>
 </body>

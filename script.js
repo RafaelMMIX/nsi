@@ -317,7 +317,12 @@ updateFavoritesSection();
     const announcementClose = document.getElementById("announcement-close");
     const announcementTab = document.getElementById("announcement-tab");
     const announcementButton = document.getElementById("announcement-button");
-    const currentAnnouncement = typeof announcements !== "undefined" ? announcements[announcements.length - 1] : null;
+    const devMode = localStorage.getItem("nsiDevMode") === "true";
+    const list = typeof announcements !== "undefined" ? announcements : [];
+    // Mode développeur : ?devAnnonce=<id> (ou « derniere ») prévisualise une annonce sans la marquer comme vue
+    const previewId = devMode ? new URLSearchParams(window.location.search).get("devAnnonce") : null;
+    const preview = previewId ? (list.find(item => item.id === previewId) || list[list.length - 1]) : null;
+    const currentAnnouncement = preview || list[list.length - 1] || null;
 
     if (!announcement || !announcementClose || !announcementTab || !currentAnnouncement) {
         announcement?.classList.add("hidden");
@@ -331,10 +336,10 @@ updateFavoritesSection();
     announcementButton.href = currentAnnouncement.buttonUrl;
 
     const SEEN_KEY = "nsiAnnouncementSeen";
-    const devMode = localStorage.getItem("nsiDevMode") === "true";
     const alreadySeen = localStorage.getItem(SEEN_KEY) === currentAnnouncement.id;
 
     function markSeen() {
+        if (preview) return;
         localStorage.setItem(SEEN_KEY, currentAnnouncement.id);
     }
 
@@ -349,7 +354,7 @@ updateFavoritesSection();
         markSeen();
     }
 
-    if (alreadySeen && !devMode) {
+    if (alreadySeen && !devMode && !preview) {
         announcement.classList.add("hidden");
         announcementTab.classList.remove("hidden");
     } else {
