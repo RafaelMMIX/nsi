@@ -26,7 +26,7 @@ window.NSI_MODELES = [
   "cellules": [
    {
     "type": "markdown",
-    "content": "# Découvrir les notebooks 👋\n\nUn notebook est une suite de **cellules**. Il en existe trois sortes :\n\n- 🐍 **Python** : du code Python, exécuté directement dans ton navigateur ;\n- 🗄️ **SQL** : des requêtes sur une base de données SQLite ;\n- ¶ **Texte** : des explications mises en forme (comme celle-ci).\n\nPour exécuter une cellule, clique sur ▶ à sa gauche ou appuie sur **Ctrl + Entrée**.\n**Maj + Entrée** exécute la cellule puis passe à la suivante.\n\nTout est enregistré automatiquement dans ton navigateur."
+    "content": "# Découvrir les notebooks 👋\n\nUn notebook est une suite de **cellules**. Il en existe quatre sortes :\n\n- 🐍 **Python** : du code Python, exécuté directement dans ton navigateur ;\n- 🗄️ **SQL** : des requêtes sur une base de données SQLite ;\n- ¶ **Texte** : des explications mises en forme (comme celle-ci) ;\n- 🧠 **Carte mentale** : des idées organisées autour d'un sujet central (voir le modèle « Réviser avec une carte mentale »).\n\nPour exécuter une cellule, clique sur ▶ à sa gauche ou appuie sur **Ctrl + Entrée**.\n**Maj + Entrée** exécute la cellule puis passe à la suivante.\n\nTout est enregistré automatiquement dans ton navigateur."
    },
    {
     "type": "markdown",
@@ -71,6 +71,31 @@ window.NSI_MODELES = [
    {
     "type": "markdown",
     "content": "## 5. Le texte (Markdown)\n\n**Double-clique** sur une cellule de texte pour la modifier, puis **Ctrl + Entrée** pour l'afficher.\n\n| Tu écris | Tu obtiens |\n|---|---|\n| `# Titre` | un grand titre |\n| `**gras**` | **gras** |\n| `*italique*` | *italique* |\n| `` `code` `` | `code` |\n| `- élément` | une liste à puces |\n\n## 6. Bon à savoir\n\n- Le bouton **+** qui apparaît sous une cellule permet d'en insérer une nouvelle à cet endroit.\n- **Redémarrer Python** efface toutes les variables.\n- Une boucle infinie (`while True:` sans `break`) bloque l'onglet : recharge alors la page, ton code est enregistré.\n- **Exporter** permet de télécharger ton travail au format Jupyter (`.ipynb`), en script Python (`.py`), en requêtes (`.sql`) ou de récupérer la base (`.db`)."
+   }
+  ]
+ },
+ {
+  "id": "carte-mentale",
+  "titre": "Réviser avec une carte mentale",
+  "description": "Découvre les cartes mentales : idées, couleurs, relations, cases à cocher et mode révision.",
+  "icone": "fa-solid fa-diagram-project",
+  "base": "lycee",
+  "cellules": [
+   {
+    "type": "markdown",
+    "content": "# Réviser avec une carte mentale 🧠\n\nUne **carte mentale** range les idées d'un chapitre autour d'un sujet central. Elle aide à voir les liens entre les notions et à retenir l'essentiel.\n\nClique sur une idée de la carte ci-dessous, puis essaie :\n\n- **Tab** pour ajouter une idée, **Entrée** pour une idée sœur, **double-clic** pour modifier ;\n- glisse une idée sur une autre pour la déplacer ;\n- la barre de mise en forme (couleur, forme, icône, case à cocher, note et lien) apparaît quand une idée est sélectionnée."
+   },
+   {
+    "type": "mindmap",
+    "content": "{\"v\":1,\"root\":{\"id\":\"m22\",\"text\":\"Ma carte mentale\",\"children\":[{\"id\":\"m4\",\"text\":\"Ajouter des idées\",\"children\":[{\"id\":\"m1\",\"text\":\"Tab : une idée enfant\",\"children\":[]},{\"id\":\"m2\",\"text\":\"Entrée : une idée sœur\",\"children\":[]},{\"id\":\"m3\",\"text\":\"Double-clic : modifier\",\"children\":[]}],\"icon\":\"💡\"},{\"id\":\"m9\",\"text\":\"Mettre en forme\",\"children\":[{\"id\":\"m5\",\"text\":\"Couleurs\",\"children\":[],\"color\":\"#ec4899\"},{\"id\":\"m6\",\"text\":\"Formes\",\"children\":[],\"shape\":\"pilule\"},{\"id\":\"m7\",\"text\":\"Icônes\",\"children\":[],\"icon\":\"⭐\"},{\"id\":\"m8\",\"text\":\"Gras et italique\",\"children\":[],\"bold\":true,\"italic\":true}]},{\"id\":\"m13\",\"text\":\"Organiser\",\"children\":[{\"id\":\"m10\",\"text\":\"Glisser une idée sur une autre\",\"children\":[]},{\"id\":\"m11\",\"text\":\"Réduire une branche (/)\",\"children\":[]},{\"id\":\"m12\",\"text\":\"Relier deux idées\",\"children\":[]}]},{\"id\":\"m18\",\"text\":\"Réviser\",\"children\":[{\"id\":\"m16\",\"text\":\"Cases à cocher\",\"children\":[{\"id\":\"m14\",\"text\":\"Cours relu\",\"children\":[],\"done\":true},{\"id\":\"m15\",\"text\":\"Exercices faits\",\"children\":[],\"done\":false}]},{\"id\":\"m17\",\"text\":\"Mode révision\",\"children\":[],\"note\":\"Menu Affichage → Mode révision : les branches sont cachées, tu cliques pour les révéler.\"}],\"icon\":\"🎯\"},{\"id\":\"m21\",\"text\":\"Exporter\",\"children\":[{\"id\":\"m19\",\"text\":\"Image PNG ou SVG\",\"children\":[]},{\"id\":\"m20\",\"text\":\"Plan en Markdown\",\"children\":[]}]}],\"icon\":\"🧠\"},\"links\":[{\"id\":\"r1\",\"from\":\"m13\",\"to\":\"m18\",\"label\":\"aide à\"}],\"layout\":\"map\",\"lineStyle\":\"curve\",\"theme\":\"couleurs\"}"
+   },
+   {
+    "type": "markdown",
+    "content": "## À toi\n\nLa carte ci-dessous est une **fiche de révision** à compléter pour le chapitre de ton choix.\n\n- Le menu **Modèles** propose d'autres cartes toutes prêtes (structures de données, bases de données, réseaux, algorithmique, Python) et permet de **coller un plan** ;\n- **Affichage → Mode révision** cache les branches : essaie de te souvenir de la suite avant de cliquer ;\n- **Exporter** crée une image à imprimer ou à partager.\n\nPour ajouter une nouvelle carte, utilise le bouton **Carte mentale** de la barre d'outils."
+   },
+   {
+    "type": "mindmap",
+    "content": "{\"v\":1,\"root\":{\"id\":\"m35\",\"text\":\"Notion à réviser\",\"children\":[{\"id\":\"m24\",\"text\":\"Définition\",\"children\":[{\"id\":\"m23\",\"text\":\"En une phrase\",\"children\":[]}]},{\"id\":\"m27\",\"text\":\"Exemple\",\"children\":[{\"id\":\"m25\",\"text\":\"Un exemple simple\",\"children\":[]},{\"id\":\"m26\",\"text\":\"Un contre-exemple\",\"children\":[]}]},{\"id\":\"m29\",\"text\":\"À retenir\",\"children\":[{\"id\":\"m28\",\"text\":\"Propriété ou formule clé\",\"children\":[]}]},{\"id\":\"m31\",\"text\":\"Pièges\",\"children\":[{\"id\":\"m30\",\"text\":\"Erreur classique\",\"children\":[]}],\"icon\":\"⚠️\"},{\"id\":\"m34\",\"text\":\"Exercices\",\"children\":[{\"id\":\"m32\",\"text\":\"Exercice 1\",\"children\":[],\"done\":false},{\"id\":\"m33\",\"text\":\"Exercice 2\",\"children\":[],\"done\":false}]}],\"icon\":\"📚\"},\"links\":[],\"layout\":\"map\",\"lineStyle\":\"curve\",\"theme\":\"couleurs\"}"
    }
   ]
  },

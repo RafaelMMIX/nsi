@@ -39,6 +39,7 @@
 
     <script defer src="notebook-bases.js"></script>
     <script defer src="notebook-erreurs.js"></script>
+    <script defer src="notebook-mindmap.js"></script>
     <script defer src="notebook.js"></script>
     <script defer src="statistiques.js"></script>
     <link rel="stylesheet" href="theme-light.css">
@@ -51,7 +52,7 @@
         <header class="header page-header-nav">
             <div class="brand">
                 <div class="brand-icon"><i class="fa-solid fa-book-open"></i></div>
-                <div><h1>Notebook</h1><p>Python, SQL et texte dans ton navigateur.</p></div>
+                <div><h1>Notebook</h1><p>Python, SQL, texte et cartes mentales dans ton navigateur.</p></div>
             </div>
             <nav class="main-nav" aria-label="Navigation principale">
                 <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
@@ -78,6 +79,7 @@
                 <button type="button" class="nb-btn" data-add="python" title="Ajouter une cellule Python"><i class="fa-brands fa-python"></i> Python</button>
                 <button type="button" class="nb-btn" data-add="sql" title="Ajouter une cellule SQL"><i class="fa-solid fa-database"></i> SQL</button>
                 <button type="button" class="nb-btn" data-add="markdown" title="Ajouter une cellule de texte"><i class="fa-solid fa-paragraph"></i> Texte</button>
+                <button type="button" class="nb-btn" data-add="mindmap" title="Ajouter une carte mentale"><i class="fa-solid fa-diagram-project"></i> Carte mentale</button>
             </div>
             <div class="nb-toolbar-group">
                 <button type="button" id="run-all" class="nb-btn primary"><i class="fa-solid fa-forward"></i> Tout exécuter</button>
@@ -105,6 +107,7 @@
                         <p><kbd>Ctrl</kbd> + <kbd>/</kbd> Commenter / décommenter</p>
                         <p><kbd>Ctrl</kbd> + <kbd>S</kbd> Enregistrer</p>
                         <p>Double-clic sur un texte pour le modifier.</p>
+                        <p>Carte mentale : <kbd>Tab</kbd> idée, <kbd>Entrée</kbd> idée sœur (liste complète : bouton <i class="fa-solid fa-keyboard"></i> de la carte).</p>
                     </div>
                 </details>
                 <span id="save-status" class="nb-save" role="status"><i class="fa-solid fa-cloud"></i> Enregistré</span>

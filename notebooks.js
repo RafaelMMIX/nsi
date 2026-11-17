@@ -135,6 +135,9 @@ function notebookFromIpynb(data, fileName) {
     if (!data || !Array.isArray(data.cells)) throw new Error("ce fichier ne ressemble pas à un notebook Jupyter.");
     const cells = data.cells.map(cell => {
         const content = cellSource(cell.source).replace(/\s+$/, "");
+        // Carte mentale exportée par NSI Hub : la carte complète est dans les métadonnées
+        const mindmap = cell.metadata?.nsihub?.type === "mindmap" ? cell.metadata.nsihub.data : null;
+        if (mindmap && typeof mindmap === "object" && mindmap.root) return { type: "mindmap", content: JSON.stringify(mindmap) };
         if (cell.cell_type === "markdown" || cell.cell_type === "raw") return { type: "markdown", content };
         const sqlMagic = content.match(/^%%sql[^\n]*\n?/);
         if (sqlMagic) return { type: "sql", content: content.slice(sqlMagic[0].length) };
@@ -219,12 +222,13 @@ function deleteNotebook(id) {
 /* ---------- Affichage ---------- */
 
 function cellSummary(cells = []) {
-    const counts = { python: 0, sql: 0, markdown: 0 };
+    const counts = { python: 0, sql: 0, markdown: 0, mindmap: 0 };
     cells.forEach(cell => { if (counts[cell.type] !== undefined) counts[cell.type]++; });
     return [
         counts.python ? `<span class="nbl-badge python"><i class="fa-brands fa-python"></i> ${counts.python}</span>` : "",
         counts.sql ? `<span class="nbl-badge sql"><i class="fa-solid fa-database"></i> ${counts.sql}</span>` : "",
-        counts.markdown ? `<span class="nbl-badge markdown"><i class="fa-solid fa-paragraph"></i> ${counts.markdown}</span>` : ""
+        counts.markdown ? `<span class="nbl-badge markdown"><i class="fa-solid fa-paragraph"></i> ${counts.markdown}</span>` : "",
+        counts.mindmap ? `<span class="nbl-badge mindmap" title="Cartes mentales"><i class="fa-solid fa-diagram-project"></i> ${counts.mindmap}</span>` : ""
     ].join("");
 }
 

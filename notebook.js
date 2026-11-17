@@ -5,6 +5,7 @@
    - Python : Pyodide (chargé à la première exécution)
    - SQL    : SQLite via sql.js, une base par notebook
    - Texte  : Markdown (marked + DOMPurify)
+   - Carte mentale : éditeur visuel (notebook-mindmap.js), JSON dans la cellule
    Tout est enregistré dans le localStorage du navigateur.
    ========================================================= */
 
@@ -18,8 +19,12 @@ const MAX_IMPORT_BYTES = 3 * 1024 * 1024;
 const CELL_TYPES = {
     python: { label: "Python", icon: "fa-brands fa-python", mode: "python", placeholder: "Écris ton code Python ici…" },
     sql: { label: "SQL", icon: "fa-solid fa-database", mode: "text/x-sqlite", placeholder: "Écris ta requête SQL ici… (ex. SELECT * FROM eleves;)" },
-    markdown: { label: "Texte", icon: "fa-solid fa-paragraph", mode: "markdown", placeholder: "Écris ton texte ici (Markdown : # Titre, **gras**, *italique*, `code`, - liste)…" }
+    markdown: { label: "Texte", icon: "fa-solid fa-paragraph", mode: "markdown", placeholder: "Écris ton texte ici (Markdown : # Titre, **gras**, *italique*, `code`, - liste)…" },
+    mindmap: { label: "Carte mentale", icon: "fa-solid fa-diagram-project", mode: null, placeholder: "" }
 };
+
+// Cellules qui ne s'exécutent pas (pas de numéro d'exécution)
+const isStatic = type => type === "markdown" || type === "mindmap";
 
 const notebookId = new URLSearchParams(window.location.search).get("id");
 const $ = selector => document.querySelector(selector);
@@ -158,6 +163,12 @@ function scheduleSave() {
 
 function createEditor(cell, host, content) {
     const type = CELL_TYPES[cell.type];
+    if (cell.type === "mindmap" && window.NsiMindMap) {
+        return window.NsiMindMap.create(host, content, {
+            onChange: scheduleSave,
+            onFocus: () => setActive(cell)
+        });
+    }
     const runKeys = {
         "Ctrl-Enter": () => runCell(cell),
         "Cmd-Enter": () => runCell(cell),
@@ -167,7 +178,7 @@ function createEditor(cell, host, content) {
         "Cmd-S": () => { saveNow(); toast("Notebook enregistré."); }
     };
 
-    if (window.CodeMirror) {
+    if (window.CodeMirror && type.mode) {
         const editor = window.CodeMirror(host, {
             value: content,
             mode: type.mode,
@@ -254,6 +265,7 @@ function buildCell(type, content = "") {
                         <option value="python">Python</option>
                         <option value="sql">SQL</option>
                         <option value="markdown">Texte</option>
+                        <option value="mindmap">Carte mentale</option>
                     </select>
                 </label>
                 <div class="nb-actions">
@@ -271,6 +283,7 @@ function buildCell(type, content = "") {
             <button type="button" data-insert="python"><i class="fa-brands fa-python"></i> Python</button>
             <button type="button" data-insert="sql"><i class="fa-solid fa-database"></i> SQL</button>
             <button type="button" data-insert="markdown"><i class="fa-solid fa-paragraph"></i> Texte</button>
+            <button type="button" data-insert="mindmap"><i class="fa-solid fa-diagram-project"></i> Carte mentale</button>
         </div>`;
 
     cell.element = root;
@@ -316,14 +329,26 @@ function insertCell(type, content = "", after = null, { track = true } = {}) {
     return cell;
 }
 
+function convertContent(content, from, to) {
+    const map = window.NsiMindMap;
+    if (!map || from === to) return content;
+    if (from === "mindmap") return map.toMarkdown(content);
+    if (to === "mindmap") {
+        const title = state.notebook?.name || "Sujet central";
+        return JSON.stringify(map.fromText(content, title));
+    }
+    return content;
+}
+
 function changeType(cell, type) {
-    const content = cell.getValue();
+    const content = convertContent(cell.getValue(), cell.type, type);
     const replacement = buildCell(type, content);
     const index = state.cells.indexOf(cell);
     state.cells[index] = replacement;
     cell.element.replaceWith(replacement.element);
     replacement.editor.refresh();
     replacement.editor.focus();
+    if (type === "markdown" && cell.type === "mindmap") renderMarkdown(replacement);
     scheduleSave();
 }
 
@@ -340,7 +365,9 @@ function moveCell(cell, direction) {
 }
 
 function deleteCell(cell) {
-    const content = cell.getValue();
+    const content = cell.type === "mindmap" && window.NsiMindMap
+        ? (window.NsiMindMap.normalize(cell.getValue()).root.children.length ? "carte" : "")
+        : cell.getValue();
     if (content.trim() && !confirm("Supprimer cette cellule ?")) return;
     const index = state.cells.indexOf(cell);
     state.cells.splice(index, 1);
@@ -410,14 +437,14 @@ function editMarkdown(cell) {
 
 function runCell(cell, { next = false, insert = false } = {}) {
     if (!state.cells.includes(cell)) return Promise.resolve(true);
-    if (cell.type !== "markdown") setCount(cell, "*");
+    if (!isStatic(cell.type)) setCount(cell, "*");
     const job = state.queue.then(() => executeCell(cell));
     state.queue = job.catch(() => false);
 
     if (next || insert) {
         const index = state.cells.indexOf(cell);
         let target = state.cells[index + 1];
-        if (insert || !target) target = insertCell(cell.type === "markdown" ? "python" : cell.type, "", cell);
+        if (insert || !target) target = insertCell(isStatic(cell.type) ? "python" : cell.type, "", cell);
         if (target.type === "markdown" && !target.rendered.hidden) setActive(target);
         else target.editor.focus();
         setActive(target);
@@ -428,6 +455,7 @@ function runCell(cell, { next = false, insert = false } = {}) {
 async function executeCell(cell) {
     if (!state.cells.includes(cell)) return true;
     if (cell.type === "markdown") { renderMarkdown(cell); return true; }
+    if (cell.type === "mindmap") return true;
     clearErrorLine(cell);
     cell.element.classList.add("running");
     try {
@@ -1192,6 +1220,10 @@ async function importCsvFile(file) {
    EXPORTS
    ========================================================= */
 
+function mindmapOutline(content) {
+    return window.NsiMindMap ? `<!-- Carte mentale NSI Hub -->\n${window.NsiMindMap.toMarkdown(content)}` : content;
+}
+
 function splitSource(text) {
     return text.split(/(?<=\n)/);
 }
@@ -1202,9 +1234,12 @@ async function exportNotebook(format) {
     const cells = serializeCells();
     if (format === "ipynb") {
         const ipynb = {
-            cells: cells.map(cell => cell.type === "markdown"
-                ? { cell_type: "markdown", metadata: {}, source: splitSource(cell.content) }
-                : { cell_type: "code", execution_count: null, metadata: {}, outputs: [], source: splitSource(cell.type === "sql" ? `%%sql\n${cell.content}` : cell.content) }),
+            cells: cells.map(cell => cell.type === "mindmap"
+                // Jupyter ne connaît pas les cartes : plan en Markdown + carte complète dans les métadonnées
+                ? { cell_type: "markdown", metadata: { nsihub: { type: "mindmap", data: window.NsiMindMap ? window.NsiMindMap.normalize(cell.content) : null } }, source: splitSource(mindmapOutline(cell.content)) }
+                : cell.type === "markdown"
+                    ? { cell_type: "markdown", metadata: {}, source: splitSource(cell.content) }
+                    : { cell_type: "code", execution_count: null, metadata: {}, outputs: [], source: splitSource(cell.type === "sql" ? `%%sql\n${cell.content}` : cell.content) }),
             metadata: {
                 kernelspec: { display_name: "Python 3", language: "python", name: "python3" },
                 language_info: { name: "python", version: "3" },
@@ -1216,8 +1251,8 @@ async function exportNotebook(format) {
         downloadFile(`${name}.ipynb`, JSON.stringify(ipynb, null, 1), "application/x-ipynb+json;charset=utf-8");
     } else if (format === "py") {
         const comment = text => text.split("\n").map(line => `# ${line}`.trimEnd()).join("\n");
-        const script = cells.map(cell => cell.type === "markdown"
-            ? `# %% [markdown]\n${comment(cell.content)}`
+        const script = cells.map(cell => cell.type === "markdown" || cell.type === "mindmap"
+            ? `# %% [markdown]\n${comment(cell.type === "mindmap" ? mindmapOutline(cell.content) : cell.content)}`
             : cell.type === "sql" ? `# %% [sql] (requête à exécuter sur ${currentDbFileName()})\n${comment(cell.content)}` : `# %%\n${cell.content}`).join("\n\n") + "\n";
         downloadFile(`${name}.py`, script, "text/x-python;charset=utf-8");
     } else if (format === "sql") {
@@ -1282,7 +1317,7 @@ function bindToolbar() {
     $("#run-all").addEventListener("click", runAll);
     $("#restart-python").addEventListener("click", restartPython);
     $("#clear-outputs").addEventListener("click", () => {
-        state.cells.forEach(cell => { resetOutput(cell); clearErrorLine(cell); if (cell.type !== "markdown") setCount(cell, " "); });
+        state.cells.forEach(cell => { resetOutput(cell); clearErrorLine(cell); if (!isStatic(cell.type)) setCount(cell, " "); });
     });
     $("#toggle-schema").addEventListener("click", () => toggleSchema());
     $("#close-schema").addEventListener("click", () => toggleSchema(false));

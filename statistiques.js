@@ -27,7 +27,7 @@
         } else if (action === "search") data.searches++;
         else if (action === "tool") { const name = detail.name || "Outil"; data.tools[name] = (data.tools[name] || 0) + 1; }
         else if (action === "notebookCreated") data.notebookCreates++;
-        else if (action === "cellCreated") { data.cellsCreated++; if (detail.type === "markdown") data.markdownCells++; else if (detail.type === "sql") data.sqlCells++; else data.pythonCells++; }
+        else if (action === "cellCreated") { data.cellsCreated++; if (detail.type === "markdown") data.markdownCells++; else if (detail.type === "sql") data.sqlCells++; else if (detail.type === "mindmap") data.mindmapCells = (data.mindmapCells || 0) + 1; else data.pythonCells++; }
         else if (action === "pythonRun") data.pythonRuns++;
         else if (action === "pythonSuccess") data.runSuccess++;
         else if (action === "pythonError") data.runErrors++;

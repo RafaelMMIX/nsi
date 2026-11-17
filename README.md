@@ -199,11 +199,12 @@ nsiMemo
 
 # 📓 Notebooks
 
-Des notebooks façon Jupyter, directement dans le navigateur, avec trois types de cellules :
+Des notebooks façon Jupyter, directement dans le navigateur, avec quatre types de cellules :
 
 - 🐍 **Python**, exécuté avec Pyodide (`input()` pris en charge)
 - 🗄️ **SQL**, exécuté avec SQLite (sql.js)
 - 📝 **Texte** en Markdown
+- 🧠 **Carte mentale**, avec un éditeur visuel (voir ci-dessous)
 
 Fonctionnalités :
 
@@ -212,17 +213,32 @@ Fonctionnalités :
 - Une base de données par notebook : base d'exemple **Lycée**, base vide ou fichier `.db` importé ; ajout de tables depuis un `.csv` ; bouton de réinitialisation
 - Panneau qui affiche les tables, colonnes, clés primaires et étrangères
 - Pont Python ↔ SQL : `requete()`, `tableau()` et module `sqlite3`
-- Modèles de départ : Découvrir les notebooks, Premiers pas en SQL, Jointures et agrégats, Modifier une base, Python + SQL
+- Modèles de départ : Découvrir les notebooks, Réviser avec une carte mentale, Premiers pas en SQL, Jointures et agrégats, Modifier une base, Python + SQL
 - Import `.ipynb`, export `.ipynb`, `.py`, `.sql` et `.db`
 - Sauvegarde automatique locale
 
-Fichiers : `notebooks.html` / `notebooks.js` (liste), `notebook.html` / `notebook.js` / `notebook.css` (éditeur), `notebook-bases.js` (base Lycée), `notebook-modeles.js` (tutos), `notebook-erreurs.js` (explications des erreurs).
+Fichiers : `notebooks.html` / `notebooks.js` (liste), `notebook.html` / `notebook.js` / `notebook.css` (éditeur), `notebook-bases.js` (base Lycée), `notebook-modeles.js` (tutos), `notebook-erreurs.js` (explications des erreurs), `notebook-mindmap.js` (cartes mentales).
 
 ```text
 nsiNotebooks                 liste des notebooks et de leurs cellules
 nsiNotebookDb:<id>           base de données de chaque notebook
 nsiNotebookDbOrigine:<id>    fichier .db importé d'origine
 ```
+
+## 🧠 Cartes mentales
+
+Une cellule « Carte mentale » contient un éditeur visuel. La carte est enregistrée en JSON dans le contenu de la cellule.
+
+- **Créer** : <kbd>Tab</kbd> ajoute une idée, <kbd>Entrée</kbd> une idée sœur, double-clic (ou double appui) pour modifier, taper une lettre remplace le texte, <kbd>Maj</kbd> + <kbd>Entrée</kbd> va à la ligne
+- **Organiser** : glisser-déposer une idée sur une autre (dedans, avant ou après), <kbd>Alt</kbd> + flèches pour changer l'ordre, réduire / développer une branche (<kbd>/</kbd>), copier / couper / coller / dupliquer des branches, relations fléchées entre deux idées avec un texte
+- **Mettre en forme** : couleur (10 couleurs ou au choix), forme (arrondi, pilule, rectangle, souligné), taille, gras, italique, icône, `code`, case à cocher (avec progression dans la branche), note et lien
+- **Apparence** : disposition carte, arbre vers la droite ou organigramme ; traits courbes, droits ou coudés ; thèmes Couleurs, Pastel, Sobre, Tableau noir ; s'adapte au thème clair ou sombre
+- **Naviguer** : zoom (boutons, <kbd>Ctrl</kbd> + molette, pincement), déplacement en glissant le fond, recentrage, plein écran, recherche, flèches du clavier, menu clic droit
+- **Réviser** : mode révision (branches cachées, révélées au clic)
+- **Modèles** : fiche de révision, structures de données, bases de données, réseaux, algorithmique, Python ; import d'un plan (liste ou Markdown) ou d'un fichier `.json`, `.md`, `.txt`
+- **Exports** : image `.png` et `.svg`, plan `.md`, carte `.json`, copie du plan. Dans un `.ipynb`, la carte devient une cellule Markdown (le plan) et la carte complète est gardée dans les métadonnées, pour la retrouver à l'import
+- Annuler / rétablir (100 étapes). Une cellule peut passer de Texte à Carte mentale et inversement : le plan est converti
+- Sur téléphone, un doigt fait défiler la page ; le plein écran permet de déplacer la carte et les idées du doigt
 
 ---
 
