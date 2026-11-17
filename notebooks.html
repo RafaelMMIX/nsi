@@ -22,7 +22,7 @@
         <header class="header page-header-nav">
             <div class="brand">
                 <div class="brand-icon"><i class="fa-solid fa-book-open"></i></div>
-                <div><h1>Mes notebooks</h1><p>Python, SQL et texte dans ton navigateur.</p></div>
+                <div><h1>Mes notebooks</h1><p>Python, SQL, texte et cartes mentales dans ton navigateur.</p></div>
             </div>
             <nav class="main-nav" aria-label="Navigation principale">
                 <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Accueil</a>
@@ -42,6 +42,18 @@
             <input type="file" id="ipynb-file" accept=".ipynb,application/x-ipynb+json" multiple hidden>
         </div>
 
+        <section id="courses-section" class="nbl-courses" hidden aria-labelledby="courses-title">
+            <div class="nbl-section-head">
+                <div>
+                    <h2 id="courses-title"><i class="fa-solid fa-chalkboard-user"></i> Cours</h2>
+                    <p>Des notebooks tout faits, proposés par des professeurs. En ouvrir un crée ta propre copie.</p>
+                </div>
+                <div id="courses-levels" class="nbl-levels" role="group" aria-label="Filtrer par niveau" hidden></div>
+            </div>
+            <div id="courses-list" class="nbl-list"></div>
+        </section>
+
+        <h2 id="my-notebooks-title" class="nbl-section-title" hidden><i class="fa-solid fa-book-open"></i> Mes notebooks</h2>
         <div id="notebooks-list" class="nbl-list"></div>
 
         <p class="nbl-note"><i class="fa-solid fa-lock"></i> Tes notebooks et leurs bases de données sont enregistrés uniquement dans ce navigateur. Pense à les exporter pour les garder ailleurs.</p>

@@ -625,6 +625,10 @@ html.theme-light .mm-board .mm-relation-label {
     border-color: rgba(15, 23, 42, 0.312);
 }
 
+html.theme-light .nbl-section-title i {
+    color: #0729cf;
+}
+
 /* ---------- presentation.css ---------- */
 
 html.theme-light .presentation-toolbar {

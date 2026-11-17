@@ -1224,6 +1224,103 @@ function mindmapOutline(content) {
     return window.NsiMindMap ? `<!-- Carte mentale NSI Hub -->\n${window.NsiMindMap.toMarkdown(content)}` : content;
 }
 
+/* ---------- Proposer comme cours (professeurs) ---------- */
+
+const COURSE_ISSUE_URL = "https://github.com/RafaelMMIX/nsi/issues/new";
+const COURSE_MAX_CODE = 60000;
+
+function toBase64Url(bytes) {
+    return bytesToBase64(bytes).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+// NBK1- : JSON compressé (deflate brut) ; NBK0- : JSON simple si le navigateur ne sait pas compresser
+async function encodeCourse() {
+    const base = state.notebook?.database?.source === "vide" ? "vide" : "lycee";
+    const payload = { v: 1, n: state.notebook?.name || "Cours", b: base, c: serializeCells().map(cell => [cell.type, cell.content]) };
+    const bytes = new TextEncoder().encode(JSON.stringify(payload));
+    if (window.CompressionStream) {
+        try {
+            const stream = new Blob([bytes]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+            return `NBK1-${toBase64Url(new Uint8Array(await new Response(stream).arrayBuffer()))}`;
+        } catch (_) {}
+    }
+    return `NBK0-${toBase64Url(bytes)}`;
+}
+
+async function copyText(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        return true;
+    } catch (_) {
+        const area = $("#course-code");
+        area.focus();
+        area.select();
+        try { return document.execCommand("copy"); } catch (__) { return false; }
+    }
+}
+
+async function openCourseDialog() {
+    saveNow();
+    const dialog = $("#course-dialog");
+    const code = await encodeCourse();
+    const warning = $("#course-warning");
+    const notes = [];
+    const source = state.notebook?.database?.source || "lycee";
+    if (source === "import") notes.push("La base de données importée ne peut pas être envoyée : le cours utilisera la base Lycée. Si tes requêtes ont besoin d'autres tables, crée-les avec des cellules SQL (CREATE TABLE, INSERT) au début du notebook.");
+    else if (state.cells.some(cell => cell.type === "sql")) notes.push(`Les élèves partiront de la base ${source === "vide" ? "vide" : "Lycée"} d'origine : les modifications faites à ta base (tables ajoutées, CSV importés) ne sont pas envoyées.`);
+    const tooBig = code.length > COURSE_MAX_CODE;
+    if (tooBig) notes.unshift(`Ce notebook est trop gros pour être envoyé (${code.length.toLocaleString("fr-FR")} caractères, ${COURSE_MAX_CODE.toLocaleString("fr-FR")} au maximum). Retire ou raccourcis les plus grosses cellules.`);
+    warning.innerHTML = notes.map(note => `<i class="fa-solid fa-triangle-exclamation"></i> ${escapeHTML(note)}`).join("<br>");
+    warning.hidden = !notes.length;
+    warning.classList.toggle("error", tooBig);
+
+    $("#course-code").value = code;
+    $("#course-size").textContent = `(${code.length.toLocaleString("fr-FR")} caractères)`;
+
+    const params = new URLSearchParams({ template: "cours-public.yml", title: `Cours : ${state.notebook?.name || ""}`, titre: state.notebook?.name || "" });
+    const level = { snt: "SNT", premiere: "Première NSI", terminale: "Terminale NSI" }[localStorage.getItem("nsiLevel")];
+    if (level) params.set("niveau", level);
+    // Le code est pré-rempli seulement si l'adresse reste raisonnable (sinon on le colle)
+    const withCode = new URLSearchParams(params);
+    withCode.set("code", code);
+    const url = `${COURSE_ISSUE_URL}?${withCode}`.length < 7500 ? `${COURSE_ISSUE_URL}?${withCode}` : `${COURSE_ISSUE_URL}?${params}`;
+    const open = $("#course-open");
+    open.href = url;
+    open.classList.toggle("disabled", tooBig);
+    open.setAttribute("aria-disabled", String(tooBig));
+    $("#course-copy").disabled = tooBig;
+
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+}
+
+function bindCourseDialog() {
+    const dialog = $("#course-dialog");
+    if (!dialog) return;
+    const close = () => (typeof dialog.close === "function" ? dialog.close() : dialog.removeAttribute("open"));
+    dialog.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", close));
+    dialog.addEventListener("click", event => { if (event.target === dialog) close(); });
+    $("#course-copy").addEventListener("click", async () => {
+        toast(await copyText($("#course-code").value) ? "Code copié." : "Copie impossible : sélectionne le code et copie-le à la main.", "info");
+    });
+    $("#course-open").addEventListener("click", event => {
+        if (event.currentTarget.classList.contains("disabled")) { event.preventDefault(); return; }
+        copyText($("#course-code").value);
+    });
+    // Visible pour les professeurs (et en mode développeur)
+    const teacher = localStorage.getItem("nsiLevel") === "professeur" || localStorage.getItem("nsiDevMode") === "true";
+    $("#export-cours").hidden = !teacher;
+}
+
+function showCourseBanner() {
+    const course = state.notebook?.cours;
+    const banner = $("#nb-course-banner");
+    if (!course || !banner) return;
+    const levels = { snt: "SNT", premiere: "Première NSI", terminale: "Terminale NSI", tous: "Tous niveaux" };
+    banner.innerHTML = `<i class="fa-solid fa-chalkboard-user"></i> Cours proposé par <strong>${escapeHTML(course.auteur || "un professeur")}</strong>${course.niveau ? ` · ${escapeHTML(levels[course.niveau] || "")}` : ""}. Tu travailles sur ta propre copie : tes modifications restent dans ton navigateur.`;
+    banner.hidden = false;
+}
+
 function splitSource(text) {
     return text.split(/(?<=\n)/);
 }
@@ -1260,6 +1357,10 @@ async function exportNotebook(format) {
         if (!sqlCells.length) { toast("Ce notebook ne contient aucune cellule SQL."); return; }
         const script = `-- ${state.notebook?.name} (base : ${databaseInfo().nom})\n\n` + sqlCells.map((cell, i) => `-- Cellule SQL ${i + 1}\n${cell.content.trim()}`).join("\n\n") + "\n";
         downloadFile(`${name}.sql`, script, "application/sql;charset=utf-8");
+    } else if (format === "cours") {
+        document.querySelectorAll(".nb-menu[open]").forEach(menu => menu.removeAttribute("open"));
+        openCourseDialog();
+        return;
     } else if (format === "db") {
         try {
             const db = await ensureDb();
@@ -1361,5 +1462,7 @@ function warmUp() {
 
 if (loadNotebook()) {
     bindToolbar();
+    bindCourseDialog();
+    showCourseBanner();
     warmUp();
 }

@@ -1634,3 +1634,134 @@ html.mm-no-scroll body { overflow: hidden; }
     .mm-btn { min-height: 38px; }
     .mm-btn.icon { width: 38px; }
 }
+
+
+/* =========================================================
+   COURS DES PROFESSEURS
+   ========================================================= */
+
+.nbl-courses { margin-bottom: 26px; }
+
+.nbl-section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px 20px;
+    margin-bottom: 14px;
+}
+
+.nbl-section-head h2,
+.nbl-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 4px;
+    font-size: 20px;
+}
+
+.nbl-section-head h2 i { color: #34d399; }
+.nbl-section-title { margin: 0 0 14px; }
+.nbl-section-title i { color: #a5b4fc; }
+.nbl-section-head p { margin: 0; color: var(--text-secondary); font-size: 14px; }
+
+.nbl-levels { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.nbl-level {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.nbl-level:hover { color: var(--text); border-color: rgba(52, 211, 153, 0.5); }
+.nbl-level.active { color: var(--text); border-color: #34d399; background: rgba(52, 211, 153, 0.12); }
+
+.nbl-course { flex-direction: column; align-items: stretch; }
+.nbl-course .nbl-card-main { cursor: default; }
+.nbl-card-icon.course { background: rgba(52, 211, 153, 0.14); color: #34d399; }
+
+.nbl-course-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.45;
+}
+
+.nbl-course-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 16px;
+}
+
+.nb-course-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    border-radius: 12px;
+    background: rgba(52, 211, 153, 0.08);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.nb-course-banner[hidden] { display: none; }
+.nb-course-banner i { color: #34d399; }
+.nb-course-banner strong { color: var(--text); }
+
+/* Fenêtre « Proposer comme cours » */
+.nbc-dialog { max-width: 620px; }
+.nbc-dialog h2 i { color: #34d399; margin-right: 6px; }
+.nbc-text { margin: 0 0 12px; color: var(--text-secondary); line-height: 1.5; }
+
+.nbc-steps {
+    margin: 0 0 16px;
+    padding-left: 20px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.nbc-steps li + li { margin-top: 6px; }
+.nbc-steps strong { color: var(--text); }
+
+.nbc-warning {
+    margin: 0 0 16px;
+    padding: 10px 12px;
+    border: 1px solid rgba(234, 179, 8, 0.35);
+    border-radius: 10px;
+    background: rgba(234, 179, 8, 0.08);
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.nbc-warning i { color: var(--yellow); margin-right: 4px; }
+.nbc-warning.error { border-color: rgba(239, 68, 68, 0.45); background: rgba(239, 68, 68, 0.08); }
+.nbc-warning.error i { color: var(--red); }
+.nbc-size { color: var(--text-secondary); font-size: 12px; }
+
+.nbc-code {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-light);
+    color: var(--text-secondary);
+    font: 12px/1.45 "JetBrains Mono", Consolas, monospace;
+    word-break: break-all;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.nb-btn.disabled { opacity: 0.5; pointer-events: none; }
+.nbl-course .nbl-card-text strong { white-space: normal; }

@@ -240,6 +240,22 @@ Une cellule « Carte mentale » contient un éditeur visuel. La carte est enregi
 - Annuler / rétablir (100 étapes). Une cellule peut passer de Texte à Carte mentale et inversement : le plan est converti
 - Sur téléphone, un doigt fait défiler la page ; le plein écran permet de déplacer la carte et les idées du doigt
 
+## 🧑‍🏫 Cours des professeurs
+
+Les professeurs peuvent proposer des notebooks tout faits. Ils apparaissent dans une section **Cours** en haut de « Mes notebooks », qui reste cachée tant qu'aucun cours n'est publié.
+
+**Côté professeur** (profil « Professeur », ou mode développeur) : dans un notebook, **Exporter → Proposer comme cours**. La fenêtre donne le code du notebook (`NBK1-…`, cellules compressées) et ouvre le formulaire GitHub **« 📚 Proposer un cours (professeurs) »** déjà rempli (titre, niveau, code). Il reste à indiquer le nom affiché et une description. Seules les cellules sont envoyées : ni les résultats, ni une base importée (le cours utilise la base Lycée ou une base vide).
+
+**Côté Rafael** :
+
+1. À l'ouverture de la demande, une GitHub Action publie un **aperçu** en commentaire : niveau, base, nombre de cellules, contenu complet de chaque cellule, et les points à vérifier repérés automatiquement (module `js`, accès à internet ou aux données du navigateur, `eval`…).
+2. Après relecture, ajouter l'étiquette **`cours-approuve`** : le cours est vérifié, ajouté à `cours-publics.json`, puis la demande reçoit une réponse et est fermée.
+3. Pour retirer un cours, supprimer sa ligne dans `cours-publics.json`.
+
+**Côté élève** : filtres par niveau (le sien par défaut), recherche, bouton **Commencer** qui crée sa propre copie du notebook, puis **Reprendre** / **Recommencer**. Un bandeau rappelle dans le notebook qui a proposé le cours.
+
+Fichiers : `.github/ISSUE_TEMPLATE/cours-public.yml`, `.github/workflows/cours-publics.yml`, `.github/scripts/cours.mjs`, `cours-publics.json`. Étiquettes : `cours-en-attente` (ajoutée par le formulaire) et `cours-approuve`.
+
 ---
 
 # 🎮 Quiz & Jeux

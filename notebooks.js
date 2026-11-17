@@ -279,6 +279,106 @@ function renderNotebooks() {
     });
 }
 
+/* ---------- Cours des professeurs ---------- */
+// Publiés par .github/workflows/cours-publics.yml (formulaire « Proposer un cours »)
+
+const coursesSection = document.getElementById("courses-section");
+const coursesList = document.getElementById("courses-list");
+const coursesLevels = document.getElementById("courses-levels");
+const LEVELS = { snt: "SNT", premiere: "Première NSI", terminale: "Terminale NSI", tous: "Tous niveaux" };
+const COURSE_TYPES = ["python", "sql", "markdown", "mindmap"];
+let courses = [];
+let courseLevel = "tous";
+
+function validCourse(course) {
+    return course && typeof course.id === "string" && typeof course.titre === "string"
+        && Array.isArray(course.cellules) && course.cellules.length
+        && course.cellules.every(cell => cell && COURSE_TYPES.includes(cell.type) && typeof cell.content === "string");
+}
+
+async function loadCourses() {
+    try {
+        const response = await fetch(`cours-publics.json?v=${Date.now()}`);
+        if (!response.ok) return;
+        const list = await response.json();
+        courses = (Array.isArray(list) ? list : []).filter(validCourse).reverse();
+    } catch (_) {
+        courses = [];
+    }
+    // Niveau de l'élève par défaut, s'il existe des cours pour lui
+    const mine = localStorage.getItem("nsiLevel");
+    if (LEVELS[mine] && courses.some(course => course.niveau === mine)) courseLevel = mine;
+    renderCourses();
+}
+
+function courseCopy(course) {
+    return getNotebooks().filter(notebook => notebook.cours?.id === course.id).sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0))[0] || null;
+}
+
+function startCourse(course) {
+    const copies = getNotebooks().filter(notebook => notebook.cours?.id === course.id).length;
+    const notebook = {
+        id: newId(),
+        name: copies ? `${course.titre} (${copies + 1})` : course.titre,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        cours: { id: course.id, auteur: course.auteur || "", niveau: course.niveau || "tous" },
+        database: { source: course.base === "vide" ? "vide" : "lycee" },
+        cells: course.cellules.map(cell => ({ type: cell.type, content: cell.content }))
+    };
+    if (!addNotebook(notebook)) return;
+    window.nsiTrack?.("notebookUse", { name: `Cours : ${course.titre}` });
+    openNotebook(notebook.id);
+}
+
+function renderCourses() {
+    if (!courses.length) {
+        coursesSection.hidden = true;
+        document.getElementById("my-notebooks-title").hidden = true;
+        return;
+    }
+    coursesSection.hidden = false;
+    document.getElementById("my-notebooks-title").hidden = false;
+
+    // Filtres par niveau, seulement s'il y a plusieurs niveaux
+    const levels = Object.keys(LEVELS).filter(level => level !== "tous" && courses.some(course => course.niveau === level));
+    coursesLevels.hidden = levels.length < 2;
+    coursesLevels.innerHTML = ["tous", ...levels].map(level => `<button type="button" class="nbl-level${level === courseLevel ? " active" : ""}" data-level="${level}" aria-pressed="${level === courseLevel}">${level === "tous" ? "Tous" : LEVELS[level]}</button>`).join("");
+    coursesLevels.querySelectorAll("[data-level]").forEach(button => button.addEventListener("click", () => { courseLevel = button.dataset.level; renderCourses(); }));
+
+    const query = searchInput.value.trim().toLowerCase();
+    const shown = courses.filter(course => (courseLevel === "tous" || course.niveau === courseLevel || course.niveau === "tous")
+        && (!query || [course.titre, course.description, course.auteur, course.theme].join(" ").toLowerCase().includes(query)));
+
+    coursesList.innerHTML = shown.length ? "" : '<p class="nb-muted">Aucun cours ne correspond.</p>';
+    shown.forEach(course => {
+        const copy = courseCopy(course);
+        const card = document.createElement("article");
+        card.className = "nbl-card nbl-course";
+        card.innerHTML = `
+            <div class="nbl-card-main">
+                <span class="nbl-card-icon course"><i class="fa-solid fa-chalkboard-user"></i></span>
+                <span class="nbl-card-text">
+                    <strong>${escapeHTML(course.titre)}</strong>
+                    ${course.description ? `<span class="nbl-course-desc">${escapeHTML(course.description)}</span>` : ""}
+                    <span class="nbl-card-meta">${escapeHTML(course.auteur || "Un professeur")} · ${escapeHTML(LEVELS[course.niveau] || LEVELS.tous)}${course.theme ? ` · ${escapeHTML(course.theme)}` : ""}</span>
+                    <span class="nbl-badges">${cellSummary(course.cellules)}</span>
+                </span>
+            </div>
+            <div class="nbl-course-actions">
+                ${copy
+                    ? `<a class="nb-btn primary small" href="notebook.html?id=${encodeURIComponent(copy.id)}"><i class="fa-solid fa-play"></i> Reprendre</a>
+                       <button type="button" class="nb-btn small" data-restart title="Créer une nouvelle copie du cours (ta copie actuelle est gardée)"><i class="fa-solid fa-rotate-left"></i> Recommencer</button>`
+                    : `<button type="button" class="nb-btn primary small" data-start><i class="fa-solid fa-play"></i> Commencer</button>`}
+            </div>`;
+        card.querySelector("[data-start]")?.addEventListener("click", () => startCourse(course));
+        card.querySelector("[data-restart]")?.addEventListener("click", () => {
+            if (confirm(`Créer une nouvelle copie de « ${course.titre} » ? Ta copie actuelle est gardée dans « Mes notebooks ».`)) startCourse(course);
+        });
+        coursesList.appendChild(card);
+    });
+}
+
 /* ---------- Événements ---------- */
 
 document.getElementById("new-notebook").addEventListener("click", openDialog);
@@ -293,7 +393,7 @@ document.getElementById("new-form").addEventListener("submit", event => {
 });
 dialog.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", closeDialog));
 dialog.addEventListener("click", event => { if (event.target === dialog) closeDialog(); });
-searchInput.addEventListener("input", renderNotebooks);
+searchInput.addEventListener("input", () => { renderNotebooks(); renderCourses(); });
 
 // Glisser-déposer un .ipynb sur la page
 document.addEventListener("dragover", event => { if ([...event.dataTransfer.items].some(item => item.kind === "file")) event.preventDefault(); });
@@ -305,3 +405,5 @@ document.addEventListener("drop", event => {
 });
 
 renderNotebooks();
+
+loadCourses();
