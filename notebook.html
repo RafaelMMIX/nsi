@@ -65,6 +65,8 @@
             </nav>
         </header>
 
+        <p id="nb-course-banner" class="nb-course-banner" hidden></p>
+
         <div class="nb-titlebar">
             <a href="notebooks.html" class="nb-back"><i class="fa-solid fa-arrow-left"></i> Mes notebooks</a>
             <input id="nb-title" class="nb-title" type="text" value="Notebook" aria-label="Nom du notebook" maxlength="80" spellcheck="false">
@@ -95,6 +97,7 @@
                         <button type="button" data-export="py"><i class="fa-brands fa-python"></i> Script Python (.py)</button>
                         <button type="button" data-export="sql"><i class="fa-solid fa-file-code"></i> Requêtes SQL (.sql)</button>
                         <button type="button" data-export="db"><i class="fa-solid fa-database"></i> Base de données (.db)</button>
+                        <button type="button" data-export="cours" id="export-cours" hidden><i class="fa-solid fa-chalkboard-user"></i> Proposer comme cours…</button>
                     </div>
                 </details>
                 <details class="nb-menu nb-help">
@@ -151,5 +154,29 @@
         <input type="file" id="file-csv" accept=".csv,text/csv" hidden>
         <div id="nb-toasts" class="nb-toasts" aria-live="polite"></div>
     </div>
+
+    <dialog id="course-dialog" class="nbl-dialog nbc-dialog" aria-labelledby="course-dialog-title">
+        <form method="dialog">
+            <header class="nbl-dialog-head">
+                <h2 id="course-dialog-title"><i class="fa-solid fa-chalkboard-user"></i> Proposer comme cours</h2>
+                <button type="button" class="nb-icon-btn" data-close aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+            </header>
+            <p class="nbc-text">Ce notebook apparaîtra dans la section <strong>Cours</strong> des notebooks de tous les élèves, après vérification par Rafael.</p>
+            <ol class="nbc-steps">
+                <li><strong>Relis ton notebook.</strong> Seules les cellules sont envoyées, pas les résultats affichés.</li>
+                <li><strong>Ouvre le formulaire</strong> (il faut un compte GitHub, gratuit). Le code du notebook est copié automatiquement : colle-le dans « Code du notebook » s'il n'est pas déjà rempli.</li>
+                <li><strong>Complète et envoie.</strong> Tu recevras une réponse sur GitHub quand le cours sera publié.</li>
+            </ol>
+            <p id="course-warning" class="nbc-warning" hidden></p>
+            <label class="nbl-field">
+                <span>Code du notebook <span id="course-size" class="nbc-size"></span></span>
+                <textarea id="course-code" class="nbc-code" rows="3" readonly spellcheck="false"></textarea>
+            </label>
+            <footer class="nbl-dialog-foot">
+                <button type="button" class="nb-btn" id="course-copy"><i class="fa-regular fa-copy"></i> Copier le code</button>
+                <a class="nb-btn primary" id="course-open" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Ouvrir le formulaire</a>
+            </footer>
+        </form>
+    </dialog>
 </body>
 </html>

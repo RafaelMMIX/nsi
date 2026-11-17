@@ -1,0 +1,66 @@
+name: "📚 Proposer un cours (professeurs)"
+description: Propose un notebook tout fait pour la section « Cours » des notebooks de NSI Hub.
+title: "Cours : "
+labels: ["cours-en-attente"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de partager ton cours ! Il sera vérifié par Rafael avant d'apparaître dans la section **Cours** des notebooks de NSI Hub.
+
+        Pour obtenir le code : ouvre ton notebook sur NSI Hub, puis **Exporter → Proposer comme cours**. Le code est copié automatiquement : colle-le dans le champ « Code du notebook » s'il n'est pas déjà rempli.
+  - type: input
+    id: auteur
+    attributes:
+      label: Nom affiché
+      description: Affiché sur le cours (« Proposé par … »), par exemple « M. Martin » ou « Mme Durand ».
+      placeholder: M. Martin
+    validations:
+      required: true
+  - type: input
+    id: titre
+    attributes:
+      label: Titre du cours
+      placeholder: Les listes en Python
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: En une ou deux phrases, ce que les élèves vont apprendre ou faire.
+      placeholder: Découvrir les listes, les parcourir avec une boucle et écrire ses premières fonctions de recherche.
+    validations:
+      required: true
+  - type: dropdown
+    id: niveau
+    attributes:
+      label: Niveau
+      options:
+        - SNT
+        - Première NSI
+        - Terminale NSI
+        - Tous niveaux
+    validations:
+      required: true
+  - type: input
+    id: theme
+    attributes:
+      label: Thème
+      description: Facultatif, par exemple « Bases de données » ou « Algorithmique ».
+      placeholder: Algorithmique
+  - type: textarea
+    id: code
+    attributes:
+      label: Code du notebook
+      description: Le code qui commence par NBK1- ou NBK0-.
+      placeholder: NBK1-…
+    validations:
+      required: true
+  - type: checkboxes
+    id: accord
+    attributes:
+      label: Responsabilité
+      options:
+        - label: J'ai le droit de partager ce contenu, il ne contient aucune donnée personnelle d'élève, et j'accepte qu'il soit utilisé librement par les élèves de NSI Hub.
+          required: true

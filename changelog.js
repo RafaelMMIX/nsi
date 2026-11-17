@@ -1,5 +1,21 @@
 const changelog = [
     {
+        version: "1.6.4.0",
+        date: "17 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Les cours des professeurs",
+                description: "Une nouvelle section « Cours » apparaît dans les notebooks dès qu'un cours est publié : des notebooks tout faits, proposés par des professeurs. Clique sur « Commencer » pour avoir ta propre copie, puis « Reprendre » pour continuer là où tu t'étais arrêté."
+            },
+            {
+                type: "new",
+                title: "Professeurs : proposer un notebook",
+                description: "Avec le profil Professeur, le menu Exporter d'un notebook propose « Proposer comme cours » : le formulaire GitHub s'ouvre déjà rempli. Le cours est publié après vérification."
+            }
+        ]
+    },
+    {
         version: "1.6.3.1",
         date: "17 novembre 2026",
         changes: [

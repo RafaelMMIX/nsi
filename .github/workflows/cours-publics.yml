@@ -1,0 +1,99 @@
+name: Cours publics
+
+# Cours proposés par les professeurs (formulaire « Proposer un cours ») :
+#  - à l'ouverture (ou à la modification) de la demande, un aperçu du notebook
+#    est publié en commentaire pour que Rafael puisse le relire ;
+#  - quand Rafael met l'étiquette « cours-approuve », le cours est ajouté à
+#    cours-publics.json (section « Cours » des notebooks), puis la demande est fermée.
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: read
+
+jobs:
+  apercu:
+    if: (github.event.action == 'opened' || github.event.action == 'edited') && contains(github.event.issue.labels.*.name, 'cours-en-attente')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Préparer l'aperçu
+        id: cours
+        run: node .github/scripts/cours.mjs apercu
+
+      - name: Publier l'aperçu
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMERO: ${{ github.event.issue.number }}
+        run: gh issue comment "$NUMERO" --repo "$GITHUB_REPOSITORY" --body-file apercu.md
+
+      - name: Signaler un problème
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MESSAGE: ${{ steps.cours.outputs.message }}
+          NUMERO: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$NUMERO" --repo "$GITHUB_REPOSITORY" --body "${MESSAGE:-❌ Le notebook n'a pas pu être lu.} Vérifie le code (Exporter → Proposer comme cours sur NSI Hub), puis modifie la demande."
+
+  ajouter:
+    if: github.event.action == 'labeled' && github.event.label.name == 'cours-approuve' && github.event.sender.login == github.repository_owner
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    concurrency:
+      group: cours-publics
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Vérifier et ajouter le cours
+        id: cours
+        run: node .github/scripts/cours.mjs ajouter
+
+      - name: Enregistrer
+        if: steps.cours.outputs.ajoute == 'oui'
+        env:
+          NOM: ${{ steps.cours.outputs.nom }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cours-publics.json
+          git commit -m "Cours : $NOM"
+          git push
+
+      - name: Répondre et fermer la demande
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MESSAGE: ${{ steps.cours.outputs.message }}
+          NUMERO: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$NUMERO" --repo "$GITHUB_REPOSITORY" --body "$MESSAGE"
+          gh issue edit "$NUMERO" --repo "$GITHUB_REPOSITORY" --remove-label cours-en-attente || true
+          gh issue close "$NUMERO" --repo "$GITHUB_REPOSITORY"
+
+      - name: Signaler un problème
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MESSAGE: ${{ steps.cours.outputs.message }}
+          NUMERO: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$NUMERO" --repo "$GITHUB_REPOSITORY" --body "${MESSAGE:-❌ Le cours n'a pas pu être ajouté. Regarde l'onglet Actions pour le détail.}"
+          gh issue edit "$NUMERO" --repo "$GITHUB_REPOSITORY" --remove-label cours-approuve || true
