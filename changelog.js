@@ -1,5 +1,31 @@
 const changelog = [
     {
+        version: "1.6.3.0",
+        date: "17 novembre 2026",
+        changes: [
+            {
+                type: "new",
+                title: "Cartes mentales dans les notebooks",
+                description: "Nouveau type de cellule : la carte mentale. Tab ajoute une idée, Entrée une idée sœur, double-clic pour modifier, et tu peux glisser une idée sur une autre pour la déplacer. Annuler, copier-coller, recherche et plein écran sont de la partie."
+            },
+            {
+                type: "new",
+                title: "Mise en forme et apparence",
+                description: "Couleurs, formes, tailles, icônes, gras, cases à cocher, notes et liens sur chaque idée, relations fléchées entre deux idées. Trois dispositions (carte, arbre, organigramme), trois styles de traits et quatre thèmes, dont un « tableau noir »."
+            },
+            {
+                type: "new",
+                title: "Réviser avec une carte",
+                description: "Le mode révision cache les branches : essaie de te souvenir de la suite, puis clique pour révéler. Six modèles tout prêts (fiche de révision, structures de données, bases de données, réseaux, algorithmique, Python), import d'un plan et un nouveau tuto « Réviser avec une carte mentale »."
+            },
+            {
+                type: "new",
+                title: "Exporter ses cartes",
+                description: "Image PNG ou SVG, plan Markdown, fichier JSON. Les cartes sont aussi gardées dans les exports .ipynb et retrouvées à l'import."
+            }
+        ]
+    },
+    {
         version: "1.6.2.0",
         date: "15 novembre 2026",
         changes: [
