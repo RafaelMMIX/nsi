@@ -1,5 +1,16 @@
 const changelog = [
     {
+        version: "1.6.3.1",
+        date: "17 novembre 2026",
+        changes: [
+            {
+                type: "improved",
+                title: "Annonce des cartes mentales",
+                description: "Une nouvelle annonce sur l'accueil présente les cartes mentales des notebooks."
+            }
+        ]
+    },
+    {
         version: "1.6.3.0",
         date: "17 novembre 2026",
         changes: [

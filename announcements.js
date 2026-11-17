@@ -40,4 +40,12 @@ const announcements = [
         buttonUrl: "changelog.html",
         date: "2026-11-15"
     },
+    {
+        id: "annonce-notebooks-cartes-mentales",
+        title: "Nouveau dans les notebooks : les cartes mentales !",
+        message: "Les notebooks réunissent maintenant quatre types de cellules : Python, SQL, texte… et les cartes mentales. Range les idées d'un chapitre autour d'un sujet central, ajoute des couleurs, des icônes et des cases à cocher, puis passe en mode révision : les branches se cachent et tu cliques pour vérifier si tu t'en souvenais. Six modèles sont prêts (structures de données, bases de données, réseaux, algorithmique…) et le tuto « Réviser avec une carte mentale » te montre tout. Tes cartes s'exportent aussi en image, pour les imprimer ou les partager.",
+        buttonText: "Ouvrir les notebooks",
+        buttonUrl: "notebooks.html",
+        date: "2026-11-17"
+    },
 ];
