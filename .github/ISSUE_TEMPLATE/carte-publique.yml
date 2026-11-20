@@ -24,6 +24,12 @@ body:
       placeholder: TCG1-…
     validations:
       required: true
+  - type: input
+    id: maj
+    attributes:
+      label: ID de la carte à mettre à jour (facultatif)
+      description: Laisse vide pour publier une nouvelle carte. Si tu écris l'ID d'une carte déjà publiée (affiché sous la carte sur NSI Hub), elle est remplacée par cette version au lieu d'en créer une nouvelle.
+      placeholder: a38ec16b84f962cc
   - type: checkboxes
     id: accord
     attributes:

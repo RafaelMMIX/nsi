@@ -22,6 +22,40 @@ export const TYPES = {
     lumiere: { l: "Lumière", i: "✨", c: "#d9b43a" }
 };
 
+// Attaques : 2 à 3 par carte, puissance limitée par une fourchette selon la rareté
+// (les mêmes valeurs que dans Booster perso et dans .github/scripts/ajouter-carte.mjs)
+export const ATK_RANGE = {
+    commune: [10, 30],
+    rare: [20, 50],
+    epique: [30, 70],
+    legendaire: [50, 100],
+    superlegendaire: [70, 130],
+    mythique: [90, 160],
+    perdue: [120, 200]
+};
+
+export const ATK_MIN = 2;
+export const ATK_MAX = 3;
+
+// Accepte {n, d} ou [n, d] ; renvoie une liste propre (puissance ramenée dans la
+// fourchette) ou undefined si la liste est invalide
+export function cleanAtk(list, rar) {
+    if (!Array.isArray(list) || !ATK_RANGE[rar]) {
+        return undefined;
+    }
+
+    const [lo, hi] = ATK_RANGE[rar];
+
+    const out = list.slice(0, ATK_MAX).map(a => {
+        const n = String((Array.isArray(a) ? a[0] : a && a.n) || "").trim().slice(0, 20);
+        const v = Math.round(+(Array.isArray(a) ? a[1] : a && a.d));
+
+        return { n, d: Math.min(hi, Math.max(lo, Number.isFinite(v) ? v : lo)) };
+    }).filter(a => a.n);
+
+    return out.length >= ATK_MIN ? out : undefined;
+}
+
 // Base64 URL-safe
 const b64 = (u) => {
     let s = "";
@@ -83,12 +117,19 @@ async function pipe(data, Constructor) {
 
 // Génération d'un code de partage
 export async function encode(card) {
+    // Les attaques sont un 6e élément facultatif (le type est alors toujours écrit)
+    const atk = card.atk && card.atk.length ? card.atk.map(a => [a.n, a.d]) : null;
+    const extra = atk
+        ? [card.type || "neutre", atk]
+        : card.type && card.type !== "neutre" ? [card.type] : [];
+
     const raw = new TextEncoder().encode(
         JSON.stringify([
             card.nom,
             card.rar,
-            card.desc,
-            card.img
+            card.desc || "",
+            card.img || "",
+            ...extra
         ])
     );
 
@@ -126,12 +167,12 @@ export async function decode(code) {
         new TextDecoder().decode(data)
     );
 
-    // 4 champs, ou 5 quand la carte a un type
-    if (!Array.isArray(decoded) || decoded.length < 4 || decoded.length > 5) {
+    // 4 champs, 5 quand la carte a un type, 6 quand elle a des attaques
+    if (!Array.isArray(decoded) || decoded.length < 4 || decoded.length > 6) {
         throw new Error("Données de carte invalides");
     }
 
-    const [nom, rar, desc, img, type] = decoded;
+    const [nom, rar, desc, img, type, atk] = decoded;
 
     if (
         typeof nom !== "string" ||
@@ -145,6 +186,8 @@ export async function decode(code) {
         typeof img === "string" &&
         /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]*$/.test(img);
 
+    const cleanAttacks = cleanAtk(atk, rar);
+
     return {
         id: Date.now() + Math.floor(Math.random() * 1000),
         nom: nom.slice(0, 32),
@@ -152,7 +195,8 @@ export async function decode(code) {
         desc: String(desc || "").slice(0, 160),
         img: validImage ? img : "",
         type: TYPES[type] ? type : "neutre",
-        emoji: "🖼️"
+        emoji: "🖼️",
+        ...(cleanAttacks ? { atk: cleanAttacks } : {})
     };
 }
 
@@ -295,6 +339,36 @@ const CARD_CSS = `
     padding: 2px 0;
 }
 
+.card .atks {
+    display: grid;
+    gap: 2px;
+    background: #fffe;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+.card .atk {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px;
+    font: 700 .72rem var(--sans);
+}
+
+.card .atk .nm {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card .atk .pw {
+    font: 800 .8rem var(--serif);
+    flex: none;
+}
+
+.card.has-atk .art { flex-basis: 35%; font-size: 2.2rem; }
+.card.has-atk .desc { font-size: .7rem; padding: 4px 8px; line-height: 1.25; }
+
 .card .desc {
     flex: 1;
     min-height: 0;
@@ -392,7 +466,34 @@ function cardElement(card) {
     description.className = "desc";
     description.textContent = card.desc || "";
 
-    element.append(top, art, rarity, description);
+    element.append(top, art, rarity);
+
+    if (card.atk && card.atk.length) {
+        element.classList.add("has-atk");
+
+        const attacks = document.createElement("div");
+        attacks.className = "atks";
+
+        for (const a of card.atk) {
+            const row = document.createElement("div");
+            row.className = "atk";
+
+            const nm = document.createElement("span");
+            nm.className = "nm";
+            nm.textContent = a.n;
+
+            const pw = document.createElement("span");
+            pw.className = "pw";
+            pw.textContent = a.d;
+
+            row.append(nm, pw);
+            attacks.append(row);
+        }
+
+        element.append(attacks);
+    }
+
+    element.append(description);
 
     return element;
 }

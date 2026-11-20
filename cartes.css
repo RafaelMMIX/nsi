@@ -135,6 +135,7 @@
 .community-card-info { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 11px; min-width: 0; }
 .community-card-info h3 { margin: 0; color: var(--text, #f8fafc); font-size: 18px; line-height: 1.25; overflow-wrap: anywhere; }
 .community-card-author { margin: -5px 0 0; color: #9ba5b9; font-size: 13px; }
+.community-card-id { margin: -4px 0 0; color: #7d879c; font: 11px ui-monospace, Menlo, Consolas, monospace; letter-spacing: .02em; user-select: all; word-break: break-all; }
 .community-card-rarity { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; color: #c4cad8; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.06); border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .025em; }
 .community-card-rarity[data-rarity="commune"] { color: #c4cad8; }
 .community-card-rarity[data-rarity="rare"] { color: #7dc2ff; background: rgba(47,127,224,.12); border-color: rgba(96,165,250,.15); }
